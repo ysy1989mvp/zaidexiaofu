@@ -37,22 +37,26 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mycenter/index/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/order/index/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
 		}
-	    ,{
-            "path" : "pages/mycenter/index/index",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/order/index/index",
-            "style" : {}
-        }
-    ],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "black",
-		"backgroundColor": "#f8f8f8"
-	},
+	],
+	// "globalStyle": {
+	// 	"navigationBarTextStyle": "black",
+	// 	"navigationBarTitleText": "uni-app",
+	// 	"navigationBarBackgroundColor": "black",
+	// 	"backgroundColor": "#f8f8f8"
+	// },
 	"tabBar": {
 		"color": "#C0C4CC",
 		"selectedColor": "#fa436a",
@@ -60,25 +64,25 @@
 		"backgroundColor": "black",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/lxy/home%20page%20@3x.png",
+				"iconPath": "static/lxy/home%201.png",
 				"selectedIconPath": "static/lxy/home%20page%20@3x.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/category/category",
-				"iconPath": "static/lxy/order@3x.png",
+				"iconPath": "static/lxy/order%202.png",
 				"selectedIconPath": "static/lxy/order@3x.png",
 				"text": "订单"
 			},
 			{
 				"pagePath": "pages/cart/cart",
-				"iconPath": "static/lxy/Customer%20service(1)@3x.png",
+				"iconPath": "static/lxy/kefu(2)@3x.png",
 				"selectedIconPath": "static/lxy/Customer%20service(1)@3x.png",
 				"text": "客服"
 			},
 			{
 				"pagePath": "pages/user/user",
-				"iconPath": "static/lxy/my@3x.png",
+				"iconPath": "static/lxy/wode(3)@3x.png",
 				"selectedIconPath": "static/lxy/my@3x.png",
 				"text": "我的"
 			}
