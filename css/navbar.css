@@ -1,0 +1,39 @@
+.navbar {
+	display: flex;
+	height: 40px;
+	padding: 0 5px;
+	background: #fff;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+	position: relative;
+	z-index: 10;
+	align-items: center;
+	justify-content: space-between;
+
+}
+.nav-item {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	font-size: 15px;
+	color: #000000;
+	position: relative;
+
+
+
+}
+.current {
+	color: #C505C5;
+
+}
+.current:after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	width: 44px;
+	height: 0;
+	border-bottom: 2px solid #C5C5C5;
+}

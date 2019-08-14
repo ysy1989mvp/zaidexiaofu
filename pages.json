@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/order/index/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
 			"path": "pages/index/index/index",
 			"style": {
 				// #ifdef MP 
@@ -42,12 +48,6 @@
 			"path": "pages/mycenter/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
-			}
-		},
-		{
-			"path": "pages/order/index/index",
-			"style": {
-				"navigationBarTitleText": "订单"
 			}
 		}
 	],
