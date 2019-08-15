@@ -42,7 +42,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="QR">确认</view>
+				<view class="QR" @click="confirmBuy">确认</view>
 			</view>
 		</view>
 
@@ -70,6 +70,11 @@
 			},
 			bubuy() {
 				this.show_number = 0;
+			},
+			confirmBuy(){
+				uni.navigateTo({
+					url:"../../order/confirm_order/confirm_order"
+				})
 			}
 		}
 	}

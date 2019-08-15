@@ -14,19 +14,19 @@
 				</view>
 				<view class="part2a">
 					<view class="part3">
-						<view class="a lxyl">
+						<view class="a lxyl" @click="xiaofudinggou">
 							<image src="../../../static/lxy/xiaofudingou@3x.png"></image>
 							<text>校服订购</text>
 						</view>
-						<view class="b lxyl">
+						<view class="b lxyl" @click="pinpaigushi">
 							<image src="../../../static/lxy/pingpaigushi@3x.png"></image>
 							<text>品牌故事</text>
 						</view>
-						<view class="c lxyl">
+						<view class="c lxyl" @click="anlizhanshi">
 							<image src="../../../static/lxy/anli@3x.png"></image>
 							<text>案例</text>
 						</view>
-						<view class="d lxyl">
+						<view class="d lxyl" @click="gongyiliucheng">
 							<image src="../../../static/lxy/gongyiliuc.png"></image>
 							<text>工艺流程</text>
 						</view>
@@ -37,17 +37,6 @@
 					<view class="part4b">载德校服套装展示</view>
 				</view>
 				<view class="last part">
-					<view class="part5 left" >  <!-- v-for="(item,index) in 5" -->
-						<view class="part5a mt">
-							<image src="../../../static/lxy/a1.png"></image>
-						</view>
-						<view class="part5b price">
-							<view class="ZW">英伦典雅学院风</br>西装套装</view>
-							<view class="YW">Our strengths are British elegance college style</view>
-							<view class="JQ">￥450</view>
-							<view class="XQ">详情>>></view>
-						</view>
-					</view>
 					<view class="part5" v-for="(item,index) in 5" :key="index" :class="index%2==1?left1:right1" @click="shopdetail">
 						<view class="part5a mt">
 							<image src="../../../static/lxy/a1.png"></image>
@@ -81,6 +70,26 @@
 			
 		},
 		methods: {
+			xiaofudinggou(){
+				uni.navigateTo({
+					url:"../creation/creation"
+				})
+			},
+			pinpaigushi(){
+				uni.navigateTo({
+					url:"../../tuiguangxiangguang/pinpaigushi/pinpaigushi"
+				})
+			},
+			anlizhanshi(){
+				uni.navigateTo({
+					url:"../../tuiguangxiangguang/anlizhanshi/anlizhanshi"
+				})
+			},
+			gongyiliucheng(){
+				uni.navigateTo({
+					url:"../../tuiguangxiangguang/gongyiliucheng/gongyiliucheng"
+				})
+			},
 			shopdetail(){
 				uni.navigateTo({
 					url:"../shop_detail/shop_detail"

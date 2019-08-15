@@ -56,19 +56,25 @@
 		{
 			"path": "pages/order/index/index",
 			"style": {
-				"navigationBarTitleText": "订单"
+				"navigationBarTitleText": "订单",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"
 			}
 		}
 	    ,{
             "path" : "pages/order/addr_list/addr_list",
             "style" : {
-				"navigationBarTitleText": "我的地址列表"
+				"navigationBarTitleText": "我的地址列表",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"
 			}
         },
 		{
 		    "path" : "pages/order/addr_list/addressManage",
 		    "style" : {
-				"navigationBarTitleText": "新增地址"
+				"navigationBarTitleText": "地址操作",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"
 			}
 		}
         ,{
@@ -81,7 +87,27 @@
         
         ,{
             "path" : "pages/index/creation/creation",
-            "style" : {"navigationBarTitleText": "定制服装"}
+            "style" : {"navigationBarTitleText": "定制服装",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"}
+        }
+        ,{
+            "path" : "pages/tuiguangxiangguang/pinpaigushi/pinpaigushi",
+            "style" : {"navigationBarTitleText": "品牌故事",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"}
+        }
+        ,{
+            "path" : "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
+            "style" : {"navigationBarTitleText": "案例展示",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"}
+        }
+        ,{
+            "path" : "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
+            "style" : {"navigationBarTitleText": "工艺流程",
+			"navigationBarBackgroundColor": "black",
+			"navigationBarTextStyle": "#f8f8f8"}
         }
     ],
 	"globalStyle": {
@@ -125,7 +151,7 @@
 				"text": "客服"
 			},
 			{
-				"pagePath": "pages/user/index/index",
+				"pagePath": "pages/mycenter/index/index",
 				"iconPath": "static/lxy/105.png",
 				"selectedIconPath": "static/lxy/105.png",
 				"text": "我的"

@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="item" v-for="(item,index) in 10" :key="index">
+			<view class="item" v-for="(item,index) in 10" :key="index" @click="selected">
 				<image class="tubiao" src="../../../static/yangsongyan/imgs/address/513@3x.png"></image>
 				<view class="center">
 					<view class="part1">
@@ -13,10 +13,10 @@
 						<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
 					</view>
 				</view>
-				<view class="editer">编辑</view>
+				<view class="editer" @click="addAddr(2)">编辑</view>
 			</view>
 			<view class="liubai"></view>
-			<view class="button_ysy" @click="addAddr">
+			<view class="button_ysy" @click="addAddr(1)">
 				新增地址
 			</view>
 		</view>
@@ -31,11 +31,17 @@
 			}
 		},
 		methods: {
-			addAddr(){
+			addAddr(index){
 				uni.navigateTo({
-					url:"../addr_list/addressManage"
+					url:"../addr_list/addressManage?type="+index
+				});
+			},
+			selected(){
+				uni.navigateTo({
+					url:"../confirm_order/confirm_order"
 				});
 			}
+			
 		}
 	}
 </script>

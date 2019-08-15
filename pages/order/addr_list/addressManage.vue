@@ -24,9 +24,9 @@
 			<text class="tit">设为默认</text>
 			<switch :checked="addressData.defaule" color="#fa436a" @change="switchChange" />
 		</view>
-		<button class="add-btn" @click="confirm">删除</button>
-		<button class="add-btn lvse" @click="confirm">修改</button>
-		<button class="add-btn lvse" @click="confirm">提交</button>
+		<button class="add-btn" v-if="type==2" @click="confirm">删除</button>
+		<button class="add-btn lvse" v-if="type==2" @click="confirm">修改</button>
+		<button class="add-btn lvse" v-if="type==1" @click="confirm">提交</button>
 	</view>
 </template>
 
@@ -34,6 +34,7 @@
 	export default {
 		data() {
 			return {
+				type:1,
 				addressData: {
 					name: '',
 					mobile: '',
@@ -45,6 +46,7 @@
 			}
 		},
 		onLoad(option){
+			this.type = option.type;
 			let title = '新增收货地址';
 			if(option.type==='edit'){
 				title = '编辑收货地址'
@@ -73,6 +75,9 @@
 			
 			//提交
 			confirm(){
+				uni.navigateTo({
+					url:"addr_list"
+				});
 				let data = this.addressData;
 				if(!data.name){
 					this.$api.msg('请填写收货人姓名');

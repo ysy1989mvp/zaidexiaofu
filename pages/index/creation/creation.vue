@@ -35,7 +35,7 @@
 								<view class="price">￥180</view>
 								<view class="number">589人付款</view>
 							</view>
-							<view class="dingzhi">购买 >></view>
+							<view class="dingzhi">购买 〉</view>
 						</view>
 					</view>
 				</view>

@@ -12,20 +12,20 @@
 				</view>
 			</view>
 			<view class="part2">
-				<view class="p2">
+				<view class="p2" @click="goorders">
 					<view class="a f1">
 						<img src="../../../static/ysy/dfk.png">
 						<view class="2a">待付款</view>
 					</view>
 				</view>
 				<view class="bkx"> </view>
-				<view class="p2">
+				<view class="p2" @click="goorders">
 					<view class="b f1">
 						<img src="../../../static/ysy/dfh.png">
 						<view class="2a">待发货</view>
 					</view>
 				</view>
-				<view class="bkx"> </view>
+				<view class="bkx" @click="goorders"> </view>
 				<view class="p2">
 					<view class="c f1">
 						<img src="../../../static/ysy/dsh.png">
@@ -77,7 +77,11 @@
 			}
 		},
 		methods: {
-
+			goorders() {
+				uni.switchTab({
+					url: "../index/index"
+				})
+			},
 		}
 	}
 </script>
@@ -86,6 +90,7 @@
 	page {
 		background-color: #E4E7ED;
 	}
+
 	.TX {
 		display: flex;
 		flex-direction: column;
@@ -136,33 +141,38 @@
 		justify-content: space-between;
 		margin-top: 45upx;
 	}
-	.fw{
+
+	.fw {
 		display: flex;
 		flex-direction: row;
 		background-color: #FFFFFF;
-		margin-top:15upx;
+		margin-top: 15upx;
 		margin-bottom: 15upx;
 		height: 80upx;
 		justify-content: space-between;
 		align-items: center;
-		
+
 	}
-	.fff{
+
+	.fff {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		font-size:26upx ;
+		font-size: 26upx;
 	}
-	.c1{
-		height:35upx ;
+
+	.c1 {
+		height: 35upx;
 	}
-	.c2{
-		height:50upx ;
+
+	.c2 {
+		height: 50upx;
 	}
-	.zl{
+
+	.zl {
 		height: 150upx;
-		display:flex ;
+		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;

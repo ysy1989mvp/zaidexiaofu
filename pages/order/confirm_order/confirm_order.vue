@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="item">
+			<view class="item" @click="addrs">
 				<view class="center">
 					<view class="uu">
 						<view class="part1">
@@ -44,7 +44,7 @@
 							<view class="gm">购买数量</view>
 							<view class="sl">
 								<view class="s2 jd">-</view>
-								<view class="s2">1</view>
+								<view class="s3">1</view>
 								<view class="s2 jd">+</view>
 							</view>
 						</view>
@@ -63,7 +63,7 @@
 				<view class="D1">
 					<view class="HJ">合计：￥450</view>
 				</view>
-				<view class="GM">提交订单</view>
+				<view class="GM" @click="tijiao">提交订单</view>
 			</view>
 		</view>
 	</view>
@@ -77,7 +77,16 @@
 			}
 		},
 		methods: {
-
+			tijiao() {
+				uni.switchTab({
+					url: "../index/index"
+				})
+			},
+			addrs(){
+				uni.navigateTo({
+					url: "../addr_list/addr_list"
+				})
+			}
 		}
 	}
 </script>
@@ -257,41 +266,61 @@
 		margin: 20upx 20upx;
 		padding: 10upx 10upx;
 	}
-	.uu{
+
+	.uu {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		margin: 10upx 10upx;
 		padding: 10upx 10upx;
 	}
-	.e2{
+
+	.e2 {
 		color: #6E0012;
 	}
-	.u2,.u4{
+
+	.u2,
+	.u4 {
 		color: #909399;
 		width: 80%;
 	}
-	.g2,.g3{
+
+	.g2,
+	.g3 {
 		display: flex;
 		justify-content: space-between;
 		align-items: stretch;
 	}
-	.sl{
+
+	.sl {
 		display: flex;
 		justify-content: space-between;
 		align-items: stretch;
 	}
-	.s2{
+
+	.s2 {
 		border: 2upx solid #555555;
-		width: 50upx;
-		height:30upx;
-		font-size:25upx;
+		width: 64upx;
+		height: 44upx;
+		/* border-radius: 22upx; */
+		/* background-color: #A5A5A5; */
+		color: #000000;
+		/* height: 30upx; */
+		font-size: 32upx;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-weight: bold;
+		line-height: 6upx;
 	}
-	.jd{
+	.s3{
+		font-size: 32upx;
+		margin: 2upx 15upx;
+	}
+	.jd {
 		font-size: 35upx;
+	}
+	.m{
+		color: #A5A5A5;
 	}
 </style>
