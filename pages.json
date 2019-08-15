@@ -41,16 +41,29 @@
 		{
 			"path": "pages/mycenter/index/index",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "我的",
+				"navigationBarTextStyle":"white"
 			}
 		},
 		{
 			"path": "pages/order/index/index",
 			"style": {
-				"navigationBarTitleText": "订单"
+				"navigationBarTitleText": "订单",
+				"navigationBarTextStyle":"white"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/index/shop_detail/shop_detail",
+            "style" : {
+				"navigationBarTitleText": "校服详情",
+				"navigationBarTextStyle":"white"
+			}
+        }
+        ,{
+            "path" : "static/lxy/ysy/ysy",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -1,30 +1,32 @@
 <template>
 	<view class="container">
 		<view class="content">
+			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in homeSlide" :key="index">
 						<image :src="item" mode="aspectFill"></image>
 					</swiper-item>
 				</swiper>
+			</view>
 				
 				<view class="part2">
 					<image src="../../../static/lxy/30.png" mode=""></image>
 				</view>
 				<view class="part2a">
 					<view class="part3">
-						<view class="a lxy">
+						<view class="a lxyl">
 							<image src="../../../static/lxy/xiaofudingou@3x.png"></image>
 							<text>校服订购</text>
 						</view>
-						<view class="b lxy">
+						<view class="b lxyl">
 							<image src="../../../static/lxy/pingpaigushi@3x.png"></image>
 							<text>品牌故事</text>
 						</view>
-						<view class="c lxy">
+						<view class="c lxyl">
 							<image src="../../../static/lxy/anli@3x.png"></image>
 							<text>案例</text>
 						</view>
-						<view class="d lxy">
+						<view class="d lxyl">
 							<image src="../../../static/lxy/gongyiliuc.png"></image>
 							<text>工艺流程</text>
 						</view>
@@ -35,7 +37,7 @@
 					<view class="part4b">载德校服套装展示</view>
 				</view>
 				<view class="last part">
-					<view class="part5 left">
+					<view class="part5 left" >  <!-- v-for="(item,index) in 5" -->
 						<view class="part5a mt">
 							<image src="../../../static/lxy/a1.png"></image>
 						</view>
@@ -46,7 +48,7 @@
 							<view class="XQ">详情>>></view>
 						</view>
 					</view>
-					<view class="part5 right">
+					<view class="part5" v-for="(item,index) in 5" :key="index" :class="index%2==1?left1:right1" @click="shopdetail">
 						<view class="part5a mt">
 							<image src="../../../static/lxy/a1.png"></image>
 						</view>
@@ -54,28 +56,6 @@
 							<view class="ZW">英伦经典菱形格套装</view>
 							<view class="YW">Class British diamond</view>
 							<view class="JQ">￥399</view>
-							<view class="XQ">详情>>></view>
-						</view>
-					</view>
-					<view class="part5 left">
-						<view class="part5a mt">
-							<image src="../../../static/lxy/a1.png"></image>
-						</view>
-						<view class="part5b price">
-							<view class="ZW">英伦学院风藏蓝格子西服套装</view>
-							<view class="YW">British college style navy blue checked suit</view>
-							<view class="JQ">￥450</view>
-							<view class="XQ">详情>>></view>
-						</view>
-					</view>
-					<view class="part5 right">
-						<view class="part5a mt">
-							<image src="../../../static/lxy/a1.png"></image>
-						</view>
-						<view class="part5b price">
-							<view class="ZW">英伦典雅学院风</view>
-							<view class="YW">Our strengths are British elegance college style</view>
-							<view class="JQ">￥450</view>
 							<view class="XQ">详情>>></view>
 						</view>
 					</view>
@@ -88,6 +68,8 @@
 	export default {
 		data() {
 			return {
+				left1:'left',
+				right1:'right',
 				homeSlide: ["../../../static/lxy/1.png",
 				"../../../static/lxy/1.png",
 				"../../../static/lxy/1.png",
@@ -99,7 +81,11 @@
 			
 		},
 		methods: {
-
+			shopdetail(){
+				uni.navigateTo({
+					url:"../shop_detail/shop_detail"
+				})
+			},
 			// #ifndef MP
 			// 标题栏input搜索框点击
 			onNavigationBarSearchInputClicked: async function(e) {
@@ -134,16 +120,20 @@
 		font-size: 36upx;
 		color: #8f8f94;
 	}
-
+	.banner{
+		width: 100%;
+	}
 	.swiper {
 		height: 350upx;
 		padding-top: 78upx;
 	}
-
-	// swiper-item 里面的图片高度
-	swiper-item image {
+	swiper-item>uni-image{
 		width: 100%;
-		height: 350upx;
+	}
+	// swiper-item 里面的图片高度
+	.swiper-item image {
+		width: 200%;
+		height: 550upx;
 	}
 	.part2 image{
 		margin-top: -10upx;
@@ -168,7 +158,7 @@
 		width: 80upx;
 		height: 80upx;
 	}
-	.lxy{
+	.lxyl{
 		display: flex;
 		flex-direction: column ;
 		align-items: center;
