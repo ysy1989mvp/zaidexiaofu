@@ -3,7 +3,7 @@
 		<view class="content">
 			<view class="item" v-for="(item,index) in 10" :key="index" @click="selected">
 				<image class="tubiao" src="../../../static/yangsongyan/imgs/address/513@3x.png"></image>
-				<view class="center">
+				<view class="center"  @click="selected">
 					<view class="part1">
 						<view class="name">陈明</view>
 						<view class="mobile">138888888888</view>
