@@ -124,7 +124,4 @@
 		margin-top: 30upx;
 		font-size: 30upx;
 	}
-	.login{
-		
-	}
 </style>
