@@ -10,6 +10,7 @@
 					<view class="part2">
 						<view class="default">默认</view>
 						<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
+						<view class="m"> > </view>
 					</view>
 					<view class="part3">
 						<view class="time">收货时间不限</view>
@@ -68,6 +69,12 @@
 </script>
 
 <style>
+	page{
+		background-color: #EEEEEE;
+	}
+	.container{
+		height: 100vh;
+	}
 	.part1,.part2{
 		display: flex;
 		justify-content: flex-start;
@@ -94,14 +101,17 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
+		height: 20%;
 	}
 	.item{
 		background-color: #FFFFFF;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin: 15upx auto;
-		padding-bottom: 0upx 20upx;
+		margin: 20upx auto;
+		padding-bottom: 20upx 20upx;
+		width: 90%;
+		border-radius: 10upx;
 	}
 	.img{
 		width: 30upx;
@@ -146,4 +156,13 @@
 		display: flex;
 		flex-direction: row;
 	}
+	.last{
+		width: 90%;
+		background-color: #FFFFFF;
+		margin: 20upx auto;
+		padding-bottom: auto;
+		border-radius: 10upx;
+		height: 60%;
+	}
+	
 </style>
