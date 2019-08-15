@@ -1,12 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/order/index/index",
-			"style": {
-				"navigationBarTitleText": "订单"
-			}
-		},
-		{
 			"path": "pages/index/index/index",
 			"style": {
 				// #ifdef MP 
@@ -47,10 +41,45 @@
 		{
 			"path": "pages/mycenter/index/index",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "我的",
+				"navigationBarTextStyle":"white"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/index/shop_detail/shop_detail",
+            "style" : {
+				"navigationBarTitleText": "校服详情",
+				"navigationBarTextStyle":"white"
+			}
+        },
+		// --------------杨松彦-------------------
+		{
+			"path": "pages/order/index/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		}
+	    ,{
+            "path" : "pages/order/addr_list/addr_list",
+            "style" : {
+				"navigationBarTitleText": "我的地址列表"
+			}
+        },
+		{
+		    "path" : "pages/order/addr_list/addressManage",
+		    "style" : {
+				"navigationBarTitleText": "新增地址"
+			}
+		}
+        ,{
+            "path" : "pages/order/confirm order/confirm order",
+            "style" : {"navigationBarTitleText": "确认订单",
+					"navigationBarBackgroundColor": "black",
+					"navigationBarTextStyle": "#f8f8f8"
+			}
+        }
+        
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
