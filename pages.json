@@ -72,7 +72,7 @@
 			}
 		}
         ,{
-            "path" : "pages/order/confirm order/confirm order",
+            "path" : "pages/order/confirm_order/confirm_order",
             "style" : {"navigationBarTitleText": "确认订单",
 					"navigationBarBackgroundColor": "black",
 					"navigationBarTextStyle": "#f8f8f8"

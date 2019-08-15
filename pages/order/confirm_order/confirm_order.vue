@@ -51,6 +51,13 @@
 					</view>
 				</view>
 			</view>
+			<view class="D">
+				<view class="D1">
+					<view class="YT">共一套</view>
+					<view class="HJ">合计：￥450</view>
+				</view>
+				<view class="GM" >立即购买</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -164,5 +171,32 @@
 		border-radius: 10upx;
 		height: 60%;
 	}
+	.D {
+		display: flex;
+		flex-direction: row;
+		/* align-items: center; */
+		justify-content: space-between;
+		/* position: relative; */
+	}
+	.D1{
+		display: flex;
+		flex-direction: row;
+		
+	}
+	.HJ {
+		text-align: center;
+		width: 50%;
+		color: #6E0012;
+		height: 80upx;
+		line-height: 80upx
+	}
 	
+	.GM {
+		text-align: center;
+		width: 50%;
+		background-color: #6E0012;
+		color: #FFFFFF;
+		height: 80upx;
+		line-height: 80upx;
+	}
 </style>
