@@ -19,14 +19,14 @@
 					</view>
 				</view>
 				<view class="bkx"> </view>
-				<view class="p2" @click="goorders">
+				<view class="p2"  @click="goorders">
 					<view class="b f1">
 						<img src="../../../static/ysy/dfh.png">
 						<view class="2a">待发货</view>
 					</view>
 				</view>
-				<view class="bkx" @click="goorders"> </view>
-				<view class="p2">
+				<view class="bkx"> </view>
+				<view class="p2"  @click="goorders">
 					<view class="c f1">
 						<img src="../../../static/ysy/dsh.png">
 						<view class="2a">待收货</view>
@@ -79,7 +79,7 @@
 		methods: {
 			goorders() {
 				uni.switchTab({
-					url: "../index/index"
+					url: "../../order/index/index"
 				})
 			},
 		}
