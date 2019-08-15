@@ -137,11 +137,13 @@
 	}
 
 	.D {
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		/* align-items: center; */
 		justify-content: space-between;
-		position: relative;
+		position: fixed;
+		bottom: 0upx;
 	}
 
 	.HJ {
@@ -149,7 +151,9 @@
 		width: 50%;
 		color: #6E0012;
 		height: 80upx;
-		line-height: 80upx
+		line-height: 80upx;
+		background-color: #E5E5E5;
+		
 	}
 
 	.GM {
@@ -163,6 +167,7 @@
 
 	.see1 {
 		background-color: #f5f5f5;
+		margin-bottom: 81upx;
 	}
 
 	.w1 {

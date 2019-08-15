@@ -156,7 +156,7 @@
 
 	.center_content {
 		width: 100%;
-		background-color: #EEEEEE;
+		background-color: #FFFFFF;
 		/* 		display: flex;
 		align-items: center; */
 	}
@@ -180,6 +180,7 @@
 		margin: 10upx auto;
 		padding: 0upx 15upx;
 		padding-bottom: 35upx;
+		border-bottom: 2upx solid #EEEEEE;
 	}
 
 	.part1 {

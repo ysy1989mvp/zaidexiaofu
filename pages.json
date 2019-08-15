@@ -79,6 +79,10 @@
 			}
         }
         
+        ,{
+            "path" : "pages/index/creation/creation",
+            "style" : {"navigationBarTitleText": "定制服装"}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -104,26 +108,26 @@
 		"backgroundColor": "white",
 		"list": [{
 				"pagePath": "pages/index/index/index",
-				"iconPath": "static/lxy/home%201.png",
-				"selectedIconPath": "static/lxy/home%20page%20@3x.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/order/index/index",
-				"iconPath": "static/lxy/order@3x.png",
-				"selectedIconPath": "static/lxy/order_2.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "订单"
 			},
 			{
 				"pagePath": "pages/cart/cart",
-				"iconPath": "static/lxy/kefu(2)@3x.png",
-				"selectedIconPath": "static/lxy/Customer%20service(1)@3x.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "客服"
 			},
 			{
 				"pagePath": "pages/user/index/index",
-				"iconPath": "static/lxy/wode(3)@3x.png",
-				"selectedIconPath": "static/lxy/my@3x.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "我的"
 			}
 		]
