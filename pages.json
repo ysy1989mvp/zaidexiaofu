@@ -101,17 +101,17 @@
 		"color": "#C0C4CC",
 		"selectedColor": "#fa436a",
 		"borderStyle": "black",
-		"backgroundColor": "black",
+		"backgroundColor": "white",
 		"list": [{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/index/index/index",
 				"iconPath": "static/lxy/home%201.png",
 				"selectedIconPath": "static/lxy/home%20page%20@3x.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/category/category",
-				"iconPath": "static/lxy/order%202.png",
-				"selectedIconPath": "static/lxy/order@3x.png",
+				"pagePath": "pages/order/index/index",
+				"iconPath": "static/lxy/order@3x.png",
+				"selectedIconPath": "static/lxy/order_2.png",
 				"text": "订单"
 			},
 			{
@@ -121,7 +121,7 @@
 				"text": "客服"
 			},
 			{
-				"pagePath": "pages/user/user",
+				"pagePath": "pages/user/index/index",
 				"iconPath": "static/lxy/wode(3)@3x.png",
 				"selectedIconPath": "static/lxy/my@3x.png",
 				"text": "我的"
