@@ -3,60 +3,67 @@
 		<view class="content">
 			<view class="item">
 				<view class="center">
-					<view class="part1">
-						<view class="XM">孙晓</view>
-						<view class="nub">1685950420</view>
-					</view>
-					<view class="part2">
-						<view class="default">默认</view>
-						<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
-						<view class="m"> > </view>
-					</view>
-					<view class="part3">
-						<view class="time">收货时间不限</view>
+					<view class="uu">
+						<view class="part1">
+							<view class="XM">孙晓</view>
+							<view class="nub">1685950420</view>
+						</view>
+						<view class="part2">
+							<view class="default">默认</view>
+							<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
+							<view class="m"> 〉</view>
+						</view>
+						<view class="part3">
+							<view class="time">收货时间不限</view>
+						</view>
 					</view>
 				</view>
 			</view>
 			<view class="last">
-				<view class="parta1">
-					<img class="icon" src="../../../static/lxy/icon.png">
-					<view class="ww">载德国际校服</view>
-				</view>
-				<view class="parta2">
-					<image class="ttt" src="../../../static/lxy/a2.png"></image>
-					<view class="ttt2">
-						<view class="e">
-							<view class="e1">载德中小学生校服套装，西装服英伦风女童裙子男童长裤春夏</view>
-							<view class="e2">￥450</view>
+				<view class="kk">
+					<view class="parta1">
+						<img class="icon" src="../../../static/lxy/icon.png">
+						<view class="ww">载德国际校服</view>
+					</view>
+					<view class="parta2">
+						<image class="ttt" src="../../../static/lxy/a2.png"></image>
+						<view class="ttt2">
+							<view class="e">
+								<view class="e1">载德中小学生校服套装，西装服英伦风女童裙子男童长裤春夏</view>
+								<view class="e2">￥450</view>
+							</view>
+							<view class="y">
+								<view class="y1">颜色分类:</view>
+								<view class="y2">×1</view>
+							</view>
+							<view class="c">尺码：M</view>
 						</view>
-						<view class="y">
-							<view class="y1">颜色分类:</view>
-							<view class="y2">×1</view>
+					</view>
+					<view class="parta3">
+						<view class="g1">
+							<view class="gm">购买数量</view>
+							<view class="sl">
+								<view class="s2 jd">-</view>
+								<view class="s2">1</view>
+								<view class="s2 jd">+</view>
+							</view>
 						</view>
-						<view class="c">尺码：M</view>
-					</view>
-				</view>
-				<view class="parta3">
-					<view class="g1">
-						<view class="gm">购买数量</view>
-						<view class="sl">-1+</view>
-					</view>
-					<view class="g2">
-						<view class="u1">配送方式</view>
-						<view class="u2">普通配送</view>
-					</view>
-					<view class="g3">
-						<view class="u3">订单备注</view>
-						<view class="u4">选填，和商家协商一致</view>
+						<view class="g2">
+							<view class="u1">配送方式</view>
+							<view class="u2">普通配送</view>
+						</view>
+						<view class="g3">
+							<view class="u3">订单备注</view>
+							<view class="u4">选填，和商家协商一致</view>
+						</view>
 					</view>
 				</view>
 			</view>
 			<view class="D">
 				<view class="D1">
-					<view class="YT">共一套</view>
 					<view class="HJ">合计：￥450</view>
 				</view>
-				<view class="GM" >立即购买</view>
+				<view class="GM">提交订单</view>
 			</view>
 		</view>
 	</view>
@@ -76,18 +83,21 @@
 </script>
 
 <style>
-	page{
-		background-color: #EEEEEE;
+	page {
+		background-color: #FFFFFF;
 	}
-	.container{
+
+	.container {
 		height: 100vh;
 	}
-	.part1,.part2{
+
+	.part1,
+	.part2 {
 		display: flex;
 		justify-content: flex-start;
 	}
-	
-	.default{
+
+	.default {
 		width: 90upx;
 		height: 30upx;
 		font-size: 20upx;
@@ -98,19 +108,23 @@
 		margin-top: 4upx;
 		margin-right: 10upx;
 	}
-	.addr{
+
+	.addr {
 		font-size: 25upx;
 		line-height: 40upx;
 	}
-	.center{
+
+	.center {
 		font-size: 28upx;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
 		height: 20%;
+		border-bottom: 1upx solid #E5E5E5;
 	}
-	.item{
+
+	.item {
 		background-color: #FFFFFF;
 		display: flex;
 		justify-content: space-between;
@@ -120,77 +134,112 @@
 		width: 90%;
 		border-radius: 10upx;
 	}
-	.img{
-		width: 30upx;
-		height: 10upx;
+
+	.img {
+		width: 23upx;
+		height: 9upx;
 	}
-	.ww{
+
+	.ww {
 		width: 200upx;
 		height: 10upx;
+		font-size: 28upx;
+		margin-left: 20upx;
+	}
+
+	.parta1 {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.parta2 {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.ttt2 {
+		display: flex;
+		flex-direction: column;
+		height: 200upx;
+		justify-content: space-between;
+		align-items: stretch;
+		width: 65%;
+	}
+
+	.parta2>image {
+		width: 260upx;
+		height: 203upx;
+		width: 30%;
+	}
+
+	.e {
+		display: flex;
+		justify-content: space-between;
+		font-size: 25upx;
+	}
+
+	.y,
+	.g1 {
+		display: flex;
+		justify-content: space-between;
 		font-size: 20upx;
 	}
-	.parta1{
-		display: flex;
-		flex-direction: row;
+
+	.c {
+		font-size: 20upx;
 	}
-	.parta2{
-		display: flex;
-		flex-direction: row;
-	}
-	.ttt2{
+
+	.parta3 {
 		display: flex;
 		flex-direction: column;
-	}
-	.e{
-		display: flex;
 		justify-content: space-between;
-		font-size:20upx;
+		font-size: 20upx;
+		height: 150upx;
 	}
-	.y,.g1{
-		display: flex;
-		justify-content: space-between;
-		font-size: 18upx;
-	}
-	.c{
-		font-size: 18upx;
-	}
-	.parta3{
-		display:flex;
-		flex-direction: column;
-		font-size: 18upx;
-	}
-	.g2,.g3{
+
+	.g2,
+	.g3 {
 		display: flex;
 		flex-direction: row;
 	}
-	.last{
+
+	.last {
 		width: 90%;
 		background-color: #FFFFFF;
 		margin: 20upx auto;
 		padding-bottom: auto;
 		border-radius: 10upx;
-		height: 60%;
 	}
+
 	.D {
 		display: flex;
 		flex-direction: row;
 		/* align-items: center; */
 		justify-content: space-between;
-		/* position: relative; */
+		position: fixed;
+		font-size: 28upx;
+		width: 100%;
+		bottom: 0upx;
 	}
-	.D1{
+
+	.D1 {
 		display: flex;
 		flex-direction: row;
-		
+		width: 50%;
+		align-items: center;
+		background-color: #E5E5E5;
+		justify-content: center;
+
 	}
+
 	.HJ {
 		text-align: center;
-		width: 50%;
 		color: #6E0012;
 		height: 80upx;
 		line-height: 80upx
 	}
-	
+
 	.GM {
 		text-align: center;
 		width: 50%;
@@ -198,5 +247,51 @@
 		color: #FFFFFF;
 		height: 80upx;
 		line-height: 80upx;
+	}
+
+	.kk {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 500upx;
+		margin: 20upx 20upx;
+		padding: 10upx 10upx;
+	}
+	.uu{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin: 10upx 10upx;
+		padding: 10upx 10upx;
+	}
+	.e2{
+		color: #6E0012;
+	}
+	.u2,.u4{
+		color: #909399;
+		width: 80%;
+	}
+	.g2,.g3{
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+	.sl{
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+	.s2{
+		border: 2upx solid #555555;
+		width: 50upx;
+		height:30upx;
+		font-size:25upx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+	}
+	.jd{
+		font-size: 35upx;
 	}
 </style>
