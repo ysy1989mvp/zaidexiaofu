@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="item" v-for="(item,index) in 10" :key="index" @click="selected">
+			<view class="item" v-for="(item,index) in 10" :key="index">
 				<image class="tubiao" src="../../../static/yangsongyan/imgs/address/513@3x.png"></image>
 				<view class="center"  @click="selected">
 					<view class="part1">

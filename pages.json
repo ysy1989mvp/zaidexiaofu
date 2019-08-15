@@ -41,15 +41,13 @@
 		{
 			"path": "pages/mycenter/index/index",
 			"style": {
-				"navigationBarTitleText": "我的",
-				"navigationBarTextStyle":"white"
+				"navigationBarTitleText": "我的"
 			}
 		}
 	    ,{
             "path" : "pages/index/shop_detail/shop_detail",
             "style" : {
-				"navigationBarTitleText": "校服详情",
-				"navigationBarTextStyle":"white"
+				"navigationBarTitleText": "校服详情"
 			}
         },
 		// --------------杨松彦-------------------
@@ -73,44 +71,64 @@
 		}
         ,{
             "path" : "pages/order/confirm_order/confirm_order",
-            "style" : {"navigationBarTitleText": "确认订单",
-					"navigationBarBackgroundColor": "black",
-					"navigationBarTextStyle": "#f8f8f8"
+            "style" : {"navigationBarTitleText": "确认订单"
 			}
         },
 		{
 		    "path" : "pages/mycenter/set/set",
 		    "style" : {
 				"navigationBarTitleText": "设置"
-			}
+				}
 		}
         
         ,{
-            "path" : "pages/mycenter/editerinfo/editerinfo",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/mycenter/questionback/questionback",
-            "style" : {}
+           "style" : {"navigationBarTitleText": "问题反馈"
+           }
         }
         ,{
             "path" : "pages/mycenter/serveback/serveback",
-            "style" : {}
+           "style" : {"navigationBarTitleText": "服务与反馈"
+           }
         }
         ,{
             "path" : "pages/mycenter/gouwuxuzhi/gouwuxuzhi",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "购物须知"
+            }
         }
         ,{
             "path" : "pages/mycenter/pingtaixieyi/pingtaixieyi",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "平台协议"
+            }
+        },{
+			"path" : "pages/index/creation/creation",
+			"style" : {"navigationBarTitleText": "校服定制"
+			}
+		},{
+			"path" : "pages/tuiguangxiangguang/pinpaigushi/pinpaigushi",
+			"style" : {"navigationBarTitleText": "品牌故事"
+			}
+		},{
+			"path" : "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
+			"style" : {"navigationBarTitleText": "案例展示"
+			}
+		},{
+			"path" : "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
+			"style" : {"navigationBarTitleText": "工艺流程"
+			}
+		}
+        ,{
+            "path" : "pages/order/orderdetail/orderdetail",
+            "style" : {"navigationBarTitleText": "订单详情"
+            }
         }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "black",
 		"backgroundColor": "#f8f8f8"
+		
 	},
 	// "condition" : {
  //        //模式配置，仅开发期间生效
@@ -147,7 +165,7 @@
 				"text": "客服"
 			},
 			{
-				"pagePath": "pages/user/index/index",
+				"pagePath": "pages/mycenter/index/index",
 				"iconPath": "static/lxy/wode(3)@3x.png",
 				"selectedIconPath": "static/lxy/my@3x.png",
 				"text": "我的"

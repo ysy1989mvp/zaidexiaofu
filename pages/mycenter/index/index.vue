@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="part1">
+			<view class="part1" @click="setinfo">
 				<view class="TX">
 					<image class="TXA" src="../../../static/ysy/toux.png"></image>
 					<view class="zl">
@@ -82,6 +82,11 @@
 					url: "../../order/index/index"
 				})
 			},
+			setinfo(){
+				uni.navigateTo({
+					url:"../set/set"
+				})
+			}
 		}
 	}
 </script>

@@ -43,9 +43,9 @@
 						<view class="g1">
 							<view class="gm">购买数量</view>
 							<view class="sl">
-								<view class="s2 jd">-</view>
-								<view class="s3">1</view>
-								<view class="s2 jd">+</view>
+								<view class="s2 jd" @click="jian()">-</view>
+								<view class="s3" >{{number}}</view>
+								<view class="s2 jd" @click="jia">+</view>
 							</view>
 						</view>
 						<view class="g2">
@@ -73,7 +73,7 @@
 	export default {
 		data() {
 			return {
-
+				number: 1
 			}
 		},
 		methods: {
@@ -82,11 +82,20 @@
 					url: "../index/index"
 				})
 			},
-			addrs(){
+			addrs() {
 				uni.navigateTo({
 					url: "../addr_list/addr_list"
 				})
+			},
+			jia() {
+				this.number++;
+			},
+			jian() {
+				if (this.number > 1) {
+					this.number--;
+				}
 			}
+
 		}
 	}
 </script>
@@ -313,14 +322,17 @@
 		font-weight: bold;
 		line-height: 6upx;
 	}
-	.s3{
+
+	.s3 {
 		font-size: 32upx;
 		margin: 2upx 15upx;
 	}
+
 	.jd {
 		font-size: 35upx;
 	}
-	.m{
+
+	.m {
 		color: #A5A5A5;
 	}
 </style>

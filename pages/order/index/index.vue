@@ -12,7 +12,7 @@
 			<!-- 显示区域 -->
 			<!-- <view class="list" v-for="(item, index) in navList" :key="index" v-if="tabCurrentIndex === index"> -->
 			<view class="center_content">
-				<view class="item" v-for="(item,index) in 5" :key="index">
+				<view class="item" v-for="(item,index) in 5" :key="index" @click="detail">
 					<view class="part1">
 						<view class="order_no">
 							订单号:201908124524
@@ -145,6 +145,11 @@
 			//顶部tab点击
 			tabClick(index) {
 				this.tabCurrentIndex = index;
+			},
+			detail(){
+				uni.navigateTo({
+					url:"../orderdetail/orderdetail"
+				})
 			}
 		}
 	}
