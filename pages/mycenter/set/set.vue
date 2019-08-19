@@ -12,12 +12,6 @@
 				</view>
 			</view>
 			<view class="part2">
-				<view class="fw dizhi1">
-					<view class="ee">
-						<view class="c1">我的收货地址</view>
-						<view class="c2">〉</view>
-					</view>
-				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">账户与安全</view>

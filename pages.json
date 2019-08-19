@@ -122,13 +122,17 @@
             "style" : {"navigationBarTitleText": "订单详情"
             }
         }
+        ,{
+            "path" : "pages/mycenter/Edit-data/Edit-data",
+            "style" : {"navigationBarTitleText": "编辑资料"
+            }
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "black",
 		"backgroundColor": "#f8f8f8"
-		
 	},
 	// "condition" : {
  //        //模式配置，仅开发期间生效
