@@ -1,6 +1,6 @@
 <template>
-	<view>
-		
+	<view class="gw">
+		<img src="../../../static/ysy/gwxz.png"></img>
 	</view>
 </template>
 
@@ -8,15 +8,17 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
-			
+
 		}
 	}
 </script>
 
 <style>
-
+	img{
+		width: 100%;
+	}
 </style>
