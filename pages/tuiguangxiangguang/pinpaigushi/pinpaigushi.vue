@@ -8,6 +8,9 @@
 					</swiper-item>
 				</swiper>
 			</view>
+			<view class="gs">
+				<img src="../../../static/ysy/ppgs.png" />
+			</view>
 		</view>
 	</view>
 </template>
@@ -16,11 +19,11 @@
 	export default {
 		data() {
 			return {
-				homeSlide: ["../../../static/lxy/1.png",
-				"../../../static/lxy/1.png",
-				"../../../static/lxy/1.png",
-				"../../../static/lxy/1.png",
-				"../../../static/lxy/1.png",],// 定义值接收轮播图数据
+				homeSlide: ["../../../static/ysy/gs.png",
+				"../../../static/ysy/gs.png",
+				"../../../static/ysy/gs.png",
+				"../../../static/ysy/gs.png",
+				"../../../static/ysy/gs.png",],// 定义值接收轮播图数据
 			}
 		},
 		methods: {
@@ -35,6 +38,9 @@
 	}
 	swiper-item>uni-image{
 		width: 100%;
+		height: 350upx;
 	}
-	
+	img{
+		width: 100%;
+	}
 </style>

@@ -1,6 +1,6 @@
 <template>
-	<view>
-		
+	<view class="pt">
+		<img src="../../../static/ysy/ptxy.png"></img>
 	</view>
 </template>
 
@@ -18,5 +18,7 @@
 </script>
 
 <style>
-
+	img{
+		width: 100%;
+	}
 </style>

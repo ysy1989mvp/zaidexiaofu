@@ -138,6 +138,7 @@
 	}
 	swiper-item>uni-image{
 		width: 100%;
+		height: 350upx;
 	}
 	// swiper-item 里面的图片高度
 	.swiper-item image {

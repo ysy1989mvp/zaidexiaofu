@@ -9,26 +9,28 @@
 					<view class="ee">
 						<view class="c1">性能体验</view>
 						<view class="c3">白屏、卡顿、闪退/图片加载不出</view>
-						<view class="c2">〉</view>
+						<view class="an">
+						<async-switch :checked="checked1" @change="change1"></async-switch>
+						</view>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">功能异常</view>
 						<view class="c3">现有功能无法正常使用</view>
-						<view class="c2">〉</view>
+						<async-switch :checked="checked2" @change="change2"></async-switch>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">产品建议</view>
-						<view class="c2">〉</view>
+						<async-switch :checked="checked3" @change="change3"></async-switch>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">其他反馈</view>
-						<view class="c2">〉</view>
+						<async-switch :checked="checked4" @change="change4"></async-switch>
 					</view>
 				</view>
 			</view>
@@ -47,12 +49,37 @@
 
 <script>
 	import uploadimgs from "@/components/upload-image/upload-imgs.vue"
+	import asyncSwitch from "@/components/helang-asyncSwitch/helang-asyncSwitch.vue"
 	export default {
 		components: {
+			"async-switch": asyncSwitch,
 			uploadimgs
 		},
+		data() {
+			return {
+				checked1: false,
+				checked2: false,
+				checked3: false,
+				checked4: false,
+			}
+		},
 		methods: {
-
+			change1() {
+				/* 设置 switch 组件是否选中的状态 */
+				this.checked1 = !this.checked1;
+			},
+			change2() {
+				/* 设置 switch 组件是否选中的状态 */
+				this.checked2 = !this.checked2;
+			},
+			change3() {
+				/* 设置 switch 组件是否选中的状态 */
+				this.checked3 = !this.checked3;
+			},
+			change4() {
+				/* 设置 switch 组件是否选中的状态 */
+				this.checked4 = !this.checked4;
+			},
 		}
 	}
 </script>
@@ -115,7 +142,8 @@
 		margin: 6upx auto;
 		border: 2upx solid #EEEEEE;
 	}
-	.images{
+
+	.images {
 		background-color: #FFFFFF;
 		padding: 0upx 5vw;
 	}

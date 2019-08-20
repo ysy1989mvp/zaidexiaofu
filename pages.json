@@ -83,12 +83,12 @@
         
         ,{
             "path" : "pages/mycenter/questionback/questionback",
-           "style" : {"navigationBarTitleText": "问题反馈"
+           "style" : {"navigationBarTitleText": "服务与反馈"
            }
         }
         ,{
             "path" : "pages/mycenter/serveback/serveback",
-           "style" : {"navigationBarTitleText": "服务与反馈"
+           "style" : {"navigationBarTitleText": "问题反馈"
            }
         }
         ,{
