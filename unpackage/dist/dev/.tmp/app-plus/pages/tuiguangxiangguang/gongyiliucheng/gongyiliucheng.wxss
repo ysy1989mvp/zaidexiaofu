@@ -1,9 +1,11 @@
 
-.swiper {
-	height: 350rpx;
+.bannerImg {
+	width: 100%
 }
-swiper-item>uni-image{
+.banner {
 	width: 100%;
+}
+.swiper {
 	height: 350rpx;
 }
 .part4a{
@@ -46,7 +48,7 @@ swiper-item>uni-image{
 	margin-bottom: 30rpx;
 	color: #061637;
 }
-.part2>._img{
+.image1{
 	width: 100%;
 	/* height: 80upx; */
 	/* margin: 30upx 180upx; */

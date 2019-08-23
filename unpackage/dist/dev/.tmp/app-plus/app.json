@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index/index",
     "pages/mycenter/login/login",
+    "pages/index/index/index",
     "pages/mycenter/regist/regist",
     "pages/mycenter/index/index",
     "pages/index/shop_detail/shop_detail",
@@ -22,7 +22,8 @@
     "pages/mycenter/Edit-data/Edit-data"
   ],
   "window": {
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#000000"
   },
   "tabBar": {
     "color": "#C0C4CC",

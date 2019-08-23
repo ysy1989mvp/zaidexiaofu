@@ -18,7 +18,7 @@
 							订单号:{{item.order_no}}
 						</view>
 						<view class="status">
-							{{item.status_txt}}
+							{{item.order_status_txt}}
 						</view>
 					</view>
 					<view class="part2">
@@ -27,6 +27,7 @@
 						</view>
 						<view class="neirong">
 							<view class="name">{{item.goods[0].goods_name}}</view>
+							<view>&nbsp;</view>
 							<!-- <view class="name">西服套装</view> -->
 							<!-- <view class="daxiao">学院套装：145cm</view> -->
 							<!-- <view class="biaoqian">
@@ -58,39 +59,39 @@
 							<view>合计:￥450.00</view>
 						</view> -->
 					</view>
-					<view class="option" v-if="item.order_status==1">
+					<view class="option" v-if="item.paystatus==10">
 						<!-- 待付款 -->
-						<view>
+						<view @click="cancer(item.order_no)">
 							取消订单
 						</view>
-						<view>
+						<view @click="goPay(item.order_no)">
 							订单付款
 						</view>
 					</view>
-					<view class="option"  v-if="item.order_status==2">
-						<!-- 待发货 -->
+					<view class="option"  v-if="item.paystatus==20&&item.freight==10">
+						<!-- 待发货
 						<view>
-							<!-- 查看物流 -->
+							查看物流
 						</view>
 						<view>
 							提醒发货
 						</view>
-					</view>
+					</view> -->
 					<!-- 待收货 -->
-					<view class="option"  v-if="item.order_status==3">
+					<view class="option"  v-if="item.paystatus==20&&item.freight==20&&item.receipt_status==10">
 						<!-- <view>
 							延长收货
 						</view>
 						<view>
 							查看物流
 						</view> -->
-						<view class="red">
+						<view class="red" @click="confirmshouhuo(item.order_no)">
 							确认收货
 						</view>
 					</view>
 					<!-- 订单完成 -->
-					<view class="option"  v-if="item.order_status==4">
-						<view>
+					<view class="option"  v-if="item.order_status==30">
+						<view @click="goodsdetail(item.goods[0].goods_id)">
 							再买一件
 						</view>
 					</view>
@@ -156,7 +157,7 @@
 				// 待收货
 				case 3:url="/api/order/unreceipt";break;
 				// 已完成
-				case 4:url="/api/order/finish";break;
+				case 4:url="/api/order/orderfinish";break;
 			}
 			
 			this.util.request(url, "GET", params, (res) => {
@@ -173,6 +174,53 @@
 			});
 		},
 		methods: {
+			cancer(goods_no){
+				let params = {
+					"id":goods_no
+				};
+				let url = "/api/order/cancel";
+				this.util.request(url, "GET", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.util.showWindow(res.data.msg);
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+			},
+			goPay(goods_no){
+				uni.navigateTo({
+					url:"../orderdetail/orderdetail?id="+goods_no
+				})
+			},
+			confirmshouhuo(goods_no){
+				//确认收货
+				let params = {
+					"id":goods_no
+				};
+				let url = "/api/order/finish";
+				this.util.request(url, "GET", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.util.showWindow(res.data.msg);
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+			},
+			goodsdetail(goods_id){
+				uni.navigateTo({
+					url:"../../index/shop_detail/shop_detail?id="+goods_id
+				})
+			},
 			// changeTab(e) {
 			// 	this.tabCurrentIndex = e.target.current;
 			// 	console.log("changetab："+this.tabCurrentIndex);
@@ -304,6 +352,10 @@
 	.neirong {
 		line-height: 45upx;
 		width: 44vw;
+		height: 170upx;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.daxiao,

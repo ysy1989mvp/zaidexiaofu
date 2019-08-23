@@ -1,1 +1,1 @@
-<view class="gw"><image src="{{$root.m0}}" class="_img"></image></view>
+<view class="gw"><image class="image1" src="../../../static/ysy/gwxz.png" mode="widthFix"></image></view>

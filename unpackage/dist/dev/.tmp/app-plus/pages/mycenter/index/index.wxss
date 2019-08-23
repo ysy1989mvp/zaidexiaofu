@@ -21,14 +21,13 @@ page {
 	    -ms-flex-pack: center;
 	        justify-content: center;
 	height: 500rpx;
-	background-image: url(../../static/img/photo.c4b6927c.png);
-	background-repeat: no-repeat;
 	background-size: contain;
 	font-size: 28rpx;
 }
 .TXA {
-	height: 150rpx;
+	height: 170rpx;
 	width: 170rpx;
+	border-radius: 93rpx;
 }
 .part2 {
 	display: -webkit-box;
@@ -45,10 +44,10 @@ page {
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
-	-webkit-box-align: stretch;
-	-webkit-align-items: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	width: 80%;
 	padding-left: 80rpx;
 	padding-right: 70rpx;
@@ -72,6 +71,10 @@ page {
 	/* width:200upx ; */
 	height: 78rpx;
 }
+.f1>image{
+	width: 67rpx;
+	height: 90rpx;
+}
 .bkx {
 	height: 30px;
 	border: 1rpx solid #8F8F94;
@@ -87,7 +90,6 @@ page {
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
-	margin-top: 45rpx;
 }
 .fw {
 	display: -webkit-box;

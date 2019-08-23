@@ -81,6 +81,8 @@ var render = function() {
 
   var m3 = __webpack_require__(/*! ../../../static/ysy/shop.png */ 44)
 
+  var m4 = __webpack_require__(/*! ../../../static/ysy/shop.png */ 44)
+
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -88,7 +90,8 @@ var render = function() {
         m0: m0,
         m1: m1,
         m2: m2,
-        m3: m3
+        m3: m3,
+        m4: m4
       }
     }
   )
@@ -195,6 +198,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -224,7 +234,7 @@ var _default =
   methods: {
     fuwuyufankui: function fuwuyufankui() {
       uni.navigateTo({
-        url: "../serveback/serveback" });
+        url: "../fuwufankui/fuwufankui" });
 
     },
     pingtaixieyi: function pingtaixieyi() {
@@ -240,6 +250,11 @@ var _default =
     gouwuxuzhi: function gouwuxuzhi() {
       uni.navigateTo({
         url: "../gouwuxuzhi/gouwuxuzhi" });
+
+    },
+    lianxiwomen: function lianxiwomen() {
+      uni.navigateTo({
+        url: "../lianxiwomen/lianxiwomen" });
 
     },
     goorders: function goorders(index) {

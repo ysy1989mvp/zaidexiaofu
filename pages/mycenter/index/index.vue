@@ -38,7 +38,7 @@
 					<view class="fw" @click="fuwuyufankui">
 						<view class="fff">
 							<img src="../../../static/ysy/fk.png">
-							<view class="c1 ee">服务与反馈</view>
+							<view class="c1 ee">服务反馈</view>
 						</view>
 						<view class="c2 ee">〉</view>
 					</view>
@@ -60,6 +60,13 @@
 						<view class="fff">
 							<img src="../../../static/ysy/shop.png">
 							<view class="c1 ee">购物须知</view>
+						</view>
+						<view class="c2 ee">〉</view>
+					</view>
+					<view class="fw" @click="lianxiwomen">
+						<view class="fff">
+							<img src="../../../static/ysy/shop.png">
+							<view class="c1 ee">联系我们</view>
 						</view>
 						<view class="c2 ee">〉</view>
 					</view>
@@ -98,7 +105,7 @@
 		methods: {
 			fuwuyufankui(){
 				uni.navigateTo({
-					url:"../serveback/serveback"
+					url:"../fuwufankui/fuwufankui"
 				})
 			},
 			pingtaixieyi(){
@@ -114,6 +121,11 @@
 			gouwuxuzhi(){
 				uni.navigateTo({
 					url:"../gouwuxuzhi/gouwuxuzhi"
+				})
+			},
+			lianxiwomen(){
+				uni.navigateTo({
+					url:"../lianxiwomen/lianxiwomen"
 				})
 			},
 			goorders(index) {

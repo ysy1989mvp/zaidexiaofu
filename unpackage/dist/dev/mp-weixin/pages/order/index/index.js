@@ -210,6 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -263,7 +264,7 @@ var _default =
       // 待收货
       case 3:url = "/api/order/unreceipt";break;
       // 已完成
-      case 4:url = "/api/order/finish";break;}
+      case 4:url = "/api/order/orderfinish";break;}
 
 
     this.util.request(url, "GET", params, function (res) {
@@ -280,12 +281,59 @@ var _default =
     });
   },
   methods: {
+    cancer: function cancer(goods_no) {var _this2 = this;
+      var params = {
+        "id": goods_no };
+
+      var url = "/api/order/cancel";
+      this.util.request(url, "GET", params, function (res) {
+        console.log(JSON.stringify(res));
+        if (res.statusCode == 200) {
+          if (res.data.code == 1) {
+            _this2.util.showWindow(res.data.msg);
+          } else {
+            _this2.util.showWindow(res.data.msg);
+          }
+        } else {
+          _this2.util.showWindow("请求错误");
+        }
+      });
+    },
+    goPay: function goPay(goods_no) {
+      uni.navigateTo({
+        url: "../orderdetail/orderdetail?id=" + goods_no });
+
+    },
+    confirmshouhuo: function confirmshouhuo(goods_no) {var _this3 = this;
+      //确认收货
+      var params = {
+        "id": goods_no };
+
+      var url = "/api/order/finish";
+      this.util.request(url, "GET", params, function (res) {
+        console.log(JSON.stringify(res));
+        if (res.statusCode == 200) {
+          if (res.data.code == 1) {
+            _this3.util.showWindow(res.data.msg);
+          } else {
+            _this3.util.showWindow(res.data.msg);
+          }
+        } else {
+          _this3.util.showWindow("请求错误");
+        }
+      });
+    },
+    goodsdetail: function goodsdetail(goods_id) {
+      uni.navigateTo({
+        url: "../../index/shop_detail/shop_detail?id=" + goods_id });
+
+    },
     // changeTab(e) {
     // 	this.tabCurrentIndex = e.target.current;
     // 	console.log("changetab："+this.tabCurrentIndex);
     // },
     //顶部tab点击
-    tabClick: function tabClick(index) {var _this2 = this;
+    tabClick: function tabClick(index) {var _this4 = this;
       this.tabCurrentIndex = index;
       console.log("tabclick：" + this.tabCurrentIndex);
       var params = {};
@@ -308,12 +356,12 @@ var _default =
         // console.log(JSON.stringify(res));
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
-            _this2.data = res.data.data;
+            _this4.data = res.data.data;
           } else {
-            _this2.util.showWindow(res.data.msg);
+            _this4.util.showWindow(res.data.msg);
           }
         } else {
-          _this2.util.showWindow("请求错误");
+          _this4.util.showWindow("请求错误");
         }
       });
     },

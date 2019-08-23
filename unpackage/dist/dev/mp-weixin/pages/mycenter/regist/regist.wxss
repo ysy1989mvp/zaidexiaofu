@@ -48,4 +48,8 @@
 	margin-top: 130rpx;
 	background-color: #6F0011;
 }
+.input2{
+	font-size: 28rpx;
+	color: #A5A5A5;
+}
 

@@ -4,7 +4,7 @@
 			<view class="row">
 				<view class="name">选择学校:</view>
 				<view class="val1">
-					<xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="5" :listShow="true" :isCanInput="true" :style_Container="'height: 40px; font-size: 16px;'"
+					<xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true" :style_Container="'height: 34px; font-size: 16px;'"
 					 :placeholder="'点击选择或输入有效学校'" :initValue="'点击选择或输入有效学校'" :selectHideType="'hideAll'" @change="xuexiaochange">
 					</xfl-select>
 				</view>
@@ -12,13 +12,13 @@
 			<view class="row">
 				<view class="name">输入学校编号:</view>
 				<view class="val2">
-					<input class="input2" type="number" v-model="schoolcode"/>
+					<input class="input2" type="number" v-model="schoolcode" disabled="disabled"/>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入学生年级:</view>
 				<view class="val2">
-					<xfl-select :list="nianjidata" :clearable="false" :showItemNum="5" :listShow="true" :isCanInput="true" :style_Container="'height: 40px; font-size: 16px;'"
+					<xfl-select :list="nianjidata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true" :style_Container="'height: 34px; font-size: 16px;'"
 					 :placeholder="'选择年级'" :initValue="'选择年级'" :selectHideType="'hideAll'" @change="nianjichange">
 					</xfl-select>
 				</view>
@@ -38,7 +38,7 @@
 			<view class="row">
 				<view class="name">输入学号:</view>
 				<view class="val2">
-					<input class="input2" placeholder="(选填)" v-model="studentNo"/>
+					<input class="input2" placeholder="(必填)" v-model="studentNo"/>
 				</view>
 			</view>
 			<view class="row">
@@ -227,5 +227,9 @@
 	.button_ysy {
 		margin-top: 130upx;
 		background-color: #6F0011;
+	}
+	.input2{
+		font-size: 28upx;
+		color: #A5A5A5;
 	}
 </style>

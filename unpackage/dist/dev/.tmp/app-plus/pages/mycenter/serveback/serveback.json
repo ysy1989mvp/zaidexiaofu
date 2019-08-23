@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "问题反馈",
+  "navigationBarTitleText": "服务与反馈",
   "usingComponents": {
     "async-switch": "/components/helang-asyncSwitch/helang-asyncSwitch",
     "uploadimgs": "/components/upload-image/upload-imgs"

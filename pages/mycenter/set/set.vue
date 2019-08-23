@@ -18,26 +18,26 @@
 				</view>
 			</view>
 			<view class="part2">
-				<view class="fw">
+				<view class="fw" @click="zhanghuanquan">
 					<view class="ee">
 						<view class="c1">账户与安全</view>
 						<view class="c2">〉</view>
 					</view>
-				</view><view class="fw">
+				</view><view class="fw" @click="wentifankui">
 					<view class="ee">
 						<view class="c1">问题反馈</view>
 						<view class="c2">〉</view>
 					</view>
-				</view><view class="fw">
+				</view><view class="fw" @click="guanyuzaide">
 					<view class="ee">
 						<view class="c1">关于载德</view>
 						<view class="c2">〉</view>
 					</view>
 				</view>
-				</view><view class="fw butn login">
+				</view><view class="fw butn login" @click="loginout">
 						账号切换
 				</view>
-				</view><view class="fw butn">
+				</view><view class="fw butn" @click="loginout">
 						退出登录
 				</view>
 			</view>
@@ -70,6 +70,21 @@
 			});
 		},
 		methods: {
+			zhanghuanquan(){
+				uni.navigateTo({
+					url:"../zhanghuanquan/zhanghuanquan"
+				});
+			},
+			wentifankui(){
+				uni.navigateTo({
+					url:"../questionback/questionback"
+				});
+			},
+			guanyuzaide(){
+				uni.navigateTo({
+					url:"../guanyuzaide/guanyuzaide"
+				});
+			},
 			addresses(){
 				uni.navigateTo({
 					url:"../../order/addr_list/addr_list"
@@ -78,6 +93,25 @@
 			edit(){
 				uni.navigateTo({
 					url:"../Edit-data/Edit-data"
+				});
+			},
+			loginout(){
+				let params = {
+				};
+				let url = "/api/user/logout";
+				this.util.request(url, "POST", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							uni.navigateTo({
+								url:"../login/login"
+							});
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
 				});
 			}
 		}
@@ -114,7 +148,8 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-		margin: 10upx 30upx;
+		margin: 0upx 30upx;
+		padding-top: 20upx;
 	}
 
 	.bj {

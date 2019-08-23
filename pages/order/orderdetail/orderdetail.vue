@@ -65,7 +65,8 @@
 				<view class="D1">
 					<view class="HJ">合计：￥{{order_data.pay_price}}</view>
 				</view>
-				<view class="GM" @click="pay">支付</view>
+				<view class="GM" v-if="order_data.pay_status==10" @click="pay">支付</view>
+				<view class="GM" v-if="order_data.pay_status==20" @click="pay">已支付</view>
 			</view>
 		</view>
 	</view>

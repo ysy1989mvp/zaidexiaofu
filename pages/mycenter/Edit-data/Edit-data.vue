@@ -2,31 +2,39 @@
 	<view class="container">
 		<view class="content">
 			<view class="TX">
-				<image class="TXA" :src="data.avatar"></image>
-				<view class="zl">
-					<view class="name">更换头像</view>
+				<image class="TXA" v-if="boolean==0||data.avatar!=null" :src="data.avatar"></image>
+				<view class="images" v-if="boolean==1||data.avatar==null">
+					<uploadimgs></uploadimgs>
 				</view>
+				<view class="zl" @click="genghuangtouxiang">
+					<view class="name" v-if="data.avatar!=null">更换头像</view>
+					<view class="name" v-if="data.avatar==null">上传头像</view>
+				</view>
+				
 			</view>
 			<view class="part1">
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">学校</view>
 						<view class="c3">{{data.school_name}}</view>
-						<view class="c2">〉</view>
+						<!-- <view class="c2">〉</view> -->
+						<view class="c2"></view>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">电话号码</view>
 						<view class="c3">{{data.mobile}}</view>
-						<view class="c2">〉</view>
+						<!-- <view class="c2">〉</view> -->
+						<view class="c2"></view>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">性别</view>
 						<view class="c3">{{data.xingbie}}</view>
-						<view class="c2">〉</view>
+						<!-- <view class="c2">〉</view> -->
+						<view class="c2"></view>
 					</view>
 				</view>
 			</view>
@@ -41,15 +49,19 @@
 </template>
 
 <script>
+	import uploadimgs from "@/components/upload-image/upload-imgs.vue"
 	export default {
+		components: {
+			uploadimgs
+		},
 		data() {
 			return {
-				data:null
+				boolean:0,
+				data: null
 			}
 		},
-		onLoad(){
-			let params = {
-			};
+		onLoad() {
+			let params = {};
 			let url = "/api/user";
 			this.util.request(url, "POST", params, (res) => {
 				console.log(JSON.stringify(res));
@@ -65,16 +77,21 @@
 			});
 		},
 		methods: {
-
+			genghuangtouxiang() {
+				this.boolean = 1;
+				// this.data.avatar = ;
+			}
 		}
 	}
 </script>
 
 <style>
 	.TXA {
-		height: 150upx;
-		width: 170upx;
-		padding-top: 40upx;
+		height: 120upx;
+		width: 120upx;
+		border-radius: 70upx;
+		/* padding-top: 25upx; */
+		/* padding-top: 40upx; */
 	}
 
 	.TX {
@@ -82,8 +99,9 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
-		height: 300upx;
+		/* height: 300upx; */
 		font-size: 28upx;
+		padding-top: 20upx;
 	}
 
 	.name {
@@ -96,6 +114,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
+		margin-top: 20upx;
 	}
 
 	.fw {
@@ -152,11 +171,15 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.last{
+
+	.last {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		height: 350upx;
+	}
+	.images{
+		width: 120upx;
 	}
 </style>

@@ -3,8 +3,8 @@
 		<view class="content">
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
-					<swiper-item v-for="(item , index) in homeSlide" :key="index">
-						<img class="bannerImg" :src="item"/>
+					<swiper-item v-for="(item , index) in data.images" :key="index">
+						<img class="bannerImg" :src="item.image"/>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -13,7 +13,8 @@
 				<view class="part4b">工艺展示</view>
 			</view>
 			<view class="part2">
-				<image class="image1" src="../../../static/ysy/gylc/p2.png" mode="widthFix"></image>
+				<!-- <image class="image1" src="../../../static/ysy/gylc/p2.png" mode="widthFix"></image> -->
+				 <rich-text :nodes="data.content"></rich-text>
 			</view>
 		</view>
 	</view>
@@ -23,12 +24,29 @@
 	export default {
 		data() {
 			return {
+				data:null,
 				homeSlide: ["../../../static/ysy/gylc/lbt.png",
 				"../../../static/ysy/gylc/lbt.png",
 				"../../../static/ysy/gylc/lbt.png",
 				"../../../static/ysy/gylc/lbt.png",
 				"../../../static/ysy/gylc/lbt.png",],// 定义值接收轮播图数据
 			}
+		},
+		onLoad(){
+			let params = {};
+			let url = "/api/index/gylc_content";
+			this.util.request(url, "POST", params, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.data = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
 		},
 		methods: {
 			

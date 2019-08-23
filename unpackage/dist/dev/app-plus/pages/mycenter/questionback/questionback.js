@@ -1,2 +1,2 @@
-setCssToHead([".",[1],"_img{ width: 100%; }\n",],undefined,{path:"./pages/mycenter/questionback/questionback.wxss"})();
+setCssToHead([".",[1],"pt{ width: 100%; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; }\nwx-image1{ width: 100%; height: 200%; }\n",],undefined,{path:"./pages/mycenter/questionback/questionback.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/mycenter/questionback/questionback.wxml') } }));

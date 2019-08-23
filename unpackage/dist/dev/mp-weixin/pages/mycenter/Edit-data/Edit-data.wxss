@@ -1,8 +1,10 @@
 
 .TXA {
-	height: 150rpx;
-	width: 170rpx;
-	padding-top: 40rpx;
+	height: 120rpx;
+	width: 120rpx;
+	border-radius: 70rpx;
+	/* padding-top: 25upx; */
+	/* padding-top: 40upx; */
 }
 .TX {
 	display: -webkit-box;
@@ -22,8 +24,9 @@
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
-	height: 300rpx;
+	/* height: 300upx; */
 	font-size: 28rpx;
+	padding-top: 20rpx;
 }
 .name {
 	color: red;
@@ -47,6 +50,7 @@
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
+	margin-top: 20rpx;
 }
 .fw {
 	width: 100%;
@@ -134,7 +138,7 @@
 	    -ms-flex-pack: center;
 	        justify-content: center;
 }
-.last{
+.last {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -153,5 +157,8 @@
 	    -ms-flex-pack: center;
 	        justify-content: center;
 	height: 350rpx;
+}
+.images{
+	width: 120rpx;
 }
 

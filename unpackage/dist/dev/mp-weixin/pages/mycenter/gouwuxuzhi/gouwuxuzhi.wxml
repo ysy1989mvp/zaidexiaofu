@@ -1,1 +1,1 @@
-<view class="gw"><image class="image1" src="../../../static/ysy/gwxz.png" mode="widthFix"></image></view>
+<view class="pt"><rich-text nodes="{{data.content}}"></rich-text></view>

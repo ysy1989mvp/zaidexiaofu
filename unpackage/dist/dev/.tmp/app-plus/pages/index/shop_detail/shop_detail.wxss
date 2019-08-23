@@ -203,7 +203,7 @@ swiper-item>uni-image {
 	border-top: 2rpx solid #E5E5E5;
 	border-bottom: 2rpx solid #E5E5E5;
 }
-.SZ .tex {
+.tex {
 	width: 15%;
 	background-color: #E5E5E5;
 	padding: 6rpx 12rpx;
@@ -225,7 +225,7 @@ swiper-item>uni-image {
 }
 .zhezhao {
 	position: absolute;
-	bottom: 80rpx;
+	bottom: 0rpx;
 	background-color: #FFFFFF;
 	width: 100%;
 	height: 100vh;
@@ -255,5 +255,8 @@ swiper-item>uni-image {
 .t3a,
 .t3b {
 	line-height: 60rpx;
+}
+.bianse{
+	background-color: #1BCC8D;
 }
 

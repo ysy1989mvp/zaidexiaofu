@@ -113,6 +113,61 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* tab顶部切换 */
 .navbar {
 	display: -webkit-box;
@@ -176,7 +231,7 @@
 	width: 100%;
 	position: fixed;
 	z-index: 100;
-	top: 82rpx;
+	top: 0rpx;
 }
 .center_content {
 	width: 95vw;
@@ -264,15 +319,15 @@
 	z-index: 100;
 	width: 100%;
 	height: 100vh;
-	background-color: rgba(65,65,65,0.5);
-	top:100rpx;
+	background-color: rgba(65, 65, 65, 0.5);
+	top: 100rpx;
 }
-.neirong{
+.neirong {
 	background-color: #FFFFFF;
-	display:-webkit-box;
-	display:-webkit-flex;
-	display:-ms-flexbox;
-	display:flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
 	    -ms-flex-align: center;
@@ -286,7 +341,7 @@
 	        flex-wrap: wrap;
 	padding-top: 15rpx;
 }
-.top_tag0{
+.top_tag0 {
 	width: 100rpx;
 	border: 2rpx solid #AAAAAA;
 	border-radius: 20rpx;
@@ -294,7 +349,7 @@
 	text-align: center;
 	margin: 10rpx 20rpx;
 }
-.xuanzhong{
+.xuanzhong {
 	background-color: #061637;
 	color: #FFFFFF;
 }

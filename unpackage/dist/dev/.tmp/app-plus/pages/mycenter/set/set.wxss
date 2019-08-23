@@ -38,7 +38,8 @@ page {
 	-webkit-justify-content: space-between;
 	    -ms-flex-pack: justify;
 	        justify-content: space-between;
-	margin: 10rpx 30rpx;
+	margin: 0rpx 30rpx;
+	padding-top: 20rpx;
 }
 .bj {
 	border-radius: 10rpx;

@@ -1,1 +1,1 @@
-<view class="pt"><image class="imgae1" src="../../../static/ysy/ptxy.png" mode="widthFix"></image></view>
+<view class="pt"><rich-text nodes="{{data.content}}"></rich-text></view>

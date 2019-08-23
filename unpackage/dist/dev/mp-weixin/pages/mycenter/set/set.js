@@ -177,6 +177,21 @@ var _default =
     });
   },
   methods: {
+    zhanghuanquan: function zhanghuanquan() {
+      uni.navigateTo({
+        url: "../zhanghuanquan/zhanghuanquan" });
+
+    },
+    wentifankui: function wentifankui() {
+      uni.navigateTo({
+        url: "../questionback/questionback" });
+
+    },
+    guanyuzaide: function guanyuzaide() {
+      uni.navigateTo({
+        url: "../guanyuzaide/guanyuzaide" });
+
+    },
     addresses: function addresses() {
       uni.navigateTo({
         url: "../../order/addr_list/addr_list" });
@@ -186,6 +201,25 @@ var _default =
       uni.navigateTo({
         url: "../Edit-data/Edit-data" });
 
+    },
+    loginout: function loginout() {var _this2 = this;
+      var params = {};
+
+      var url = "/api/user/logout";
+      this.util.request(url, "POST", params, function (res) {
+        console.log(JSON.stringify(res));
+        if (res.statusCode == 200) {
+          if (res.data.code == 1) {
+            uni.navigateTo({
+              url: "../login/login" });
+
+          } else {
+            _this2.util.showWindow(res.data.msg);
+          }
+        } else {
+          _this2.util.showWindow("请求错误");
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

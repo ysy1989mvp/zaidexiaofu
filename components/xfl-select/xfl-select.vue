@@ -784,7 +784,7 @@
 		background-color: #fff;
 		background-image: none;
 		border-radius: 4px;
-		border: 1px solid @hover-color;
+		// border: 1px solid @hover-color;
 		box-sizing: border-box;
 		color: @normal-color;
 		display: inline-block;

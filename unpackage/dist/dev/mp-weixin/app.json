@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index/index",
     "pages/mycenter/login/login",
+    "pages/index/index/index",
     "pages/mycenter/regist/regist",
     "pages/mycenter/index/index",
     "pages/index/shop_detail/shop_detail",
@@ -19,11 +19,16 @@
     "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
     "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
     "pages/order/orderdetail/orderdetail",
-    "pages/mycenter/Edit-data/Edit-data"
+    "pages/mycenter/Edit-data/Edit-data",
+    "pages/mycenter/fuwufankui/fuwufankui",
+    "pages/mycenter/lianxiwomen/lianxiwomen",
+    "pages/mycenter/zhanghuanquan/zhanghuanquan",
+    "pages/mycenter/guanyuzaide/guanyuzaide"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#000000"
   },
   "tabBar": {
     "color": "#C0C4CC",

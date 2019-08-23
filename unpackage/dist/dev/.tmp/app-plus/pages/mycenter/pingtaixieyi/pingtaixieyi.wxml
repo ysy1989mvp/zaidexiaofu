@@ -1,1 +1,1 @@
-<view class="pt"><image src="{{$root.m0}}" class="_img"></image></view>
+<view class="pt"><image class="imgae1" src="../../../static/ysy/ptxy.png" mode="widthFix"></image></view>

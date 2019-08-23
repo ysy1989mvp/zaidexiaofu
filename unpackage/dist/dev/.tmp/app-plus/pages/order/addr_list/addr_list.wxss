@@ -43,6 +43,7 @@ page{
 	-webkit-align-items: flex-start;
 	    -ms-flex-align: start;
 	        align-items: flex-start;
+	width: 70%;
 }
 .part1,.part2{
 	display: -webkit-box;
