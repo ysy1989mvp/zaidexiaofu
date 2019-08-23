@@ -1,0 +1,469 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tab顶部切换 */
+.navbar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 40px;
+	padding: 0 5px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+	        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+	position: relative;
+	z-index: 10;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.nav-item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	height: 100%;
+	font-size: 15px;
+	color: #000000;
+	position: relative;
+}
+.current {
+	color: #C505C5;
+}
+.current:after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	width: 44px;
+	height: 0;
+	border-bottom: 2px solid #C5C5C5;
+}
+.center_content {
+	width: 100%;
+	background-color: #FFFFFF;
+	/* 		display: flex;
+	align-items: center; */
+}
+.container,
+.content,
+page {
+	background-color: #EEEEEE;
+}
+.item {
+	width: 90%;
+	background-color: #FFFFFF;
+	border-radius: 20rpx;
+	margin-top: 10rpx;
+	margin-bottom: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin: 10rpx auto;
+	padding: 0rpx 15rpx;
+	padding-bottom: 35rpx;
+	border-bottom: 2rpx solid #EEEEEE;
+}
+.part1 {
+	width: 96%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	margin-top: 20rpx;
+	margin-bottom: 10rpx;
+}
+.part2 {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+}
+.image-view>image {
+	width: 23vw;
+	height: 23vw;
+}
+.order_no {
+	font-size: 26rpx;
+}
+.status {
+	font-size: 26rpx;
+	color: #6E0012;
+	text-align: right;
+}
+.name {
+	font-size: 28rpx;
+	font-weight: bold;
+	-webkit-line-clamp: 1;
+	/* // 限制显示的文本的行数为3 */
+	-webkit-box-orient: vertical;
+	/* // 水平排列<p>，使其不纵向显示 */
+	word-break: break-all;
+	/* // 使<p>中的文字换行 */
+	overflow: hidden;
+	/* // 超出的文字部分隐藏 */
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	/* // 超出的文字部分用...来显示 */
+	display: -webkit-box;
+	/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
+}
+.neirong {
+	line-height: 45rpx;
+	width: 44vw;
+}
+.daxiao,
+.biaoqian {
+	font-size: 20rpx;
+}
+.biaoqian {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.biaoqian>view {
+	margin-right: 10rpx;
+	color: #6E0012;
+}
+.huise {
+	color: #E5E5E5;
+}
+.part3 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 26rpx;
+	color: #656565;
+	width: 100%;
+	line-height: 50rpx;
+}
+.shangp {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.yijian {
+	margin-right: 20rpx;
+}
+.option {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	color: #656565;
+	font-size: 26rpx;
+	width: 100%;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+.option>view {
+	/* width: 100upx; */
+	border: 2rpx solid #AAAAAA;
+	margin: 8rpx 10rpx;
+	width: 150rpx;
+	border-radius: 20rpx;
+	height: 40rpx;
+	text-align: center;
+	line-height: 40rpx;
+}
+.red{
+	color: #FF0000;
+}
+

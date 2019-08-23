@@ -1,22 +1,22 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="item" v-for="(item,index) in 10" :key="index">
+			<view class="item" v-for="(item,index) in addrs" :key="index">
 				<image class="tubiao" src="../../../static/yangsongyan/imgs/address/513@3x.png"></image>
-				<view class="center"  @click="selected">
+				<view class="center"  @click="selected(item.address_id)">
 					<view class="part1">
-						<view class="name">陈明</view>
-						<view class="mobile">138888888888</view>
+						<view class="name">{{item.name}}</view>
+						<view class="mobile">{{item.phone}}</view>
 					</view>
 					<view class="part2">
-						<view class="default">默认</view>
-						<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
+						<view class="default" v-if="item.isdefault==1">默认</view>
+						<view class="addr">{{item.address_name}} {{item.detail}}</view>
 					</view>
 				</view>
-				<view class="editer" @click="addAddr(2)">编辑</view>
+				<view class="editer" @click="addAddr(2,item.address_id)">编辑</view>
 			</view>
 			<view class="liubai"></view>
-			<view class="button_ysy" @click="addAddr(1)">
+			<view class="button_ysy" @click="addAddr(1,0)">
 				新增地址
 			</view>
 		</view>
@@ -27,18 +27,35 @@
 	export default {
 		data() {
 			return {
-
+				addrs:[
+				]
 			}
 		},
+		onShow(){
+			let params = {
+			};
+			let url = "/api/address/lists";
+			this.util.request(url, "POST", params, (res) => {
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.addrs = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
+		},
 		methods: {
-			addAddr(index){
+			addAddr(index,addr_id){
 				uni.navigateTo({
-					url:"../addr_list/addressManage?type="+index
+					url:"../addr_list/addressManage?type="+index+"&addr_id="+addr_id
 				});
 			},
-			selected(){
+			selected(id){
 				uni.navigateTo({
-					url:"../confirm_order/confirm_order"
+					url:"../confirm_order/confirm_order?type=2&addr_id="+id
 				});
 			}
 			
@@ -69,6 +86,7 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
+		width: 70%;
 	}
 	.part1,.part2{
 		display: flex;

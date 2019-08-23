@@ -5,58 +5,90 @@
 			<view class="row">
 				<view class="name">手机号:</view>
 				<view class="val2">
-					<input class="input2" placeholder="请输入家长号码" type="number"/>
+					<input class="input2" placeholder="请输入家长号码" type="number" v-model="mobile"/>
 				</view>
 			</view>
 			
 			<view class="row">
 				<view class="name">验证码:</view>
 				<view class="val3">
-					<input class="input2" placeholder="请输入短信验证码"/>
+					<input class="input2" placeholder="请输入短信验证码" v-model="vcode"/>
 				</view>
 				<view class="fasong" @click="fashe">{{miaoshu}}</view>
 			</view>
-			<view class="button_ysy">登录</view>
+			<view class="button_ysy" @click="login">登录</view>
 			<view class="button_ysy" @click="regist">注册</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import xflSelect from '@/components/xfl-select/xfl-select.vue';
-
 	export default {
-		components: {
-			xflSelect
-		}, //注册为子组件
 		data() {
 			return {
 				miaoshu:'发送',
-				list: [ //要展示的数据
-					'苹果',
-					{
-						value: '香蕉',
-						disabled: true
-					},
-					'葡萄',
-					'芒果',
-					'大白菜',
-				],
+				mobile:'',
+				vcode:''
 			}
 		},
 		methods: {
-			fashe(){
-				this.miaoshu = 60;
-				setInterval(()=>{
-					if(this.miaoshu>0){
-						this.miaoshu--;
+			fashe() {
+				if(this.mobile==''){
+					this.util.showWindow("电话号码不能为空");
+					return;
+				}
+				let params = {
+					"mobile": this.mobile
+				};
+				let url = "/api/sms/send";
+			
+				this.util.request(url, "POST", params, (res) => {
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.util.showWindow("短信发送成功");
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
 					}
-				},1000);
+				});
+				this.miaoshu = 60;
+				setInterval(() => {
+					if (this.miaoshu > 0) {
+						this.miaoshu--;
+					}else if(this.miaoshu==0){
+						this.miaoshu="重新发送";
+					}
+				}, 1000);
 			},
 			regist(){
 				uni.navigateTo({
 					url:"../regist/regist"
 				})
+			},
+			login(){
+				let params = {
+					"mobile":this.mobile,
+					"captcha":this.vcode
+				};
+				let url = "/api/user/mobilelogin";
+				this.util.request(url, "POST", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.util.token = res.data.data.userinfo.token;
+							uni.switchTab({
+								url:"../../index/index/index"
+							});
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+				
 			}
 		}
 	}
@@ -81,13 +113,13 @@
 	}
 	.name{
 		font-size: 32upx;
-		margin-right: 20upx;
+		margin-right: 10upx;
 	}
 	.val2{
 		width: 60%;
 	}
 	.val3{
-		width: 40%;
+		width: 60%;
 	}
 	.fasong{
 		background-color: #6F0011;

@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="content">
 			<view class="TX">
-				<image class="TXA" src="../../../static/ysy/toux.png"></image>
+				<image class="TXA" :src="data.avatar"></image>
 				<view class="zl">
 					<view class="name">更换头像</view>
 				</view>
@@ -11,21 +11,21 @@
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">学校</view>
-						<view class="c3">昆明市第一中学</view>
+						<view class="c3">{{data.school_name}}</view>
 						<view class="c2">〉</view>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">电话号码</view>
-						<view class="c3">1685202816</view>
+						<view class="c3">{{data.mobile}}</view>
 						<view class="c2">〉</view>
 					</view>
 				</view>
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">性别</view>
-						<view class="c3">女</view>
+						<view class="c3">{{data.xingbie}}</view>
 						<view class="c2">〉</view>
 					</view>
 				</view>
@@ -44,8 +44,25 @@
 	export default {
 		data() {
 			return {
-
+				data:null
 			}
+		},
+		onLoad(){
+			let params = {
+			};
+			let url = "/api/user";
+			this.util.request(url, "POST", params, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.data = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
 		},
 		methods: {
 

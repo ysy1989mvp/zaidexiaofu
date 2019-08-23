@@ -4,12 +4,12 @@
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in homeSlide" :key="index">
-						<image :src="item" mode="aspectFill"></image>
+						<img class="bannerImg" :src="item"/>
 					</swiper-item>
 				</swiper>
 			</view>
 			<view class="gs">
-				<img src="../../../static/ysy/ppgs.png" />
+				<image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image>
 			</view>
 		</view>
 	</view>
@@ -33,14 +33,18 @@
 </script>
 
 <style>
+	.bannerImg {
+		width: 100%
+	}
+	
+	.banner {
+		width: 100%;
+	}
+	
 	.swiper {
 		height: 350upx;
 	}
-	swiper-item>uni-image{
-		width: 100%;
-		height: 350upx;
-	}
-	img{
+	.image1{
 		width: 100%;
 	}
 </style>

@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+.button_ysy{
+	background-color: #1BCC8D;
+	border-radius: 20rpx;
+	text-align: center;
+	margin: 25rpx auto;
+	height: 70rpx;
+	line-height: 70rpx;
+	color: #FFFFFF;
+	width: 90%;
+}
+

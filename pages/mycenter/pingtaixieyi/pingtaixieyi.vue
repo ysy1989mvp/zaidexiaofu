@@ -1,6 +1,6 @@
 <template>
 	<view class="pt">
-		<img src="../../../static/ysy/ptxy.png"></img>
+		<image class="imgae1" src="../../../static/ysy/ptxy.png" mode="widthFix"></image>
 	</view>
 </template>
 
@@ -18,7 +18,14 @@
 </script>
 
 <style>
-	img{
+	.pt{
 		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.image1{
+		width: 90%;
+		height: 200%;
+		margin: 0upx auto;
 	}
 </style>

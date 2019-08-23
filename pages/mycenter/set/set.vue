@@ -3,12 +3,18 @@
 		<view class="content">
 			<view class="part1">
 				<view class="part1a">
-					<image class="TXA" src="../../../static/ysy/toux.png"></image>
+					<image class="TXA" :src="data.avatar"></image>
 					<view class="zl">
-						<view class="number">16852028713</view>
-						<view class="school">昆明市第一小学</view>
+						<view class="number">{{data.mobile}}</view>
+						<view class="school">{{data.school_name}}</view>
 					</view>
-					<view class="bj">编辑</view>
+					<view class="bj" @click="edit">编辑</view>
+				</view>
+				<view class="fw" @click="addresses">
+					<view class="ee">
+						<view class="c1">我的收货地址</view>
+						<view class="c2">〉</view>
+					</view>
 				</view>
 			</view>
 			<view class="part2">
@@ -43,11 +49,37 @@
 	export default {
 		data() {
 			return {
-
+				data:null
 			}
 		},
+		onLoad(){
+			let params = {
+			};
+			let url = "/api/user";
+			this.util.request(url, "POST", params, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.data = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
+		},
 		methods: {
-
+			addresses(){
+				uni.navigateTo({
+					url:"../../order/addr_list/addr_list"
+				});
+			},
+			edit(){
+				uni.navigateTo({
+					url:"../Edit-data/Edit-data"
+				});
+			}
 		}
 	}
 </script>

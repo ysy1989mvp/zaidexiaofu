@@ -5,44 +5,46 @@
 				<view class="name">选择学校:</view>
 				<view class="val1">
 					<xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="5" :listShow="true" :isCanInput="true" :style_Container="'height: 40px; font-size: 16px;'"
-					 :placeholder="'点击选择或输入有效学校'" :initValue="''" :selectHideType="'hideAll'" @change="xuexiaochange">
+					 :placeholder="'点击选择或输入有效学校'" :initValue="'点击选择或输入有效学校'" :selectHideType="'hideAll'" @change="xuexiaochange">
 					</xfl-select>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入学校编号:</view>
 				<view class="val2">
-					<input class="input2" type="number" />
+					<input class="input2" type="number" v-model="schoolcode"/>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入学生年级:</view>
 				<view class="val2">
-					<input class="input2" />
+					<xfl-select :list="nianjidata" :clearable="false" :showItemNum="5" :listShow="true" :isCanInput="true" :style_Container="'height: 40px; font-size: 16px;'"
+					 :placeholder="'选择年级'" :initValue="'选择年级'" :selectHideType="'hideAll'" @change="nianjichange">
+					</xfl-select>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入学生姓名:</view>
 				<view class="val2">
-					<input class="input2" />
+					<input class="input2" v-model="studentName"/>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入手机号码:</view>
 				<view class="val2">
-					<input class="input2" placeholder="(家长)" type="number" />
+					<input class="input2" placeholder="(家长)" type="number" v-model="mobile"/>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">输入学号:</view>
 				<view class="val2">
-					<input class="input2" placeholder="(选填)" />
+					<input class="input2" placeholder="(选填)" v-model="studentNo"/>
 				</view>
 			</view>
 			<view class="row">
 				<view class="name">短信验证码:</view>
 				<view class="val3">
-					<input class="input2" placeholder="请输入验证码" />
+					<input class="input2" placeholder="请输入验证码" v-model="vcode"/>
 				</view>
 				<view class="fasong" @click="fashe">{{miaoshu}}</view>
 			</view>
@@ -61,45 +63,66 @@
 		data() {
 			return {
 				miaoshu: '发送',
-				xuexiaodata: [{
-						"id": 2,
-						"value": "云南师范大学附属中学 ",
-						"image": "/uploads/20190808/FiiCiSUPseWbCrvNDB1cisCKzrc-.jpg",
-						"code": "111111",
-						"createtime": 1565235005
-					},
-					{
-						"id": 1,
-						"value": "云南大学",
-						"image": "/uploads/20190808/FhT1DEAfZr9IZXvJ_46KhdEat75q.jpg",
-						"code": "2222",
-						"createtime": 1565234412
-					}
-				],
+				xuexiaodata: [],
+				schoolcode:'',
+				schoolid:'',
+				nianjiid:'',
+				nianjidata:[],
+				studentName:'',
+				studentNo:'',
+				vcode:'',
+				mobile:''
+				
+				
 			}
 		},
-// 		onLoad() {
-// 			let params = {};
-// 			let url = "/api/school";
-// 
-// 			this.util.request(url, "POST", params, (res) => {
-// 				if (res.statusCode == 200) {
-// 					if (res.data.code == 1) {
-// 						this.xuexiaodata = res.data.data;
-// 					} else {
-// 						this.util.showWindow(res.data.msg);
-// 					}
-// 				} else {
-// 					this.util.showWindow("请求错误");
-// 				}
-// 			});
-		// },
+		onLoad() {
+			let params = {};
+			let url = "/api/school";
+
+			this.util.request(url, "POST", params, (res) => {
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.xuexiaodata = res.data.data;
+						
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
+		},
 		methods: {
 			xuexiaochange({newVal, oldVal, index, orignItem}){
 				console.log(newVal, oldVal, index, orignItem);
+				this.schoolcode = orignItem.code;
+				this.schoolid = orignItem.id;
+				let params = {
+					"id":this.schoolid
+				};
+				let url = "/api/school_grade";
 				
+				this.util.request(url, "GET", params, (res) => {
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.nianjidata = res.data.data;
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+			},
+			nianjichange({newVal, oldVal, index, orignItem}){
+				this.nianjiid = orignItem.id;
 			},
 			fashe() {
+				if(this.mobile==null){
+					this.util.showWindow("电话号码不能为空");
+					return;
+				}
 				let params = {
 					"mobile": this.mobile
 				};
@@ -126,14 +149,24 @@
 			//注册
 			regist() {
 				let params = {
-					"mobile": this.mobile
+					"mobile": this.mobile,
+					"schoolId":this.schoolid,
+					"schoolCode":this.schoolcode,
+					"gradeId":this.nianjiid,
+					"name":this.studentName,
+					"sno":this.studentNo,
+					"captcha":this.vcode
 				};
 				let url = "/api/sms/send";
 
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
-							this.util.showWindow("短信发送成功");
+							this.util.token = res.data.data.userinfo.token;
+							//成功后直接登陆
+							uni.switchTab({
+								url:"../../index/index/index"
+							})
 						} else {
 							this.util.showWindow(res.data.msg);
 						}

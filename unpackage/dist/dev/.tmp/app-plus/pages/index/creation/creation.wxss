@@ -1,0 +1,301 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tab顶部切换 */
+.navbar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 40px;
+	padding: 0 5px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+	        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+	position: relative;
+	z-index: 10;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.nav-item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	height: 100%;
+	font-size: 15px;
+	color: #000000;
+	position: relative;
+}
+.current {
+	color: #C505C5;
+}
+.current:after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	width: 44px;
+	height: 0;
+	border-bottom: 2px solid #C5C5C5;
+}
+.top_tag {
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	top: 82rpx;
+}
+.center_content {
+	width: 95vw;
+	margin-left: 5vw;
+	margin-top: 84rpx;
+}
+.row {
+	float: left;
+	width: 43vw;
+	height: 37vh;
+	margin-right: 10rpx;
+	margin-top: 20rpx;
+	margin-bottom: 10rpx;
+}
+.goods_img {
+	width: 100%;
+	height: 75%;
+}
+.title {
+	font-size: 28rpx;
+	-webkit-line-clamp: 1;
+	/* // 限制显示的文本的行数为3 */
+	-webkit-box-orient: vertical;
+	/* // 水平排列<p>，使其不纵向显示 */
+	word-break: break-all;
+	/* // 使<p>中的文字换行 */
+	overflow: hidden;
+	/* // 超出的文字部分隐藏 */
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
+	/* // 超出的文字部分用...来显示 */
+	display: -webkit-box;
+	/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
+}
+.tags {
+	font-size: 20rpx;
+	color: #a5a5a5;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	line-height: 40rpx;
+}
+.number {
+	font-size: 20rpx;
+	color: #a5a5a5;
+}
+.tags>view {
+	padding: 0rpx 10rpx;
+	border-right: 2rpx solid #A5A5A5;
+}
+.last {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.price {
+	font-size: 28rpx;
+	color: #6E0012;
+	margin-right: 10rpx;
+}
+.tag_price {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	line-height: 40rpx;
+}
+.dingzhi {
+	font-size: 24rpx;
+	color: #6E0012;
+	line-height: 46rpx;
+}
+.zhengzhao {
+	/* float: left; */
+	z-index: 100;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(65,65,65,0.5);
+	top:100rpx;
+}
+.neirong{
+	background-color: #FFFFFF;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	padding-top: 15rpx;
+}
+.top_tag0{
+	width: 100rpx;
+	border: 2rpx solid #AAAAAA;
+	border-radius: 20rpx;
+	font-size: 28rpx;
+	text-align: center;
+	margin: 10rpx 20rpx;
+}
+.xuanzhong{
+	background-color: #061637;
+	color: #FFFFFF;
+}
+

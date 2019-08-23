@@ -2,47 +2,50 @@
 	<view class="container">
 		<view class="content">
 			<swiper class="swiper" indicator-dots="true" autoplay="false" interval="50000000" duration="1500">
-				<swiper-item v-for="(item , index) in homeSlide" :key="index">
+				<swiper-item v-for="(item , index) in bannerlist" :key="index">
 					<image :src="item" mode="aspectFill"></image>
 				</swiper-item>
 			</swiper>
 		</view>
 		<view class="part2">
-			<view class="xf">载德国际校服</view>
-			<view class="p">￥450</view>
+			<view class="xf">{{goodsdata.goods_name}}</view>
+			<view class="p">￥{{goodsdata.price}}</view>
 			<view class="jdtw">
-				<image class="tu" src="../../../static/ysy/jdt.png"></image>
+				<image class="tu" src="../../../static/ysy/jdt.png" mode=""></image>
 				<view class="yy">已定制85%</view>
 			</view>
-			<view class="w">载德中小学生校服套装，西装服英伦风女童裙子男童长裤春夏</view>
+			<view class="w">{{goodsdata.first_title}}</view>
 		</view>
-		<view class="see1" @click="bubuy">
-			<img src="../../../static/ysy/see.png" />
-		</view>
+		<!-- <view class="see1" @click="bubuy"> -->
+		<image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image>
+		<!-- </view> -->
 		<view class="D">
-			<view class="HJ">合计：￥450</view>
+			<view class="HJ">合计：￥{{total_price}}</view>
 			<view class="GM" @click="buy">立即购买</view>
-			<view class="part3" v-if="show_number==1">
-				<view class="l3a">
-					<view class="w1">
-						<img class="tt" src="../../../static/ysy/tt3.png">
-						<view class="t2">
-							<view class="aa3">￥450</view>
-							<view class="aa4">库存1236件</view>
-							<view class="aa5">选择 颜色分类、尺寸</view>
+
+			<view class="zhezhao" v-if="show_number==1" @click="bubuy($event)">
+				<view class="part3">
+					<view class="l3a">
+						<view class="w1">
+							<img class="tt" :src="goodsdata.image" />
+							<view class="t2">
+								<view class="aa3">￥{{total_price}}</view>
+								<view class="aa4">库存1236件</view>
+								<view class="aa5">选择 需要的规格</view>
+							</view>
+						</view>
+						<view v-for="(item,index) in specData" :key="index">
+							<view class="t3">
+								<view class="t3a">{{item.group_name}}</view>
+								<view class="t3b"></view>
+							</view>
+							<view class="SZ">
+								<text class="tex" v-for="(item1,index1) in item.spec_items" :class="{bianse:biaoji==index1}" :key="index1" @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1)">{{item1.spec_value}}</text>
+							</view>
 						</view>
 					</view>
-					<view v-for="(item,index) in 3" :key="index">
-						<view class="t3">
-							<view class="t3a">尺寸</view>
-							<view class="t3b">S码</view>
-						</view>
-						<view class="SZ">
-							<text class="tex" v-for="(item,index) in 8" :key="index">120</text>
-						</view>
-					</view>
+					<view class="QR" @click="confirmBuy">确认</view>
 				</view>
-				<view class="QR" @click="confirmBuy">确认</view>
 			</view>
 		</view>
 
@@ -55,27 +58,115 @@
 	export default {
 		data() {
 			return {
+				biaoji:-1,
+				goodsId:null,
+				sld: false,
 				show_number: 0,
-				homeSlide: ["../../../static/lxy/1.png",
-					"../../../static/lxy/1.png",
-					"../../../static/lxy/1.png",
-					"../../../static/lxy/1.png",
-					"../../../static/lxy/1.png",
-				], // 定义值接收轮播图数据
+				bannerlist: [],
+				goodsdata: null,
+				canshulist: [],
+				total_price: 0,
+				specData: [],
+				selectGuiges: [],
+				selectGuigesName_value:[]
 			}
 		},
+		onLoad(option) {
+			this.goodsId = option.id;
+			let params = {
+				"goodId": option.id
+			};
+			let url = "/api/goods/detail";
+
+			this.util.request(url, "GET", params, (res) => {
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.bannerlist = res.data.data.detail.images;
+						this.goodsdata = res.data.data.detail;
+						this.canshulist = res.data.data.detail.spec;
+						this.total_price = res.data.data.detail.price;
+						this.specData = res.data.data.specData;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
+		},
 		methods: {
+			selectGuige(group_id, item_id,group_name,item_value,index) {
+				this.biaoji = index;
+				let boolean = false;
+				for (var i = 0; i < this.selectGuiges.length; i++) {
+					if (this.selectGuiges[i].group_id == group_id) {
+						this.selectGuiges[i].item_id = item_id;
+						this.selectGuigesName_value[i].item_value = item_value;
+						boolean = true;
+					}
+				}
+				if (!boolean) {
+					var guige = {
+						'group_id': group_id,
+						'item_id': item_id
+					};
+					var guigevalue = {
+						"group_name":group_name,
+						"item_value":item_value
+					};
+					this.selectGuiges.push(guige);
+					this.selectGuigesName_value.push(guigevalue);
+				}
+				// this.goodsId
+				let params = {
+					"goods_id":parseInt(this.goodsId),
+					"guige":this.selectGuiges,
+					"goods_num":1
+				};
+				let params1 = {
+					"paramsdata":params
+				}
+				let url = "/api/order/calculationprice";
+				this.util.request(url,"GET",params1, (res) => {
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.total_price = res.data.data.order_total_price;
+						} else {
+							this.util.showWindow(res.data.msg);
+							return;
+						}
+					} else {
+						this.util.showWindow("请求错误");
+						return;
+					}
+				});
+			},
 			buy() {
 				this.show_number = 1;
 			},
-			bubuy() {
-				this.show_number = 0;
+			bubuy(event) {
+				var el1 = event.currentTarget;
+				var el2 = event.target;
+				if (el1 == el2) {
+					//do something
+					this.show_number = 0;
+				}
 			},
-			confirmBuy(){
+			confirmBuy() {
+				var data1 = {
+					"goods_id":this.goodsdata.goods_id,
+					"selectGuiges":this.selectGuiges,
+					"goods_name":this.goodsdata.goods_name,
+					"selectGuigesName_value":this.selectGuigesName_value,
+					"totalPrice":this.total_price,
+					"goodsimg":this.goodsdata.image
+				};
+							
 				uni.navigateTo({
-					url:"../../order/confirm_order/confirm_order"
+					url: "../../order/confirm_order/confirm_order?type=1&data="+JSON.stringify(data1)
 				})
-			}
+			},
+
 		}
 	}
 </script>
@@ -158,7 +249,7 @@
 		height: 80upx;
 		line-height: 80upx;
 		background-color: #E5E5E5;
-		
+
 	}
 
 	.GM {
@@ -212,6 +303,7 @@
 
 	.tt {
 		width: 250upx;
+		height: 100%;
 	}
 
 	.SZ {
@@ -235,7 +327,7 @@
 		border-bottom: 2upx solid #E5E5E5;
 	}
 
-	.SZ .tex {
+	.tex {
 		width: 15%;
 		background-color: #E5E5E5;
 		padding: 6upx 12upx;
@@ -258,13 +350,32 @@
 		line-height: 80upx
 	}
 
-	.part3 {
+	.zhezhao {
 		position: absolute;
 		bottom: 0upx;
 		background-color: #FFFFFF;
 		width: 100%;
+		height: 100vh;
+		background-color: rgba(55, 55, 55, 0.5);
+		border-top: 2upx solid #E5E5E5;
+		border-bottom: 2upx solid #E5E5E5;
+		/* border: 2upx solid red; */
+		display: flex;
+		justify-content: flex-end;
+		flex-direction: column;
 	}
-	.t3a,.t3b{
+
+	.part3 {
+		/* border: 2upx solid red;
+		 */
+		background-color: #FFFFFF;
+	}
+
+	.t3a,
+	.t3b {
 		line-height: 60upx;
+	}
+	.bianse{
+		background-color: #1BCC8D;
 	}
 </style>

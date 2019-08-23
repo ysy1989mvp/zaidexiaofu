@@ -4,155 +4,168 @@
 			"path": "pages/index/index/index",
 			"style": {
 				// #ifdef MP 
-				"navigationBarTitleText": "Dloud商城",
-				"navigationStyle": "custom",
+				"navigationBarTitleText": "首页"
+				// "navigationStyle": "custom",
 				// #endif 
-				"app-plus": {
-					"titleNView": {
-						"type": "transparent",
-						"searchInput": {
-							"backgroundColor": "rgba(231, 231, 231,.7)",
-							"borderRadius": "16px",
-							"placeholder": "请输入地址 如：大钟寺",
-							"disabled": true,
-							"placeholderColor": "#606266"
-						},
-						"buttons": [{
-								"fontSrc": "/static/yticon.ttf",
-								"text": "\ue60d",
-								"fontSize": "26",
-								"color": "#303133",
-								"float": "left",
-								"background": "rgba(0,0,0,0)"
-							},
-							{
-								"fontSrc": "/static/yticon.ttf",
-								"text": "\ue744",
-								"fontSize": "27",
-								"color": "#303133",
-								"background": "rgba(0,0,0,0)",
-								"redDot": true
-							}
-						]
-					}
-				}
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"type": "transparent",
+				// 		"searchInput": {
+				// 			"backgroundColor": "rgba(231, 231, 231,.7)",
+				// 			"borderRadius": "16px",
+				// 			"placeholder": "请输入地址 如：大钟寺",
+				// 			"disabled": true,
+				// 			"placeholderColor": "#606266"
+				// 		},
+				// 		"buttons": [
+				// 			{
+				// 				"fontSrc": "/static/yticon.ttf",
+				// 				"text": "\ue60d",
+				// 				"fontSize": "26",
+				// 				"color": "#303133",
+				// 				"float": "left",
+				// 				"background": "rgba(0,0,0,0)"
+				// 			},
+				// 			{
+				// 				"fontSrc": "/static/yticon.ttf",
+				// 				"text": "\ue744",
+				// 				"fontSize": "27",
+				// 				"color": "#303133",
+				// 				"background": "rgba(0,0,0,0)",
+				// 				"redDot": true
+				// 			}
+				// 		]
+				// 	}
+				// }
 			}
 		},
+		{
+			"path": "pages/mycenter/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/mycenter/regist/regist",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		
 		{
 			"path": "pages/mycenter/index/index",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}
-	    ,{
-            "path" : "pages/index/shop_detail/shop_detail",
-            "style" : {
+		}, {
+			"path": "pages/index/shop_detail/shop_detail",
+			"style": {
 				"navigationBarTitleText": "校服详情"
 			}
-        },
+		},
 		// --------------杨松彦-------------------
 		{
 			"path": "pages/order/index/index",
 			"style": {
 				"navigationBarTitleText": "订单"
 			}
-		}
-	    ,{
-            "path" : "pages/order/addr_list/addr_list",
-            "style" : {
+		}, {
+			"path": "pages/order/addr_list/addr_list",
+			"style": {
 				"navigationBarTitleText": "我的地址列表"
 			}
-        },
+		},
 		{
-		    "path" : "pages/order/addr_list/addressManage",
-		    "style" : {
+			"path": "pages/order/addr_list/addressManage",
+			"style": {
 				"navigationBarTitleText": "新增地址"
 			}
-		}
-        ,{
-            "path" : "pages/order/confirm_order/confirm_order",
-            "style" : {"navigationBarTitleText": "确认订单"
+		}, {
+			"path": "pages/order/confirm_order/confirm_order",
+			"style": {
+				"navigationBarTitleText": "确认订单"
 			}
-        },
+		},
 		{
-		    "path" : "pages/mycenter/set/set",
-		    "style" : {
+			"path": "pages/mycenter/set/set",
+			"style": {
 				"navigationBarTitleText": "设置"
-				}
-		}
-        
-        ,{
-            "path" : "pages/mycenter/questionback/questionback",
-           "style" : {"navigationBarTitleText": "服务与反馈"
-           }
-        }
-        ,{
-            "path" : "pages/mycenter/serveback/serveback",
-           "style" : {"navigationBarTitleText": "问题反馈"
-           }
-        }
-        ,{
-            "path" : "pages/mycenter/gouwuxuzhi/gouwuxuzhi",
-            "style" : {"navigationBarTitleText": "购物须知"
-            }
-        }
-        ,{
-            "path" : "pages/mycenter/pingtaixieyi/pingtaixieyi",
-            "style" : {"navigationBarTitleText": "平台协议"
-            }
-        },{
-			"path" : "pages/index/creation/creation",
-			"style" : {"navigationBarTitleText": "校服定制"
-			}
-		},{
-			"path" : "pages/tuiguangxiangguang/pinpaigushi/pinpaigushi",
-			"style" : {"navigationBarTitleText": "品牌故事"
-			}
-		},{
-			"path" : "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
-			"style" : {"navigationBarTitleText": "案例展示"
-			}
-		},{
-			"path" : "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
-			"style" : {"navigationBarTitleText": "工艺流程"
 			}
 		}
-        ,{
-            "path" : "pages/order/orderdetail/orderdetail",
-            "style" : {"navigationBarTitleText": "订单详情"
-            }
-        }
-        ,{
-            "path" : "pages/mycenter/Edit-data/Edit-data",
-            "style" : {"navigationBarTitleText": "编辑资料"
-            }
-        }
-        ,{
-            "path" : "pages/mycenter/regist/regist",
-            "style" : {"navigationBarTitleText": "注册"}
-        }
-        ,{
-            "path" : "pages/mycenter/login/login",
-            "style" : {"navigationBarTitleText": "登录"}
-        }
-    ],
+
+		, {
+			"path": "pages/mycenter/questionback/questionback",
+			"style": {
+				"navigationBarTitleText": "问题与反馈"
+			}
+		}, {
+			"path": "pages/mycenter/serveback/serveback",
+			"style": {
+				"navigationBarTitleText": "服务与反馈"
+			}
+		}, {
+			"path": "pages/mycenter/gouwuxuzhi/gouwuxuzhi",
+			"style": {
+				"navigationBarTitleText": "购物须知"
+			}
+		}, {
+			"path": "pages/mycenter/pingtaixieyi/pingtaixieyi",
+			"style": {
+				"navigationBarTitleText": "平台协议"
+			}
+		}, {
+			"path": "pages/index/creation/creation",
+			"style": {
+				"navigationBarTitleText": "校服定制"
+			}
+		}, {
+			"path": "pages/tuiguangxiangguang/pinpaigushi/pinpaigushi",
+			"style": {
+				"navigationBarTitleText": "品牌故事"
+			}
+		}, {
+			"path": "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
+			"style": {
+				"navigationBarTitleText": "案例展示"
+			}
+		}, {
+			"path": "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
+			"style": {
+				"navigationBarTitleText": "工艺流程"
+			}
+		}, {
+			"path": "pages/order/orderdetail/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		}, {
+			"path": "pages/mycenter/Edit-data/Edit-data",
+			"style": {
+				"navigationBarTitleText": "编辑资料"
+			}
+		}
+	],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "black",
-		"backgroundColor": "#f8f8f8"
+		"navigationBarTextStyle": "white"
+		// "navigationBarBackgroundColor": "black"
+
+		// "navigationBarTextStyle": "white",
+		// "navigationBarTitleText": "uni-app",
+		// "navigationBarBackgroundColor": "black",
+		// "backgroundColor": "#f8f8f8"
 	},
+
 	// "condition" : {
- //        //模式配置，仅开发期间生效
- //        "current" : 0, //当前激活的模式(list 的索引项)
- //        "list" : [
- //            {
- //                "name" : "订单", //模式名称
- //                "path" : "pages/order/index/index", //启动页面，必选
- //                "query" : "" //启动参数，在页面的onLoad函数里面得到
- //            }
- //        ]
- //    },
+	//        //模式配置，仅开发期间生效
+	//        "current" : 0, //当前激活的模式(list 的索引项)
+	//        "list" : [
+	//            {
+	//                "name" : "订单", //模式名称
+	//                "path" : "pages/order/index/index", //启动页面，必选
+	//                "query" : "" //启动参数，在页面的onLoad函数里面得到
+	//            }
+	//        ]
+	//    },
 	"tabBar": {
 		"color": "#C0C4CC",
 		"selectedColor": "#fa436a",
@@ -160,14 +173,14 @@
 		"backgroundColor": "white",
 		"list": [{
 				"pagePath": "pages/index/index/index",
-				"iconPath": "static/lxy/home%201.png",
-				"selectedIconPath": "static/lxy/home%20page%20@3x.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/order/index/index",
-				"iconPath": "static/lxy/order@3x.png",
-				"selectedIconPath": "static/lxy/order_2.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "订单"
 			},
 			// {
@@ -178,8 +191,8 @@
 			// },
 			{
 				"pagePath": "pages/mycenter/index/index",
-				"iconPath": "static/lxy/wode(3)@3x.png",
-				"selectedIconPath": "static/lxy/my@3x.png",
+				"iconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/105.png",
 				"text": "我的"
 			}
 		]

@@ -1,6 +1,6 @@
 <template>
 	<view class="gw">
-		<img src="../../../static/ysy/gwxz.png"></img>
+		<image class="image1" src="../../../static/ysy/gwxz.png" mode="widthFix"></image>
 	</view>
 </template>
 
@@ -18,7 +18,8 @@
 </script>
 
 <style>
-	img{
+	.image1{
 		width: 100%;
+		height: 200%;
 	}
 </style>

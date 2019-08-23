@@ -4,7 +4,7 @@
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in homeSlide" :key="index">
-						<image :src="item" mode="aspectFill"></image>
+						<img class="bannerImg" :src="item"/>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -13,7 +13,7 @@
 				<view class="part4b">工艺展示</view>
 			</view>
 			<view class="part2">
-				<img src="../../../static/ysy/gylc/p2.png"></img>
+				<image class="image1" src="../../../static/ysy/gylc/p2.png" mode="widthFix"></image>
 			</view>
 		</view>
 	</view>
@@ -37,11 +37,15 @@
 </script>
 
 <style>
-	.swiper {
-		height: 350upx;
+	.bannerImg {
+		width: 100%
 	}
-	swiper-item>uni-image{
+	
+	.banner {
 		width: 100%;
+	}
+	
+	.swiper {
 		height: 350upx;
 	}
 	.part4a{
@@ -62,7 +66,7 @@
 		margin-bottom: 30upx;
 		color: #061637;
 	}
-	.part2>img{
+	.image1{
 		width: 100%;
 		/* height: 80upx; */
 		/* margin: 30upx 180upx; */

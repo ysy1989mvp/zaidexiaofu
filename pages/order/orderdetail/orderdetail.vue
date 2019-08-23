@@ -5,15 +5,19 @@
 				<view class="center">
 					<view class="uu">
 						<view class="part1">
-							<view class="XM">孙晓</view>
-							<view class="nub">1685950420</view>
+							<view class="XM">{{addr_data.name}}</view>
+							<view class="nub">{{addr_data.phone}}</view>
 						</view>
 						<view class="part2">
-							<view class="default">默认</view>
-							<view class="addr">云南省 昆明市 盘龙区 东华街道 环城东路50号 昆明市第一小学</view>
+							<view class="part22">
+							<!-- <view class="default" v-if="addr_data.default==1">默认</view> -->
+							<view class="addr">{{addr_data.province_name}} {{addr_data.city_name}} {{addr_data.region_name}} {{addr_data.detail}}</view>
+							</view>
+							<view class="m"> </view>
 						</view>
 						<view class="part3">
-							<view class="time">收货时间不限</view>
+							<!-- <view class="time">收货时间不限</view> -->
+							<view class="time"></view>
 						</view>
 					</view>
 				</view>
@@ -21,47 +25,47 @@
 			<view class="last">
 				<view class="kk">
 					<view class="parta1">
-						<img class="icon" src="../../../static/lxy/icon.png">
+						<image class="icon" src="../../../static/lxy/icon.png" mode="widthFix"></image>
 						<view class="ww">载德国际校服</view>
 					</view>
 					<view class="parta2">
-						<image class="ttt" src="../../../static/lxy/a2.png"></image>
+						<image class="ttt" :src="goods_data.image"></image>
 						<view class="ttt2">
 							<view class="e">
-								<view class="e1">载德中小学生校服套装，西装服英伦风女童裙子男童长裤春夏</view>
-								<view class="e2">￥450</view>
+								<view class="e1">{{goods_data.goods_name}}</view>
+								<!-- <view class="e2">￥{{order_data.total_price}}</view> -->
+								<view class="e2"></view>
 							</view>
-							<view class="y">
+							<!-- <view class="y">
 								<view class="y1">颜色分类:</view>
 								<view class="y2">×1</view>
-							</view>
-							<view class="c">尺码：M</view>
+							</view> -->
+							<view class="c" v-for="(item,index) in order_data.spec" :key="index">{{item.spec_name}}：{{item.spec_value}}</view>
 						</view>
 					</view>
 					<view class="parta3">
 						<view class="g1">
 							<view class="gm">购买数量</view>
 							<view class="sl">
-								<view class="s3">1</view>
+								<view class="s3" >{{order_data.total_num}}</view>
 							</view>
 						</view>
 						<view class="g2">
 							<view class="u1">配送方式</view>
-							<view class="u2">普通配送</view>
+							<view class="u2">{{order_data.express_company}}</view>
 						</view>
 						<view class="g3">
-							<view class="u3">订单备注</view>
-							<view class="u4">选填，和商家协商一致</view>
+							<view class="u3">运费</view>
+							<view class="u4">{{order_data.express_price}}</view>
 						</view>
 					</view>
 				</view>
 			</view>
 			<view class="D">
 				<view class="D1">
-					<view class="HJ">合计：￥450</view>
+					<view class="HJ">合计：￥{{order_data.pay_price}}</view>
 				</view>
-				<!-- <view class="GM" @click="tijiao">订单支付</view> -->
-				<view class="GM">订单状态</view>
+				<view class="GM" @click="pay">支付</view>
 			</view>
 		</view>
 	</view>
@@ -71,20 +75,44 @@
 	export default {
 		data() {
 			return {
-
+				order_id:null,
+				goods_data:null,
+				addr_data:null,
+				order_data:null,
 			}
 		},
+		onLoad(option){
+			// 商品详情页跳转
+				this.order_id = option.id;
+				let params = {
+					"id":this.order_id
+				};
+				let url = "/api/order/detail";
+				this.util.request(url, "GET", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.addr_data = res.data.data.address;
+							this.goods_data = res.data.data.goods;
+							this.order_data = res.data.data.order;
+						} else {
+							this.util.showWindow(res.data.msg);
+							return;
+						}
+					} else {
+						this.util.showWindow("请求错误");
+						return;
+					}
+				});
+			
+		},
 		methods: {
-			tijiao() {
+			pay(){
 				uni.switchTab({
 					url: "../index/index"
 				})
-			},
-			addrs(){
-				uni.navigateTo({
-					url: "../addr_list/addr_list"
-				})
 			}
+
 		}
 	}
 </script>
@@ -98,12 +126,19 @@
 		height: 100vh;
 	}
 
-	.part1,
-	.part2 {
+	.part1{
 		display: flex;
 		justify-content: flex-start;
 	}
-
+	.part2 {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.part22{
+		display: flex;
+		justify-content: flex-start;
+	}
 	.default {
 		width: 90upx;
 		height: 30upx;
@@ -122,6 +157,7 @@
 	}
 
 	.center {
+		width: 100%;
 		font-size: 28upx;
 		display: flex;
 		flex-direction: column;
@@ -149,7 +185,7 @@
 
 	.ww {
 		width: 200upx;
-		height: 10upx;
+		/* height: 20upx; */
 		font-size: 28upx;
 		margin-left: 20upx;
 	}
@@ -157,6 +193,8 @@
 	.parta1 {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+		height: 20upx;
 	}
 
 	.parta2 {
@@ -250,7 +288,7 @@
 	.GM {
 		text-align: center;
 		width: 50%;
-		background-color: #6E0012;
+		background-color: #1BCC8D;
 		color: #FFFFFF;
 		height: 80upx;
 		line-height: 80upx;
@@ -271,6 +309,7 @@
 		justify-content: space-between;
 		margin: 10upx 10upx;
 		padding: 10upx 10upx;
+		width: 100%;
 	}
 
 	.e2 {
@@ -311,14 +350,21 @@
 		font-weight: bold;
 		line-height: 6upx;
 	}
-	.s3{
+
+	.s3 {
 		font-size: 32upx;
 		margin: 2upx 15upx;
 	}
+
 	.jd {
 		font-size: 35upx;
 	}
-	.m{
+
+	.m {
 		color: #A5A5A5;
+	}
+	.icon{
+		width: 50upx;
+		height: 18upx;
 	}
 </style>

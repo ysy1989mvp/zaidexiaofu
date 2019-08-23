@@ -1,0 +1,1 @@
+<view class="async-switch data-v-4a0758fa"><switch checked="{{checked}}" disabled="{{disabled}}" color="{{changeColor}}" class="data-v-4a0758fa"></switch><button data-event-opts="{{[['tap',[['onChange',['$event']]]]]}}" bindtap="__e" class="data-v-4a0758fa"></button></view>

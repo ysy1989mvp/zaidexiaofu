@@ -4,12 +4,12 @@
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in homeSlide" :key="index">
-						<image :src="item" mode="aspectFill"></image>
+						<img class="bannerImg" :src="item"/>
 					</swiper-item>
 				</swiper>
 			</view>
 			<view class="part2">
-				<img src="../../../static/ysy/anli/zu10.png"></img>
+				<image class="tagimg" src="../../../static/ysy/anli/zu10.png"></image>
 			</view>
 			<view class="bt">
 				<view class="q1"> </view>
@@ -17,7 +17,7 @@
 				<view class="q3"> </view>
 			</view>
 			<view class="part3">
-				<img src="../../../static/ysy/anli/qq.png"></img>
+				<image class="image1" src="../../../static/ysy/anli/qq.png" mode="widthFix"></image>
 			</view>
 		</view>
 	</view>
@@ -41,14 +41,18 @@
 </script>
 
 <style>
+	.bannerImg {
+		width: 100%
+	}
+	
+	.banner {
+		width: 100%;
+	}
+	
 	.swiper {
 		height: 350upx;
 	}
-	swiper-item>uni-image{
-		width: 100%;
-		height: 350upx;
-	}
-	img{
+	.tagimg{
 		width: 50%;
 		height: 80upx;
 		/* margin: 30upx 180upx; */
@@ -79,7 +83,7 @@
 		margin: 0upx 15upx;
 		color: #061637;
 	}
-	.part3>img{
+	.image1{
 				width: 100%;
 				height: 100%;
 	}

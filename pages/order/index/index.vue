@@ -12,50 +12,53 @@
 			<!-- 显示区域 -->
 			<!-- <view class="list" v-for="(item, index) in navList" :key="index" v-if="tabCurrentIndex === index"> -->
 			<view class="center_content">
-				<view class="item" v-for="(item,index) in 5" :key="index" @click="detail">
+				<view class="item" v-for="(item,index) in data" :key="index" @click="detail(item.order_no)">
 					<view class="part1">
 						<view class="order_no">
-							订单号:201908124524
+							订单号:{{item.order_no}}
 						</view>
 						<view class="status">
-							交易关闭
+							{{item.status_txt}}
 						</view>
 					</view>
 					<view class="part2">
 						<view class="image-view">
-							<image src="../../../static/yangsongyan/imgs/order/1.png"></image>
+							<image :src="item.goods[0].image"></image>
 						</view>
 						<view class="neirong">
-							<view class="name">英伦学院风藏蓝格子</view>
-							<view class="name">西服套装</view>
-							<view class="daxiao">学院套装：145cm</view>
-							<view class="biaoqian">
+							<view class="name">{{item.goods[0].goods_name}}</view>
+							<!-- <view class="name">西服套装</view> -->
+							<!-- <view class="daxiao">学院套装：145cm</view> -->
+							<!-- <view class="biaoqian">
 								<view>品质优选</view>
 								<view>放心选购</view>
-							</view>
+							</view> -->
 						</view>
 						<view>
 							<view class="status">
-								￥450.00
+								￥{{item.pay_price}}
 							</view>
 							<view class="status huise">
-								×1
+								×{{item.goods[0].total_num}}
 							</view>
 
 						</view>
 					</view>
 					<view class="part3">
-						<view class="yunfei">
+						<!-- <view class="yunfei">
 							顺风到付
+						</view> -->
+						<view class="yunfei">
+							
 						</view>
-						<view class="shangp">
+						<!-- <view class="shangp">
 							<view class="yijian">
 								共1件商品
 							</view>
 							<view>合计:￥450.00</view>
-						</view>
+						</view> -->
 					</view>
-					<view class="option" v-if="currt==1">
+					<view class="option" v-if="item.order_status==1">
 						<!-- 待付款 -->
 						<view>
 							取消订单
@@ -64,29 +67,29 @@
 							订单付款
 						</view>
 					</view>
-					<view class="option"  v-if="currt==2">
+					<view class="option"  v-if="item.order_status==2">
 						<!-- 待发货 -->
 						<view>
-							查看物流
+							<!-- 查看物流 -->
 						</view>
 						<view>
 							提醒发货
 						</view>
 					</view>
 					<!-- 待收货 -->
-					<view class="option"  v-if="currt==3">
-						<view>
+					<view class="option"  v-if="item.order_status==3">
+						<!-- <view>
 							延长收货
 						</view>
 						<view>
 							查看物流
-						</view>
+						</view> -->
 						<view class="red">
 							确认收货
 						</view>
 					</view>
 					<!-- 订单完成 -->
-					<view class="option"  v-if="currt==4">
+					<view class="option"  v-if="item.order_status==4">
 						<view>
 							再买一件
 						</view>
@@ -104,8 +107,10 @@
 	export default {
 		data() {
 			return {
+				// 订单状态
 				currt:"3",//1是待付款，2是待发货，3是待收货，4完成
 				tabCurrentIndex: 0,
+				data:[],
 				navList: [{
 						state: 0,
 						text: '全部',
@@ -134,21 +139,80 @@
 				]
 			}
 		},
-		onLoad() {
+		onShow() {
 			// 页面显示是默认选中第一个
-			this.tabCurrentIndex = 0;
+			this.tabCurrentIndex = this.util.tabCurrentIndex;
+			// this.$options.methods.tabClick(this.tabCurrentIndex);
+			let params = {
+			};
+			let url = "";
+			switch(this.tabCurrentIndex){
+				// 全部
+				case 0:url="/api/order/all";break;
+				// 待付款
+				case 1:url="/api/order/unpay";break;
+				// 待发货
+				case 2:url="/api/order/unfreight";break;
+				// 待收货
+				case 3:url="/api/order/unreceipt";break;
+				// 已完成
+				case 4:url="/api/order/finish";break;
+			}
+			
+			this.util.request(url, "GET", params, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.data = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
 		},
 		methods: {
-			changeTab(e) {
-				this.tabCurrentIndex = e.target.current;
-			},
+			// changeTab(e) {
+			// 	this.tabCurrentIndex = e.target.current;
+			// 	console.log("changetab："+this.tabCurrentIndex);
+			// },
 			//顶部tab点击
 			tabClick(index) {
 				this.tabCurrentIndex = index;
+				console.log("tabclick："+this.tabCurrentIndex);
+				let params = {
+				};
+				let url = "";
+				switch(index){
+					// 全部
+					case 0:url="/api/order/all";break;
+					// 待付款
+					case 1:url="/api/order/unpay";break;
+					// 待发货
+					case 2:url="/api/order/unfreight";break;
+					// 待收货
+					case 3:url="/api/order/unreceipt";break;
+					// 已完成
+					case 4:url="/api/order/finish";break;
+				}
+				
+				this.util.request(url, "GET", params, (res) => {
+					// console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.data = res.data.data;
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
 			},
-			detail(){
+			detail(id){
 				uni.navigateTo({
-					url:"../orderdetail/orderdetail"
+					url:"../orderdetail/orderdetail?id="+id
 				})
 			}
 		}

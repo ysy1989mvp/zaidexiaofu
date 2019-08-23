@@ -1,0 +1,14 @@
+
+.bannerImg {
+	width: 100%
+}
+.banner {
+	width: 100%;
+}
+.swiper {
+	height: 350rpx;
+}
+.image1{
+	width: 100%;
+}
+

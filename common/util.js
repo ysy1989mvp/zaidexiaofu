@@ -1,5 +1,6 @@
 import theApi from "@/common/api.js"
-const token = null;
+const token = '7928c82a-b33a-4464-8e6a-4f75ee14434f';
+const tabCurrentIndex = 0;
 // "data": {
 //     "uploadurl": "https://upload-z2.qiniup.com",
 //     "cdnurl": "http://cdn.douke.51dreaming.com",
@@ -16,6 +17,7 @@ const token = null;
 
 const uploaddata = null;// 文件上传需要的配置数据
 const uploadImgas = [];//上传云图片到后台的图片数据
+const orderdata = null;//订单确认页数据
 /**
  * 封装请求方法
  * url:请求地址
@@ -185,5 +187,6 @@ export default {
 	requestImg,
 	requestType,
 	uploaddata,
-	uploadImgas
+	uploadImgas,
+	tabCurrentIndex
 }

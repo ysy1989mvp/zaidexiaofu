@@ -12,8 +12,8 @@
 				</view>
 				<view class="zhengzhao" v-if="fou==1" @click="cancer">
 					<view class="neirong">
-						<view class="top_tag0" v-for="(item,index) in 10" :key="index" :class="{xuanzhong:index==1}" @click="select">
-							外套
+						<view class="top_tag0" v-for="(item1,index) in xiaolei" :key="index" :class="{xuanzhong:index==0}" @click="select(item1.id)">
+							{{item1.name}}
 						</view>
 					</view>
 				</view>
@@ -21,10 +21,10 @@
 			<!-- 显示区域 -->
 			<!-- <view class="list" v-for="(item, index) in navList" :key="index" v-if="tabCurrentIndex === index"> -->
 			<view class="center_content">
-				<view class="row" v-for="(item,index) in 12" :key="index" @click="goDetail">
-					<image class="goods_img" src="../../../static/yangsongyan/imgs/creation/1.png"></image>
+				<view class="row" v-for="(item,index) in goodsData.pagedata.data" :key="index" @click="goDetail(item.goods_id)">
+					<image class="goods_img" :src="item.image"></image>
 					<view>
-						<view class="title">学院风经典针织菱形外套</view>
+						<view class="title">{{item.goods_name}}</view>
 						<view class="tags">
 							<view>修身</view>
 							<view>百搭</view>
@@ -32,15 +32,15 @@
 						</view>
 						<view class="last">
 							<view class="tag_price">
-								<view class="price">￥180</view>
-								<view class="number">589人付款</view>
+								<view class="price">￥{{item.goods_min_price}}</view>
+								<view class="number">{{item.goods_sales}}人付款</view>
 							</view>
 							<view class="dingzhi">购买 〉</view>
 						</view>
 					</view>
 				</view>
 			</view>
-			
+
 		</view>
 	</view>
 </template>
@@ -49,40 +49,60 @@
 	export default {
 		data() {
 			return {
-				fou:'0',
+				page:1,
+				xiaolei: null,
+				fou: '0',
 				currt: "3", //1是待付款，2是待发货，3是待收货，4完成
 				tabCurrentIndex: 0,
 				navList: [{
-						state: 0,
-						text: '全部',
-						orderList: []
-					},
-					{
-						state: 1,
-						text: '学校',
-						orderList: []
-					},
-					{
-						state: 2,
-						text: '休闲',
-						orderList: []
-					},
-					{
-						state: 3,
-						text: '夏装',
-						orderList: []
-					},
-					{
-						state: 4,
-						text: '冬装',
-						orderList: []
-					}
-				]
+					"text": '全部',
+					"id":-1
+				}],
+				goodsData:null
+
 			}
 		},
 		onLoad() {
 			// 页面显示是默认选中第一个
 			this.tabCurrentIndex = 0;
+			let params = {};
+			let url = "/api/goods/category";
+			this.util.request(url, "POST", params, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.data = res.data.data;
+						for (var i = 0; i < this.data.categorydata.length; i++) {
+							var neirong = {
+								"text": this.data.categorydata[i].name,
+								"id":this.data.categorydata[i].id
+							}
+							this.navList.push(neirong);
+						}
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
+			//查询全部商品
+			let params1 = {
+				"page":this.page
+			};
+			let url1 = "/api/goods";
+			this.util.request(url1, "POST", params1, (res) => {
+				console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.goodsData = res.data.data;
+					} else {
+						this.util.showWindow(res.data.msg);
+					}
+				} else {
+					this.util.showWindow("请求错误");
+				}
+			});
 		},
 		methods: {
 			changeTab(e) {
@@ -91,21 +111,56 @@
 			//顶部tab点击
 			tabClick(index) {
 				this.tabCurrentIndex = index;
-				if(index!=0){
+				if (index != 0) {
 					this.fou = 1;
-				}else{
+					this.xiaolei = this.data.categorydata[index-1].childlist;
+				} else {
 					this.fou = 0;
+					//请求全部商品
+					let params1 = {
+						"page":this.page
+					};
+					let url1 = "/api/goods";
+					this.util.request(url1, "POST", params1, (res) => {
+						console.log(JSON.stringify(res));
+						if (res.statusCode == 200) {
+							if (res.data.code == 1) {
+								this.goodsData = res.data.data;
+							} else {
+								this.util.showWindow(res.data.msg);
+							}
+						} else {
+							this.util.showWindow("请求错误");
+						}
+					});
 				}
+
 			},
-			cancer(){
+			cancer() {
 				this.fou = 0;
-			}
-			,select(){
-				console.log("我呗点了");
 			},
-			goDetail(){
+			select(id) {
+				let params = {
+					"id":id,
+					"page":this.page
+				};
+				let url = "/api/goods";
+				this.util.request(url, "POST", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							this.goodsData = res.data.data;
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+			},
+			goDetail(id) {
 				uni.navigateTo({
-					url:"../shop_detail/shop_detail"
+					url: "../shop_detail/shop_detail?id="+id
 				})
 			}
 		}
@@ -124,7 +179,7 @@
 		width: 100%;
 		position: fixed;
 		z-index: 100;
-		top: 82upx;
+		top: 0upx;
 	}
 
 	.center_content {
@@ -208,18 +263,20 @@
 		z-index: 100;
 		width: 100%;
 		height: 100vh;
-		background-color: rgba(65,65,65,0.5);
-		top:100upx;
+		background-color: rgba(65, 65, 65, 0.5);
+		top: 100upx;
 	}
-	.neirong{
+
+	.neirong {
 		background-color: #FFFFFF;
-		display:flex;
+		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 		flex-wrap: wrap;
 		padding-top: 15upx;
 	}
-	.top_tag0{
+
+	.top_tag0 {
 		width: 100upx;
 		border: 2upx solid #AAAAAA;
 		border-radius: 20upx;
@@ -227,7 +284,8 @@
 		text-align: center;
 		margin: 10upx 20upx;
 	}
-	.xuanzhong{
+
+	.xuanzhong {
 		background-color: #061637;
 		color: #FFFFFF;
 	}
