@@ -21,6 +21,8 @@ page {
 	    -ms-flex-pack: center;
 	        justify-content: center;
 	height: 500rpx;
+	background: url(../../static/img/photo.c4b6927c.png) no-repeat;
+	background-size: cover;
 	background-size: contain;
 	font-size: 28rpx;
 }
@@ -70,6 +72,10 @@ page {
 	        flex-direction: column;
 	/* width:200upx ; */
 	height: 78rpx;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 .f1>image{
 	width: 67rpx;

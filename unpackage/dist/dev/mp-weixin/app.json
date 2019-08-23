@@ -23,7 +23,8 @@
     "pages/mycenter/fuwufankui/fuwufankui",
     "pages/mycenter/lianxiwomen/lianxiwomen",
     "pages/mycenter/zhanghuanquan/zhanghuanquan",
-    "pages/mycenter/guanyuzaide/guanyuzaide"
+    "pages/mycenter/guanyuzaide/guanyuzaide",
+    "pages/kefu/index/index"
   ],
   "subPackages": [],
   "window": {
@@ -39,19 +40,25 @@
       {
         "pagePath": "pages/index/index/index",
         "iconPath": "static/lxy/105.png",
-        "selectedIconPath": "static/lxy/105.png",
+        "selectedIconPath": "static/lxy/1051.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/order/index/index",
-        "iconPath": "static/lxy/105.png",
-        "selectedIconPath": "static/lxy/105.png",
+        "iconPath": "static/lxy/106.png",
+        "selectedIconPath": "static/lxy/1061.png",
         "text": "订单"
       },
       {
+        "pagePath": "pages/kefu/index/index",
+        "iconPath": "static/lxy/107.png",
+        "selectedIconPath": "static/lxy/1071.png",
+        "text": "客服"
+      },
+      {
         "pagePath": "pages/mycenter/index/index",
-        "iconPath": "static/lxy/105.png",
-        "selectedIconPath": "static/lxy/105.png",
+        "iconPath": "static/lxy/108.png",
+        "selectedIconPath": "static/lxy/1081.png",
         "text": "我的"
       }
     ]

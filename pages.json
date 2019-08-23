@@ -128,6 +128,10 @@
             "path" : "pages/mycenter/guanyuzaide/guanyuzaide",
             "style" : {}
         }
+        ,{
+            "path" : "pages/kefu/index/index",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -158,25 +162,25 @@
 		"list": [{
 				"pagePath": "pages/index/index/index",
 				"iconPath": "static/lxy/105.png",
-				"selectedIconPath": "static/lxy/105.png",
+				"selectedIconPath": "static/lxy/1051.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/order/index/index",
-				"iconPath": "static/lxy/105.png",
-				"selectedIconPath": "static/lxy/105.png",
+				"iconPath": "static/lxy/106.png",
+				"selectedIconPath": "static/lxy/1061.png",
 				"text": "订单"
 			},
-			// {
-			// 	"pagePath": "pages/cart/cart",
-			// 	"iconPath": "static/lxy/kefu(2)@3x.png",
-			// 	"selectedIconPath": "static/lxy/Customer%20service(1)@3x.png",
-			// 	"text": "客服"
-			// },
+			{
+				"pagePath": "pages/kefu/index/index",
+				"iconPath": "static/lxy/107.png",
+				"selectedIconPath": "static/lxy/1071.png",
+				"text": "客服"
+			},
 			{
 				"pagePath": "pages/mycenter/index/index",
-				"iconPath": "static/lxy/105.png",
-				"selectedIconPath": "static/lxy/105.png",
+				"iconPath": "static/lxy/108.png",
+				"selectedIconPath": "static/lxy/1081.png",
 				"text": "我的"
 			}
 		]

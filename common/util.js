@@ -25,14 +25,14 @@ const orderdata = null;//订单确认页数据
  * method: 请求方式
  * success: 请求成功的回调
  */
-function request(url, method, params, success) {
+function request(url1, method, params, success) {
 	if (this.token != null) {
 		params["token"] = this.token;
 	}
-	console.log("提交地址:" + theApi.testurl + url);
+	console.log("提交地址:" + theApi.testurl + url1);
 	console.log("提交参数:" + JSON.stringify(params));
 	uni.request({
-		url: theApi.testurl + url,
+		url:url1,
 		method: method,
 		// header: {'content-type': 'application/json'},
 		header: {

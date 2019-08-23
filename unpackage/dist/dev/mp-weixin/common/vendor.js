@@ -1657,14 +1657,14 @@ var orderdata = null; //订单确认页数据
  * method: 请求方式
  * success: 请求成功的回调
  */
-function request(url, method, params, success) {
+function request(url1, method, params, success) {
   if (this.token != null) {
     params["token"] = this.token;
   }
-  console.log("提交地址:" + _api.default.testurl + url);
+  console.log("提交地址:" + _api.default.testurl + url1);
   console.log("提交参数:" + JSON.stringify(params));
   uni.request({
-    url: _api.default.testurl + url,
+    url: url1,
     method: method,
     // header: {'content-type': 'application/json'},
     header: {
@@ -23298,6 +23298,23 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
+
+/***/ }),
+
+/***/ 273:
+/*!********************************************************************************************!*\
+  !*** E:/projectcode/hbuilderX/zaidexiaofu/main.js?{"page":"pages%2Fkefu%2Findex%2Findex"} ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/kefu/index/index.vue */ 274));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_index.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 

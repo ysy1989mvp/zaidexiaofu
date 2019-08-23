@@ -154,6 +154,8 @@
 		align-items: center;
 		justify-content: center;
 		height: 500upx;
+		background: url("../../../static/ysy/photo.png") no-repeat;
+		background-size: cover;
 		background-size: contain;
 		font-size: 28upx;
 	}
@@ -187,6 +189,7 @@
 		flex-direction: column;
 		/* width:200upx ; */
 		height: 78upx;
+		justify-content: center;
 	}
 	.f1>image{
 		width: 67upx;
