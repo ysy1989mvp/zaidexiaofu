@@ -1,5 +1,6 @@
+import Vue from 'vue'
 import theApi from "@/common/api.js"
-const token = '7928c82a-b33a-4464-8e6a-4f75ee14434f';
+const token = null;
 const tabCurrentIndex = 0;
 // "data": {
 //     "uploadurl": "https://upload-z2.qiniup.com",
@@ -15,9 +16,11 @@ const tabCurrentIndex = 0;
 //       "user": 0
 //     }
 
-const uploaddata = null;// 文件上传需要的配置数据
-const uploadImgas = [];//上传云图片到后台的图片数据
-const orderdata = null;//订单确认页数据
+const uploaddata = {
+	uploadurl:"/api/common/upload"
+}; // 文件上传需要的配置数据
+const uploadImgas = []; //上传云图片到后台的图片数据
+const orderdata = null; //订单确认页数据
 /**
  * 封装请求方法
  * url:请求地址
@@ -26,17 +29,25 @@ const orderdata = null;//订单确认页数据
  * success: 请求成功的回调
  */
 function request(url1, method, params, success) {
-	if (this.token != null) {
-		params["token"] = this.token;
+	var token = uni.getStorageSync('token');
+	if(token!=null){
+		params["token"] = token;
 	}
+	var contentType = null;
+	// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+	// 	contentType = "application/json;charset=utf-8";
+	// } else {
+	contentType = "application/x-www-form-urlencoded";
+	// }
 	console.log("提交地址:" + theApi.testurl + url1);
 	console.log("提交参数:" + JSON.stringify(params));
+	console.log("提交类型:" + contentType);
 	uni.request({
-		url:url1,
+		url: theApi.testurl + url1,
 		method: method,
 		// header: {'content-type': 'application/json'},
 		header: {
-			'content-type': 'application/x-www-form-urlencoded',
+			'content-type': contentType,
 			// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
 			// 'Access-Control-Allow-Origin':theApi.testurl
 		},
@@ -55,6 +66,103 @@ function request(url1, method, params, success) {
 		},
 		complete: () => {}
 	});
+	
+	// console.log("准备向后台发出请求"+url1);
+	// var guolv = false;
+	// if(url1.indexOf("/api/user/mobilelogin") > -1){
+	// 	guolv = true;
+	// }
+	// if(url1.indexOf("/api/sms/send") > -1){
+	// 	guolv = true;
+	// }
+	// if(url1.indexOf("/api/school") > -1){
+	// 	guolv = true;
+	// }
+	// if(url1.indexOf("/api/school_grade") > -1){
+	// 	guolv = true;
+	// }
+	// if (!guolv) {
+	// 	 console.log("未过滤");
+	// 	 console.log(url1.indexOf("/api/user/mobilelogin"));
+	// 	let token1 = null;
+	// 	uni.getStorage({
+	// 		key: "token",
+	// 		success(res) {
+	// 			token1 = res.data;
+	// 			if (params["token"] == null) {
+	// 				params["token"] = token1;
+	// 			}
+	// 			var contentType = null;
+	// 			// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+	// 			// 	contentType = "application/json;charset=utf-8";
+	// 			// } else {
+	// 			contentType = "application/x-www-form-urlencoded";
+	// 			// }
+	// 			console.log("提交地址:" + theApi.testurl + url1);
+	// 			console.log("提交参数:" + JSON.stringify(params));
+	// 			console.log("提交类型:" + contentType);
+	// 			uni.request({
+	// 				url: theApi.testurl + url1,
+	// 				method: method,
+	// 				// header: {'content-type': 'application/json'},
+	// 				header: {
+	// 					'content-type': contentType,
+	// 					// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
+	// 					// 'Access-Control-Allow-Origin':theApi.testurl
+	// 				},
+	// 				data: params,
+	// 				success: success,
+	// 				fail: (error) => {
+	// 					if (error.errMsg == "request:fail timeout") { //网络请求超时
+	// 						showWindow("网络不稳定，请检查网络设置");
+	// 					} else if (error.errMsg == "request:fail 请求超时。") {
+	// 						showWindow("网络不稳定，请检查网络设置");
+	// 					} else if (error.errMsg == "request:fail ") {
+	// 						showWindow("请求失败");
+	// 					} else {
+	// 						showWindow("加载失败");
+	// 					}
+	// 				},
+	// 				complete: () => {}
+	// 			});
+	// 		}
+	// 	});
+	// } else {
+	// 	var contentType = null;
+	// 	// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+	// 	// 	contentType = "application/json;charset=utf-8";
+	// 	// } else {
+	// 	contentType = "application/x-www-form-urlencoded";
+	// 	// }
+	// 	console.log("提交地址:" + theApi.testurl + url1);
+	// 	console.log("提交参数:" + JSON.stringify(params));
+	// 	console.log("提交类型:" + contentType);
+	// 	uni.request({
+	// 		url: theApi.testurl + url1,
+	// 		method: method,
+	// 		// header: {'content-type': 'application/json'},
+	// 		header: {
+	// 			'content-type': contentType,
+	// 			// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
+	// 			// 'Access-Control-Allow-Origin':theApi.testurl
+	// 		},
+	// 		data: params,
+	// 		success: success,
+	// 		fail: (error) => {
+	// 			if (error.errMsg == "request:fail timeout") { //网络请求超时
+	// 				showWindow("网络不稳定，请检查网络设置");
+	// 			} else if (error.errMsg == "request:fail 请求超时。") {
+	// 				showWindow("网络不稳定，请检查网络设置");
+	// 			} else if (error.errMsg == "request:fail ") {
+	// 				showWindow("请求失败");
+	// 			} else {
+	// 				showWindow("加载失败");
+	// 			}
+	// 		},
+	// 		complete: () => {}
+	// 	});
+	// }
+
 };
 
 // "data": {
@@ -72,30 +180,40 @@ function request(url1, method, params, success) {
 //     }
 // uploaddata
 function requestImg(method, params, file, success) {
-	params["token"] = this.uploaddata.multipart.token;
-	// params["bucket"] = this.uploaddata.bucket;
-	uni.uploadFile({
-		url: this.uploaddata.uploadurl, // 后端api接口
-		filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
-		name: 'file', //后端通过'file'获取上传的文件对象
-		fileType:'image',
-		formData: params,
-		header: {
-			"Content-Type": "multipart/form-data"
-		},
-		success: success,
-		fail: (error) => {
-			if (error.errMsg == "request:fail timeout") { //网络请求超时
-				showWindow("网络不稳定，请检查网络设置");
-			} else if (error.errMsg == "request:fail 请求超时。") {
-				showWindow("网络不稳定，请检查网络设置");
-			} else if (error.errMsg == "request:fail ") {
-				showWindow("请求失败");
-			} else {
-				showWindow("加载失败");
+	let token1 = null;
+	uni.getStorage({
+		key: "token",
+		success(res) {
+			token1 = res.data;
+			if (params["token"] == null) {
+				params["token"] = token1;
 			}
-		},
-		complete: () => {}
+			// params["token"] = this.uploaddata.multipart.token;
+			// params["bucket"] = this.uploaddata.bucket;
+			uni.uploadFile({
+				url: theApi.testurl +"/api/common/upload", // 后端api接口
+				filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
+				name: 'file', //后端通过'file'获取上传的文件对象
+				fileType: 'image',
+				formData: params,
+				header: {
+					"Content-Type": "multipart/form-data"
+				},
+				success: success,
+				fail: (error) => {
+					if (error.errMsg == "request:fail timeout") { //网络请求超时
+						showWindow("网络不稳定，请检查网络设置");
+					} else if (error.errMsg == "request:fail 请求超时。") {
+						showWindow("网络不稳定，请检查网络设置");
+					} else if (error.errMsg == "request:fail ") {
+						showWindow("请求失败");
+					} else {
+						showWindow("加载失败");
+					}
+				},
+				complete: () => {}
+			});
+		}
 	});
 };
 
@@ -166,9 +284,9 @@ function showWindow(txt) {
  * index：当前图片index
  */
 function previewImage(imageList, index) {
-	for(let i=0;i<imageList.length;i++){
-		if(imageList[i].indexOf(this.uploaddata.cdnurl)==-1){
-			let img = this.uploaddata.cdnurl+"/"+imageList[i];
+	for (let i = 0; i < imageList.length; i++) {
+		if (imageList[i].indexOf(this.uploaddata.cdnurl) == -1) {
+			let img = this.uploaddata.cdnurl + "/" + imageList[i];
 			imageList[i] = img;
 		}
 	}

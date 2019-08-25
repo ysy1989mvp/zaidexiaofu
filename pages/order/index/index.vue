@@ -242,7 +242,7 @@
 					// 待收货
 					case 3:url="/api/order/unreceipt";break;
 					// 已完成
-					case 4:url="/api/order/finish";break;
+					case 4:url="/api/order/orderfinish";break;
 				}
 				
 				this.util.request(url, "GET", params, (res) => {

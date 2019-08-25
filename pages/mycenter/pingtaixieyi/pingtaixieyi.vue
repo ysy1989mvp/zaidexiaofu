@@ -1,7 +1,7 @@
 <template>
-	<view class="pt">
-		<!-- <image class="imgae1" src="../../../static/ysy/ptxy.png" mode="widthFix"></image> -->
-		 <rich-text :nodes="data.content"></rich-text>
+	<view class="gs" style="width: 100vw;">
+		<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
+		 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 	</view>
 </template>
 

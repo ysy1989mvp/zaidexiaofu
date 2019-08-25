@@ -105,7 +105,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
 //
 //
 //
@@ -167,36 +171,58 @@ __webpack_require__.r(__webpack_exports__);
 var _default =
 {
   data: function data() {
-    return _defineProperty({
+    return {
+      search_value: '',
       name: '某某', //家长姓名
       imageURL: "../../../static/lxy/30.png", //蝴蝶结图片
       left1: 'left',
       right1: 'right',
       bannerlist: [], //轮播图数据
-      goodslist: [] }, "name",
-    '');
-
+      goodslist: [] //商品数据
+    };
   },
-  onLoad: function onLoad() {var _this = this;
-    var params = {};
-
+  onShow: function onShow() {var _this = this;
+    // var token1 = null;
+    // uni.getStorage({
+    // 	key: "token",
+    // 	success(res) {
+    // 		token1 = res.data;
+    // 	}
+    // });
+    // var token = uni.getStorageSync('token');
+    var params = {
+      // "token": token
+    };
     var url = "/api/goods/goodsindex";
-
     this.util.request(url, "GET", params, function (res) {
       // console.log(JSON.stringify(res));
       if (res.statusCode == 200) {
         if (res.data.code == 1) {
-          _this.bannerlist = res.data.data.banner;
-          _this.goodslist = res.data.data.goodslist;
-          _this.name = res.data.data.name;
+          var data1 = res.data.data;
+          _this.bannerlist = data1.banner;
+          _this.goodslist = data1.goodslist;
+          _this.name = data1.name;
+          console.log("看看数据2:" + JSON.stringify(data1));
         } else {
-          _this.util.showWindow(res.data.msg);
+          util1.showWindow(res.data.msg);
         }
       } else {
-        _this.util.showWindow("请求错误");
+        util1.showWindow("请求错误");
       }
     });
 
+    (function (m, ei, q, i, a, j, s) {
+      m[i] = m[i] || function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+      j = ei.createElement(q),
+      s = ei.getElementsByTagName(q)[0];
+      j.async = true;
+      j.charset = 'UTF-8';
+      j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+      s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 162728);
   },
   methods: {
     xiaofudinggou: function xiaofudinggou() {
@@ -222,6 +248,12 @@ var _default =
     shopdetail: function shopdetail(id) {
       uni.navigateTo({
         url: "../shop_detail/shop_detail?id=" + id });
+
+    },
+    search: function search() {
+      console.log("搜索内容:" + this.search_value);
+      uni.navigateTo({
+        url: "../creation/creation?content=" + this.search_value });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

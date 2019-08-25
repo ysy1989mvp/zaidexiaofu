@@ -1,12 +1,9 @@
 
-.bannerImg {
-	width: 100%
+.swiper{
+	height: 400rpx;
 }
-.banner {
+swiper-item>uni-image {
 	width: 100%;
-}
-.swiper {
-	height: 350rpx;
 }
 .tagimg{
 	width: 50%;

@@ -10,13 +10,13 @@
 				</view>
 			</view>
 			<view class="row">
-				<view class="name">输入学校编号:</view>
+				<view class="name">学校编号:</view>
 				<view class="val2">
 					<input class="input2" type="number" v-model="schoolcode" disabled="disabled"/>
 				</view>
 			</view>
 			<view class="row">
-				<view class="name">输入学生年级:</view>
+				<view class="name">学生年级:</view>
 				<view class="val2">
 					<xfl-select :list="nianjidata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true" :style_Container="'height: 34px; font-size: 16px;'"
 					 :placeholder="'选择年级'" :initValue="'选择年级'" :selectHideType="'hideAll'" @change="nianjichange">
@@ -24,7 +24,7 @@
 				</view>
 			</view>
 			<view class="row">
-				<view class="name">输入学生姓名:</view>
+				<view class="name">学生姓名:</view>
 				<view class="val2">
 					<input class="input2" v-model="studentName"/>
 				</view>
@@ -36,9 +36,21 @@
 				</view>
 			</view>
 			<view class="row">
-				<view class="name">输入学号:</view>
+				<view class="name">学号:</view>
 				<view class="val2">
 					<input class="input2" placeholder="(必填)" v-model="studentNo"/>
+				</view>
+			</view>
+			<view class="row">
+				<view class="name">密码:</view>
+				<view class="val2">
+					<input class="input2" type="password" placeholder="(必填)" v-model="pwd"/>
+				</view>
+			</view>
+			<view class="row">
+				<view class="name">确认密码:</view>
+				<view class="val2">
+					<input class="input2" type="password" placeholder="(必填)" v-model="comfirmpwd"/>
 				</view>
 			</view>
 			<view class="row">
@@ -62,6 +74,8 @@
 		}, //注册为子组件
 		data() {
 			return {
+				pwd:'',
+				comfirmpwd:'',
 				miaoshu: '发送',
 				xuexiaodata: [],
 				schoolcode:'',
@@ -148,6 +162,10 @@
 			},
 			//注册
 			regist() {
+				if(this.pwd!=this.comfirmpwd){
+					this.util.showWindow("密码输入不一致");
+					return;
+				}
 				let params = {
 					"mobile": this.mobile,
 					"schoolId":this.schoolid,
@@ -155,14 +173,16 @@
 					"gradeId":this.nianjiid,
 					"name":this.studentName,
 					"sno":this.studentNo,
-					"captcha":this.vcode
+					"captcha":this.vcode,
+					"password":this.pwd
 				};
-				let url = "/api/sms/send";
-
+				let url = "/api/user/mobilelogin";
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
-							this.util.token = res.data.data.userinfo.token;
+							// window.localStorage.setItem("token", res.data.data.userinfo.token);
+							// this.util.token = res.data.data.userinfo.token;
+							uni.setStorageSync('token', res.data.data.userinfo.token);
 							//成功后直接登陆
 							uni.switchTab({
 								url:"../../index/index/index"

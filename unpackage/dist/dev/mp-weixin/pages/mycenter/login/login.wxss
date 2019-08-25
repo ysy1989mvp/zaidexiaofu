@@ -1,8 +1,8 @@
 
-.input{
+.input {
 	border: 0rpx solid #FFFFFF;
 }
-.row{
+.row {
 	width: 90%;
 	height: 60rpx;
 	margin: 10rpx auto;
@@ -21,20 +21,20 @@
 	        align-items: center;
 	padding: 10rpx 0rpx;
 }
-.val1{
+.val1 {
 	width: 70%;
 }
-.name{
+.name {
 	font-size: 32rpx;
 	margin-right: 10rpx;
 }
-.val2{
+.val2 {
 	width: 60%;
 }
-.val3{
+.val3 {
 	width: 60%;
 }
-.fasong{
+.fasong {
 	background-color: #6F0011;
 	width: 20%;
 	border-radius: 20rpx;
@@ -44,7 +44,7 @@
 	height: 50rpx;
 	line-height: 50rpx;
 }
-.button_ysy{
+.button_ysy {
 	margin-top: 30rpx;
 	background-color: #6F0011;
 }

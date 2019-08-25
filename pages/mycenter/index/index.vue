@@ -115,7 +115,7 @@
 			},
 			wentiyufankui(){
 				uni.navigateTo({
-					url:"../questionback/questionback"
+					url:"../serveback/serveback"
 				})
 			},
 			gouwuxuzhi(){

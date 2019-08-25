@@ -761,7 +761,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1630,8 +1630,9 @@ createPage(_serveback.default);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _api = _interopRequireDefault(__webpack_require__(/*! @/common/api.js */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-var token = '7928c82a-b33a-4464-8e6a-4f75ee14434f';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _api = _interopRequireDefault(__webpack_require__(/*! @/common/api.js */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var token = null;
 var tabCurrentIndex = 0;
 // "data": {
 //     "uploadurl": "https://upload-z2.qiniup.com",
@@ -1647,7 +1648,9 @@ var tabCurrentIndex = 0;
 //       "user": 0
 //     }
 
-var uploaddata = null; // 文件上传需要的配置数据
+var uploaddata = {
+  uploadurl: "/api/common/upload" };
+// 文件上传需要的配置数据
 var uploadImgas = []; //上传云图片到后台的图片数据
 var orderdata = null; //订单确认页数据
 /**
@@ -1658,17 +1661,25 @@ var orderdata = null; //订单确认页数据
  * success: 请求成功的回调
  */
 function request(url1, method, params, success) {
-  if (this.token != null) {
-    params["token"] = this.token;
+  var token = uni.getStorageSync('token');
+  if (token != null) {
+    params["token"] = token;
   }
+  var contentType = null;
+  // if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+  // 	contentType = "application/json;charset=utf-8";
+  // } else {
+  contentType = "application/x-www-form-urlencoded";
+  // }
   console.log("提交地址:" + _api.default.testurl + url1);
   console.log("提交参数:" + JSON.stringify(params));
+  console.log("提交类型:" + contentType);
   uni.request({
-    url: url1,
+    url: _api.default.testurl + url1,
     method: method,
     // header: {'content-type': 'application/json'},
     header: {
-      'content-type': 'application/x-www-form-urlencoded'
+      'content-type': contentType
       // 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
       // 'Access-Control-Allow-Origin':theApi.testurl
     },
@@ -1687,6 +1698,103 @@ function request(url1, method, params, success) {
     },
     complete: function complete() {} });
 
+
+  // console.log("准备向后台发出请求"+url1);
+  // var guolv = false;
+  // if(url1.indexOf("/api/user/mobilelogin") > -1){
+  // 	guolv = true;
+  // }
+  // if(url1.indexOf("/api/sms/send") > -1){
+  // 	guolv = true;
+  // }
+  // if(url1.indexOf("/api/school") > -1){
+  // 	guolv = true;
+  // }
+  // if(url1.indexOf("/api/school_grade") > -1){
+  // 	guolv = true;
+  // }
+  // if (!guolv) {
+  // 	 console.log("未过滤");
+  // 	 console.log(url1.indexOf("/api/user/mobilelogin"));
+  // 	let token1 = null;
+  // 	uni.getStorage({
+  // 		key: "token",
+  // 		success(res) {
+  // 			token1 = res.data;
+  // 			if (params["token"] == null) {
+  // 				params["token"] = token1;
+  // 			}
+  // 			var contentType = null;
+  // 			// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+  // 			// 	contentType = "application/json;charset=utf-8";
+  // 			// } else {
+  // 			contentType = "application/x-www-form-urlencoded";
+  // 			// }
+  // 			console.log("提交地址:" + theApi.testurl + url1);
+  // 			console.log("提交参数:" + JSON.stringify(params));
+  // 			console.log("提交类型:" + contentType);
+  // 			uni.request({
+  // 				url: theApi.testurl + url1,
+  // 				method: method,
+  // 				// header: {'content-type': 'application/json'},
+  // 				header: {
+  // 					'content-type': contentType,
+  // 					// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
+  // 					// 'Access-Control-Allow-Origin':theApi.testurl
+  // 				},
+  // 				data: params,
+  // 				success: success,
+  // 				fail: (error) => {
+  // 					if (error.errMsg == "request:fail timeout") { //网络请求超时
+  // 						showWindow("网络不稳定，请检查网络设置");
+  // 					} else if (error.errMsg == "request:fail 请求超时。") {
+  // 						showWindow("网络不稳定，请检查网络设置");
+  // 					} else if (error.errMsg == "request:fail ") {
+  // 						showWindow("请求失败");
+  // 					} else {
+  // 						showWindow("加载失败");
+  // 					}
+  // 				},
+  // 				complete: () => {}
+  // 			});
+  // 		}
+  // 	});
+  // } else {
+  // 	var contentType = null;
+  // 	// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
+  // 	// 	contentType = "application/json;charset=utf-8";
+  // 	// } else {
+  // 	contentType = "application/x-www-form-urlencoded";
+  // 	// }
+  // 	console.log("提交地址:" + theApi.testurl + url1);
+  // 	console.log("提交参数:" + JSON.stringify(params));
+  // 	console.log("提交类型:" + contentType);
+  // 	uni.request({
+  // 		url: theApi.testurl + url1,
+  // 		method: method,
+  // 		// header: {'content-type': 'application/json'},
+  // 		header: {
+  // 			'content-type': contentType,
+  // 			// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
+  // 			// 'Access-Control-Allow-Origin':theApi.testurl
+  // 		},
+  // 		data: params,
+  // 		success: success,
+  // 		fail: (error) => {
+  // 			if (error.errMsg == "request:fail timeout") { //网络请求超时
+  // 				showWindow("网络不稳定，请检查网络设置");
+  // 			} else if (error.errMsg == "request:fail 请求超时。") {
+  // 				showWindow("网络不稳定，请检查网络设置");
+  // 			} else if (error.errMsg == "request:fail ") {
+  // 				showWindow("请求失败");
+  // 			} else {
+  // 				showWindow("加载失败");
+  // 			}
+  // 		},
+  // 		complete: () => {}
+  // 	});
+  // }
+
 };
 
 // "data": {
@@ -1703,31 +1811,41 @@ function request(url1, method, params, success) {
 //       "user": 0
 //     }
 // uploaddata
-function requestImg(method, params, file, success) {
-  params["token"] = this.uploaddata.multipart.token;
-  // params["bucket"] = this.uploaddata.bucket;
-  uni.uploadFile({
-    url: this.uploaddata.uploadurl, // 后端api接口
-    filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
-    name: 'file', //后端通过'file'获取上传的文件对象
-    fileType: 'image',
-    formData: params,
-    header: {
-      "Content-Type": "multipart/form-data" },
-
-    success: success,
-    fail: function fail(error) {
-      if (error.errMsg == "request:fail timeout") {//网络请求超时
-        showWindow("网络不稳定，请检查网络设置");
-      } else if (error.errMsg == "request:fail 请求超时。") {
-        showWindow("网络不稳定，请检查网络设置");
-      } else if (error.errMsg == "request:fail ") {
-        showWindow("请求失败");
-      } else {
-        showWindow("加载失败");
+function requestImg(method, params, file, _success) {
+  var token1 = null;
+  uni.getStorage({
+    key: "token",
+    success: function success(res) {
+      token1 = res.data;
+      if (params["token"] == null) {
+        params["token"] = token1;
       }
-    },
-    complete: function complete() {} });
+      // params["token"] = this.uploaddata.multipart.token;
+      // params["bucket"] = this.uploaddata.bucket;
+      uni.uploadFile({
+        url: _api.default.testurl + "/api/common/upload", // 后端api接口
+        filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
+        name: 'file', //后端通过'file'获取上传的文件对象
+        fileType: 'image',
+        formData: params,
+        header: {
+          "Content-Type": "multipart/form-data" },
+
+        success: _success,
+        fail: function fail(error) {
+          if (error.errMsg == "request:fail timeout") {//网络请求超时
+            showWindow("网络不稳定，请检查网络设置");
+          } else if (error.errMsg == "request:fail 请求超时。") {
+            showWindow("网络不稳定，请检查网络设置");
+          } else if (error.errMsg == "request:fail ") {
+            showWindow("请求失败");
+          } else {
+            showWindow("加载失败");
+          }
+        },
+        complete: function complete() {} });
+
+    } });
 
 };
 
@@ -7512,7 +7630,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7533,14 +7651,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7616,7 +7734,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8010,6 +8128,23 @@ createPage(_guanyuzaide.default);
 
 /***/ }),
 
+/***/ 209:
+/*!********************************************************************************************!*\
+  !*** E:/projectcode/hbuilderX/zaidexiaofu/main.js?{"page":"pages%2Fkefu%2Findex%2Findex"} ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/kefu/index/index.vue */ 210));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_index.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
 /***/ 21:
 /*!*********************************************************************************************!*\
   !*** E:/projectcode/hbuilderX/zaidexiaofu/main.js?{"page":"pages%2Findex%2Findex%2Findex"} ***!
@@ -8027,7 +8162,7 @@ createPage(_index.default);
 
 /***/ }),
 
-/***/ 221:
+/***/ 227:
 /*!**************************************************************************************!*\
   !*** E:/projectcode/hbuilderX/zaidexiaofu/components/w-picker/city-data/province.js ***!
   \**************************************************************************************/
@@ -8177,7 +8312,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 222:
+/***/ 228:
 /*!**********************************************************************************!*\
   !*** E:/projectcode/hbuilderX/zaidexiaofu/components/w-picker/city-data/city.js ***!
   \**********************************************************************************/
@@ -9691,7 +9826,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 223:
+/***/ 229:
 /*!**********************************************************************************!*\
   !*** E:/projectcode/hbuilderX/zaidexiaofu/components/w-picker/city-data/area.js ***!
   \**********************************************************************************/
@@ -22244,7 +22379,7 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 224:
+/***/ 230:
 /*!****************************************************************************!*\
   !*** E:/projectcode/hbuilderX/zaidexiaofu/components/w-picker/w-picker.js ***!
   \****************************************************************************/
@@ -22509,19 +22644,19 @@ initPicker;exports.default = _default;
 
 /***/ }),
 
-/***/ 232:
+/***/ 238:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 233);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 239);
 
 
 /***/ }),
 
-/***/ 233:
+/***/ 239:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -22552,7 +22687,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 234);
+module.exports = __webpack_require__(/*! ./runtime */ 240);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -22569,7 +22704,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 234:
+/***/ 240:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -23298,23 +23433,6 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
-
-/***/ }),
-
-/***/ 273:
-/*!********************************************************************************************!*\
-  !*** E:/projectcode/hbuilderX/zaidexiaofu/main.js?{"page":"pages%2Fkefu%2Findex%2Findex"} ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/kefu/index/index.vue */ 274));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_index.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 

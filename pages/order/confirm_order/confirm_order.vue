@@ -15,6 +15,12 @@
 							</view>
 							<view class="m"> 〉</view>
 						</view>
+						<view class="part2" v-if="addr_data==null">
+							<view class="part22">
+								请添加您的收货地址
+							</view>
+							<view class="m"> 〉</view>
+						</view>
 						<view class="part3">
 							<!-- <view class="time">收货时间不限</view> -->
 							<view class="time"></view>
@@ -163,9 +169,13 @@
 					"address_id":this.addr_id,
 					"guige":this.util.orderdata.selectGuiges
 				};
+				let params1 = {
+					"paramsdata":JSON.stringify(params)
+				}
+				
 				let url = "/api/order/buynow";
 				
-				this.util.request(url, "GET", params, (res) => {
+				this.util.request(url, "POST", params1, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							let id = res.data.data.orderid;

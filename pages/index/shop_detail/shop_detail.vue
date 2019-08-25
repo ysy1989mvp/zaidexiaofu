@@ -3,7 +3,7 @@
 		<view class="content">
 			<swiper class="swiper" indicator-dots="true" autoplay="false" interval="50000000" duration="1500">
 				<swiper-item v-for="(item , index) in bannerlist" :key="index">
-					<image :src="item" mode="aspectFill"></image>
+					<image :src="item" mode="scaleToFill"></image>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -17,8 +17,11 @@
 			<view class="w">{{goodsdata.first_title}}</view>
 		</view>
 		<!-- <view class="see1" @click="bubuy"> -->
-		<image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image>
+		<!-- <image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image> -->
 		<!-- </view> -->
+		<view style="width: 100%;">
+			<rich-text :nodes="goodsdata.content"></rich-text>
+		</view>
 		<view class="D">
 			<view class="HJ">合计：￥{{total_price}}</view>
 			<view class="GM" @click="buy">立即购买</view>
@@ -63,7 +66,7 @@
 				sld: false,
 				show_number: 0,
 				bannerlist: [],
-				goodsdata: null,
+				goodsdata: '',
 				canshulist: [],
 				total_price: 0,
 				specData: [],
@@ -124,10 +127,10 @@
 					"goods_num":1
 				};
 				let params1 = {
-					"paramsdata":params
+					"paramsdata":JSON.stringify(params)
 				}
 				let url = "/api/order/calculationprice";
-				this.util.request(url,"GET",params1, (res) => {
+				this.util.request(url,"POST",params1, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.total_price = res.data.data.order_total_price;

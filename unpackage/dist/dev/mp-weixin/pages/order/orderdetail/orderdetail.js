@@ -215,10 +215,29 @@ var _default =
 
   },
   methods: {
-    pay: function pay() {
-      uni.switchTab({
-        url: "../index/index" });
+    pay: function pay() {var _this2 = this;
+      var params1 = {
+        "order_no": this.order_data.order_no };
 
+      var url = "/api/order/orderpay";
+      this.util.request(url, "POST", params1, function (res) {
+        if (res.statusCode == 200) {
+          if (res.data.code == 1) {
+            // this.total_price = res.data.data.order_total_price;
+            _this2.order_data.pay_status = res.data.data.pay_status;
+            _this2.util.showWindow("支付成功");
+            uni.switchTab({
+              url: "../index/index" });
+
+          } else {
+            _this2.util.showWindow(res.data.msg);
+            return;
+          }
+        } else {
+          _this2.util.showWindow("请求错误");
+          return;
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

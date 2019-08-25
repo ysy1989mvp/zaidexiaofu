@@ -179,6 +179,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -270,9 +276,13 @@ var _default =
         "address_id": this.addr_id,
         "guige": this.util.orderdata.selectGuiges };
 
+      var params1 = {
+        "paramsdata": JSON.stringify(params) };
+
+
       var url = "/api/order/buynow";
 
-      this.util.request(url, "GET", params, function (res) {
+      this.util.request(url, "POST", params1, function (res) {
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
             var id = res.data.data.orderid;

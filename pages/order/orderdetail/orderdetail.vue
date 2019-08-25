@@ -109,9 +109,28 @@
 		},
 		methods: {
 			pay(){
-				uni.switchTab({
-					url: "../index/index"
-				})
+				let params1 = {
+					"order_no":this.order_data.order_no
+				}
+				let url = "/api/order/orderpay";
+				this.util.request(url,"POST",params1, (res) => {
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							// this.total_price = res.data.data.order_total_price;
+							this.order_data.pay_status = res.data.data.pay_status;
+							this.util.showWindow("支付成功");
+							uni.switchTab({
+								url: "../index/index"
+							})
+						} else {
+							this.util.showWindow(res.data.msg);
+							return;
+						}
+					} else {
+						this.util.showWindow("请求错误");
+						return;
+					}
+				});
 			}
 
 		}

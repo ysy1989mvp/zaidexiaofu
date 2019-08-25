@@ -1,10 +1,14 @@
 <template>
 	<view class="container">
 		<view class="content">
+			<view class="search">
+				<input class="shurukuang" type="text" v-model="search_value" placeholder="输入搜索内容" />
+				<view class="searchbtn" @click="search">搜索</view>
+			</view>
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in bannerlist" :key="index">
-						<img class="bannerImg" :src="item.image"/>
+						<image class="bannerImg" :src="item.image" mode="scaleToFill"></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -41,7 +45,7 @@
 				<view class="part4b">载德校服套装展示</view>
 			</view>
 			<view class="last part">
-				<view class="part5" v-for="(item,index) in goodslist" :key="index" :class="index%2==1?left1:right1" @click="shopdetail(item.goods_id)">
+				<view class="part5" v-for="(item,index) in goodslist" :key="index" :class="index%2==0?left1:right1" @click="shopdetail(item.goods_id)">
 					<view class="part5a mt">
 						<image :src="item.image"></image>
 					</view>
@@ -61,35 +65,57 @@
 	export default {
 		data() {
 			return {
-				name:'某某',//家长姓名
-				imageURL:"../../../static/lxy/30.png",//蝴蝶结图片
+				search_value: '',
+				name: '某某', //家长姓名
+				imageURL: "../../../static/lxy/30.png", //蝴蝶结图片
 				left1: 'left',
 				right1: 'right',
-				bannerlist:[],//轮播图数据
-				goodslist:[],//商品数据
-				name:''//学生姓名
+				bannerlist: [], //轮播图数据
+				goodslist: [], //商品数据
 			}
 		},
-		onLoad() {
+		onShow() {
+			// var token1 = null;
+			// uni.getStorage({
+			// 	key: "token",
+			// 	success(res) {
+			// 		token1 = res.data;
+			// 	}
+			// });
+			// var token = uni.getStorageSync('token');
 			let params = {
+				// "token": token
 			};
 			let url = "/api/goods/goodsindex";
-			
 			this.util.request(url, "GET", params, (res) => {
 				// console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
-						this.bannerlist = res.data.data.banner;
-						this.goodslist = res.data.data.goodslist;
-						this.name = res.data.data.name;
+						let data1 = res.data.data;
+						this.bannerlist = data1.banner;
+						this.goodslist = data1.goodslist;
+						this.name = data1.name;
+						console.log("看看数据2:"+JSON.stringify(data1));
 					} else {
-						this.util.showWindow(res.data.msg);
+						util1.showWindow(res.data.msg);
 					}
 				} else {
-					this.util.showWindow("请求错误");
+					util1.showWindow("请求错误");
 				}
 			});
-
+			
+			(function(m, ei, q, i, a, j, s) {
+				m[i] = m[i] || function() {
+					(m[i].a = m[i].a || []).push(arguments)
+				};
+				j = ei.createElement(q),
+					s = ei.getElementsByTagName(q)[0];
+				j.async = true;
+				j.charset = 'UTF-8';
+				j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+				s.parentNode.insertBefore(j, s);
+			})(window, document, 'script', '_MEIQIA');
+			_MEIQIA('entId', 162728);
 		},
 		methods: {
 			xiaofudinggou() {
@@ -114,17 +140,25 @@
 			},
 			shopdetail(id) {
 				uni.navigateTo({
-					url: "../shop_detail/shop_detail?id="+id
+					url: "../shop_detail/shop_detail?id=" + id
 				})
 			},
-			
+			search() {
+				console.log("搜索内容:" + this.search_value);
+				uni.navigateTo({
+					url: "../creation/creation?content=" + this.search_value
+				})
+			},
+
+
 		}
 	}
 </script>
 
 <style>
 	.bannerImg {
-		width: 100%
+		width: 100%;
+		height: 100%;
 	}
 
 	.title {
@@ -254,15 +288,19 @@
 	.left {
 		display: flex;
 		align-items: flex-end;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex-direction: row;
 	}
 
 	.right {
 		display: flex;
 		align-items: flex-end;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex-direction: row-reverse;
+	}
+
+	.left>.mt {
+		margin-right: 25upx;
 	}
 
 	.right>.price {
@@ -270,6 +308,8 @@
 		align-items: flex-end;
 		justify-content: flex-end;
 		flex-direction: column;
+		margin-bottom: 30upx;
+		margin-right: 25upx;
 	}
 
 	.left>.price {
@@ -277,19 +317,54 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		flex-direction: column;
+		margin-bottom: 30upx;
+
 	}
-	.part2{
+
+	.part2 {
 		/* border: 2upx solid red; */
 		width: 100%;
 		height: 88upx;
 		position: relative;
 	}
-	.shuoming{
+
+	.shuoming {
 		float: left;
-		position:absolute ;
-		top:-6upx;
-		left:33%;
+		position: absolute;
+		top: -6upx;
+		left: 33%;
 		color: #FFFFFF;
 		font-size: 22upx;
+	}
+
+	.search {
+		/* position: fixed; */
+		width: 100vw;
+		height: 70upx;
+		background-color: #0A2051;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+	}
+
+	.shurukuang {
+		height: 60%;
+		background-color: #FFFFFF;
+		width: 60%;
+		border-radius: 20upx;
+		border: 2upx solid #FFFFFF;
+	}
+
+	.searchbtn {
+		margin-left: 30upx;
+		width: 120upx;
+		height: 62%;
+		color: #FFFFFF;
+		background-color: #5B091B;
+		border-radius: 20upx;
+		text-align: center;
+		font-size: 26upx;
+		line-height: 150%;
 	}
 </style>

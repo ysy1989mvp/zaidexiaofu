@@ -105,7 +105,21 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uploadimgs = function uploadimgs() {return Promise.all(/*! import() | components/upload-image/upload-imgs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/upload-image/upload-imgs")]).then(__webpack_require__.bind(null, /*! @/components/upload-image/upload-imgs.vue */ 227));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var xflSelect = function xflSelect() {return __webpack_require__.e(/*! import() | components/xfl-select/xfl-select */ "components/xfl-select/xfl-select").then(__webpack_require__.bind(null, /*! @/components/xfl-select/xfl-select.vue */ 215));};var uploadimgs = function uploadimgs() {return Promise.all(/*! import() | components/upload-image/upload-imgs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/upload-image/upload-imgs")]).then(__webpack_require__.bind(null, /*! @/components/upload-image/upload-imgs.vue */ 233));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -159,22 +173,35 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   components: {
-    uploadimgs: uploadimgs },
+    uploadimgs: uploadimgs,
+    xflSelect: xflSelect },
 
   data: function data() {
     return {
       boolean: 0,
-      data: null };
+      data: null,
+      xuexiaodata: null,
+      school_no: null,
+      xingbie_id: null, //0为男，1为女
+      xingbie: '',
+      xingbiedata: [{
+        id: 0,
+        value: '男' },
+      {
+        id: 1,
+        value: '女' }] };
+
 
   },
   onLoad: function onLoad() {var _this = this;
     var params = {};
-    var url = "/api/user";
+    var url = "/api/school";
+
     this.util.request(url, "POST", params, function (res) {
-      console.log(JSON.stringify(res));
       if (res.statusCode == 200) {
         if (res.data.code == 1) {
-          _this.data = res.data.data;
+          _this.xuexiaodata = res.data.data;
+
         } else {
           _this.util.showWindow(res.data.msg);
         }
@@ -182,12 +209,76 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         _this.util.showWindow("请求错误");
       }
     });
+    var url1 = "/api/user";
+    this.util.request(url1, "POST", params, function (res) {
+      console.log(JSON.stringify(res));
+      if (res.statusCode == 200) {
+        if (res.data.code == 1) {
+          _this.data = res.data.data;
+          _this.school_no = _this.data.school_id;
+          _this.util.uploadImgas[0] = _this.data.avatar;
+          _this.xingbie_id = _this.data.gender;
+          if (_this.xingbie_id == 0) {
+            _this.xingbie = '男';
+          } else {
+            _this.xingbie = '女';
+          }
+        } else {
+          _this.util.showWindow(res.data.msg);
+        }
+      } else {
+        _this.util.showWindow("请求错误");
+      }
+    });
+
   },
   methods: {
     genghuangtouxiang: function genghuangtouxiang() {
       this.boolean = 1;
       // this.data.avatar = ;
+    },
+    xuexiaochange: function xuexiaochange(_ref)
+
+
+
+
+    {var newVal = _ref.newVal,oldVal = _ref.oldVal,index = _ref.index,orignItem = _ref.orignItem;
+      console.log("-------------" + JSON.stringify(orignItem));
+      this.school_no = orignItem.id;
+    },
+    xingbiechange: function xingbiechange(_ref2)
+
+
+
+
+    {var newVal = _ref2.newVal,oldVal = _ref2.oldVal,index = _ref2.index,orignItem = _ref2.orignItem;
+      this.xingbie_id = orignItem.id;
+      this.xingbie = orignItem.value;
+    },
+    modify: function modify() {var _this2 = this;
+      var params = {
+        "avatar": this.util.uploadImgas[0], //头像
+        "username": this.data.mobile, //电话
+        "gender": this.xingbie_id, //性别
+        "school_no": this.school_no //学校id
+      };
+      var url1 = "/api/user/profile";
+      this.util.request(url1, "POST", params, function (res) {
+        console.log(JSON.stringify(res));
+        if (res.statusCode == 200) {
+          if (res.data.code == 1) {
+            uni.navigateTo({
+              url: "./Edit-data" });
+
+          } else {
+            _this2.util.showWindow(res.data.msg);
+          }
+        } else {
+          _this2.util.showWindow("请求错误");
+        }
+      });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

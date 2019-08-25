@@ -105,7 +105,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var xflSelect = function xflSelect() {return __webpack_require__.e(/*! import() | components/xfl-select/xfl-select */ "components/xfl-select/xfl-select").then(__webpack_require__.bind(null, /*! @/components/xfl-select/xfl-select.vue */ 209));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var xflSelect = function xflSelect() {return __webpack_require__.e(/*! import() | components/xfl-select/xfl-select */ "components/xfl-select/xfl-select").then(__webpack_require__.bind(null, /*! @/components/xfl-select/xfl-select.vue */ 215));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -169,6 +181,8 @@ __webpack_require__.r(__webpack_exports__);
   //注册为子组件
   data: function data() {
     return {
+      pwd: '',
+      comfirmpwd: '',
       miaoshu: '发送',
       xuexiaodata: [],
       schoolcode: '',
@@ -255,6 +269,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     //注册
     regist: function regist() {var _this4 = this;
+      if (this.pwd != this.comfirmpwd) {
+        this.util.showWindow("密码输入不一致");
+        return;
+      }
       var params = {
         "mobile": this.mobile,
         "schoolId": this.schoolid,
@@ -262,14 +280,16 @@ __webpack_require__.r(__webpack_exports__);
         "gradeId": this.nianjiid,
         "name": this.studentName,
         "sno": this.studentNo,
-        "captcha": this.vcode };
+        "captcha": this.vcode,
+        "password": this.pwd };
 
-      var url = "/api/sms/send";
-
+      var url = "/api/user/mobilelogin";
       this.util.request(url, "POST", params, function (res) {
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
-            _this4.util.token = res.data.data.userinfo.token;
+            // window.localStorage.setItem("token", res.data.data.userinfo.token);
+            // this.util.token = res.data.data.userinfo.token;
+            uni.setStorageSync('token', res.data.data.userinfo.token);
             //成功后直接登陆
             uni.switchTab({
               url: "../../index/index/index" });

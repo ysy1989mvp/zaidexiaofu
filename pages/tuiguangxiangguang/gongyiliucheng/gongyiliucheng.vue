@@ -4,7 +4,7 @@
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
 					<swiper-item v-for="(item , index) in data.images" :key="index">
-						<img class="bannerImg" :src="item.image"/>
+						<image class="bannerImg" :src="item.image" mode="scaleToFill"></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -12,9 +12,9 @@
 				<view class="part4a">SEE MORE</view>
 				<view class="part4b">工艺展示</view>
 			</view>
-			<view class="part2">
-				<!-- <image class="image1" src="../../../static/ysy/gylc/p2.png" mode="widthFix"></image> -->
-				 <rich-text :nodes="data.content"></rich-text>
+			<view class="gs" style="width: 100vw;">
+				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
+				 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
 		</view>
 	</view>
@@ -55,16 +55,11 @@
 </script>
 
 <style>
-	.bannerImg {
-		width: 100%
+	.swiper{
+		height: 400upx;
 	}
-	
-	.banner {
+	swiper-item>uni-image {
 		width: 100%;
-	}
-	
-	.swiper {
-		height: 350upx;
 	}
 	.part4a{
 		border-bottom: 1upx solid black ;

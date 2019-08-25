@@ -138,70 +138,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       miaoshu: '发送',
       mobile: '',
-      vcode: '' };
+      // vcode: ''
+      pwd: '' };
 
   },
   methods: {
-    fashe: function fashe() {var _this = this;
-      if (this.mobile == '') {
-        this.util.showWindow("电话号码不能为空");
-        return;
-      }
-      var params = {
-        "mobile": this.mobile };
-
-      var url = "/api/sms/send";
-
-      this.util.request(url, "POST", params, function (res) {
-        if (res.statusCode == 200) {
-          if (res.data.code == 1) {
-            _this.util.showWindow("短信发送成功");
-          } else {
-            _this.util.showWindow(res.data.msg);
-          }
-        } else {
-          _this.util.showWindow("请求错误");
-        }
-      });
-      this.miaoshu = 60;
-      setInterval(function () {
-        if (_this.miaoshu > 0) {
-          _this.miaoshu--;
-        } else if (_this.miaoshu == 0) {
-          _this.miaoshu = "重新发送";
-        }
-      }, 1000);
-    },
+    // 			fashe() {
+    // 				if (this.mobile == '') {
+    // 					this.util.showWindow("电话号码不能为空");
+    // 					return;
+    // 				}
+    // 				let params = {
+    // 					"mobile": this.mobile
+    // 				};
+    // 				let url = "/api/sms/send";
+    // 
+    // 				this.util.request(url, "POST", params, (res) => {
+    // 					if (res.statusCode == 200) {
+    // 						if (res.data.code == 1) {
+    // 							this.util.showWindow("短信发送成功");
+    // 						} else {
+    // 							this.util.showWindow(res.data.msg);
+    // 						}
+    // 					} else {
+    // 						this.util.showWindow("请求错误");
+    // 					}
+    // 				});
+    // 				this.miaoshu = 60;
+    // 				setInterval(() => {
+    // 					if (this.miaoshu > 0) {
+    // 						this.miaoshu--;
+    // 					} else if (this.miaoshu == 0) {
+    // 						this.miaoshu = "重新发送";
+    // 					}
+    // 				}, 1000);
+    // 			},
     regist: function regist() {
       uni.navigateTo({
         url: "../regist/regist" });
 
     },
-    login: function login() {var _this2 = this;
+    login: function login() {var _this = this;
       var params = {
         "mobile": this.mobile,
-        "captcha": this.vcode };
+        "password": this.pwd };
 
       var url = "/api/user/mobilelogin";
       this.util.request(url, "POST", params, function (res) {
         console.log(JSON.stringify(res));
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
-            _this2.util.token = res.data.data.userinfo.token;
+            uni.setStorageSync('token', res.data.data.userinfo.token);
+            // uni.setStorage({
+            // 	key: "token",
+            // 	data: res.data.data.userinfo.token,
+            // });
+            // this.util.token = res.data.data.userinfo.token;
             uni.switchTab({
               url: "../../index/index/index" });
 
           } else {
-            _this2.util.showWindow(res.data.msg);
+            _this.util.showWindow(res.data.msg);
           }
         } else {
-          _this2.util.showWindow("请求错误");
+          _this.util.showWindow("请求错误");
         }
       });
 

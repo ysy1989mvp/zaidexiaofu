@@ -169,8 +169,9 @@ var _default =
 
 
   },
-  onLoad: function onLoad() {var _this = this;
+  onLoad: function onLoad(option) {var _this = this;
     // 页面显示是默认选中第一个
+    var content = option.content;
     this.tabCurrentIndex = 0;
     var params = {};
     var url = "/api/goods/category";
@@ -195,7 +196,8 @@ var _default =
     });
     //查询全部商品
     var params1 = {
-      "page": this.page };
+      "page": this.page,
+      "name": content };
 
     var url1 = "/api/goods";
     this.util.request(url1, "POST", params1, function (res) {
@@ -241,7 +243,6 @@ var _default =
           }
         });
       }
-
     },
     cancer: function cancer() {
       this.fou = 0;

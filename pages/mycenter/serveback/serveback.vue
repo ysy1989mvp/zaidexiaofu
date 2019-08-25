@@ -38,12 +38,13 @@
 				意见反馈
 			</view>
 			<view class="yijian">
-				<textarea placeholder="您的意见……"></textarea>
+				<textarea placeholder="您的意见……" v-model="content"></textarea>
 			</view>
 			<view class="images">
 				<uploadimgs></uploadimgs>
 			</view>
 		</view>
+		<view class="button_ysy" @click="tijiao">提交反馈</view>
 	</view>
 </template>
 
@@ -61,25 +62,85 @@
 				checked2: false,
 				checked3: false,
 				checked4: false,
+				content:''
 			}
 		},
 		methods: {
 			change1() {
 				/* 设置 switch 组件是否选中的状态 */
 				this.checked1 = !this.checked1;
+				if(this.checked1){
+				this.checked2 = false;
+				this.checked3 = false;
+				this.checked4 = false;
+				}
 			},
 			change2() {
 				/* 设置 switch 组件是否选中的状态 */
 				this.checked2 = !this.checked2;
+				if(this.checked2){
+				this.checked1 = false;
+				this.checked3 = false;
+				this.checked4 = false;
+				}
 			},
 			change3() {
 				/* 设置 switch 组件是否选中的状态 */
 				this.checked3 = !this.checked3;
+				if(this.checked3){
+				this.checked2 = false;
+				this.checked1 = false;
+				this.checked4 = false;
+				}
 			},
 			change4() {
 				/* 设置 switch 组件是否选中的状态 */
 				this.checked4 = !this.checked4;
+				if(this.checked4){
+				this.checked2 = false;
+				this.checked3 = false;
+				this.checked1 = false;
+				}
 			},
+			tijiao(){
+				let type = 0;
+				if(this.checked1){
+					type = 1;
+				}
+				if(this.checked2){
+					type = 2;
+				}
+				if(this.checked3){
+					type = 3;
+				}
+				if(this.checked4){
+					type = 4;
+				}
+				let images = '';
+				for(let i=0;i<this.util.uploadImgas.length;i++){
+					images += this.util.uploadImgas[i]+",";
+				}
+				let params = {
+					"type": type,//头像
+					"images": images,//电话
+					"content": this.content,//性别
+				};
+				let url1 = "/api/question_feedback/add";
+				this.util.request(url1, "POST", params, (res) => {
+					console.log(JSON.stringify(res));
+					if (res.statusCode == 200) {
+						if (res.data.code == 1) {
+							uni.navigateTo({
+								url:"../index/index"
+							})
+						} else {
+							this.util.showWindow(res.data.msg);
+						}
+					} else {
+						this.util.showWindow("请求错误");
+					}
+				});
+			}
 		}
 	}
 </script>

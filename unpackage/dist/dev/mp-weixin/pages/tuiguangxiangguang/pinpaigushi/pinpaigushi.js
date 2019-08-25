@@ -127,6 +127,7 @@ var _default =
 {
   data: function data() {
     return {
+      data: '',
       homeSlide: ["../../../static/ysy/gs.png",
       "../../../static/ysy/gs.png",
       "../../../static/ysy/gs.png",
@@ -149,6 +150,7 @@ var _default =
         _this.util.showWindow("请求错误");
       }
     });
+
   },
   methods: {} };exports.default = _default;
 

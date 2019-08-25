@@ -161,6 +161,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -170,7 +173,7 @@ var _default =
       sld: false,
       show_number: 0,
       bannerlist: [],
-      goodsdata: null,
+      goodsdata: '',
       canshulist: [],
       total_price: 0,
       specData: [],
@@ -231,10 +234,10 @@ var _default =
         "goods_num": 1 };
 
       var params1 = {
-        "paramsdata": params };
+        "paramsdata": JSON.stringify(params) };
 
       var url = "/api/order/calculationprice";
-      this.util.request(url, "GET", params1, function (res) {
+      this.util.request(url, "POST", params1, function (res) {
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
             _this2.total_price = res.data.data.order_total_price;
