@@ -130,9 +130,7 @@
 					console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
-							uni.navigateTo({
-								url:"../index/index"
-							})
+							uni.navigateBack();
 						} else {
 							this.util.showWindow(res.data.msg);
 						}

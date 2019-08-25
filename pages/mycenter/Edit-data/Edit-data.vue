@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="content">
 			<view class="TX">
-				<image class="TXA" v-if="boolean==0||data.avatar!=null" :src="data.avatar"></image>
+				<image class="TXA" :class="{hidde1:showbool}" v-if="boolean==0||data.avatar!=null" :src="data.avatar"></image>
 				<view class="images" v-if="boolean==1||data.avatar==null">
 					<uploadimgs></uploadimgs>
 				</view>
@@ -71,6 +71,7 @@
 		},
 		data() {
 			return {
+				showbool:false,
 				boolean: 0,
 				data: null,
 				xuexiaodata: null,
@@ -129,6 +130,7 @@
 			genghuangtouxiang() {
 				this.boolean = 1;
 				// this.data.avatar = ;
+				this.showbool = true;
 			},
 			xuexiaochange({
 				newVal,
@@ -272,5 +274,8 @@
 
 	.images {
 		width: 120upx;
+	}
+	.hidde1{
+		display: none;
 	}
 </style>

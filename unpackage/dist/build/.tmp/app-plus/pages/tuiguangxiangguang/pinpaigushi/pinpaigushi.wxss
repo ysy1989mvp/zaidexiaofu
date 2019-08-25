@@ -1,0 +1,10 @@
+
+.swiper{
+	height: 400rpx;
+}
+swiper-item>uni-image {
+	width: 100%;
+}
+
+
+

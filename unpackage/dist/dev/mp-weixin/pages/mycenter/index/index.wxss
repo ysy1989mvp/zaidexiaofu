@@ -78,7 +78,7 @@ page {
 	        justify-content: center;
 }
 .f1>image{
-	width: 67rpx;
+	width: 58rpx;
 	height: 90rpx;
 }
 .bkx {

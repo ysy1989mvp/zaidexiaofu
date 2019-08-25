@@ -1,0 +1,55 @@
+
+.input {
+	border: 0rpx solid #FFFFFF;
+}
+.row {
+	width: 90%;
+	height: 60rpx;
+	margin: 10rpx auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	border-bottom: 2rpx solid #E5E5E5;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	padding: 10rpx 0rpx;
+}
+.val1 {
+	width: 70%;
+}
+.name {
+	font-size: 32rpx;
+	margin-right: 20rpx;
+}
+.val2 {
+	width: 60%;
+}
+.val3 {
+	width: 40%;
+}
+.fasong {
+	background-color: #6F0011;
+	width: 20%;
+	border-radius: 20rpx;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 32rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+}
+.button_ysy {
+	margin-top: 130rpx;
+	background-color: #6F0011;
+}
+.input2{
+	font-size: 28rpx;
+	color: #A5A5A5;
+}
+

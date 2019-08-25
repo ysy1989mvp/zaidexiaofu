@@ -184,7 +184,7 @@ var _default =
     },
     wentifankui: function wentifankui() {
       uni.navigateTo({
-        url: "../questionback/questionback" });
+        url: "../serveback/serveback" });
 
     },
     guanyuzaide: function guanyuzaide() {

@@ -237,9 +237,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(JSON.stringify(res));
         if (res.statusCode == 200) {
           if (res.data.code == 1) {
-            uni.navigateTo({
-              url: "../index/index" });
-
+            uni.navigateBack();
           } else {
             _this.util.showWindow(res.data.msg);
           }

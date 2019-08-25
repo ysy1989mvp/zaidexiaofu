@@ -178,6 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      showbool: false,
       boolean: 0,
       data: null,
       xuexiaodata: null,
@@ -236,6 +237,7 @@ __webpack_require__.r(__webpack_exports__);
     genghuangtouxiang: function genghuangtouxiang() {
       this.boolean = 1;
       // this.data.avatar = ;
+      this.showbool = true;
     },
     xuexiaochange: function xuexiaochange(_ref)
 

@@ -77,7 +77,7 @@
 			},
 			wentifankui(){
 				uni.navigateTo({
-					url:"../questionback/questionback"
+					url:"../serveback/serveback"
 				});
 			},
 			guanyuzaide(){

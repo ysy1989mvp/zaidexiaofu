@@ -71,16 +71,16 @@
         "usingComponents" : true
     },
     "h5" : {
-        "devServer": {
-            "port": 8000,
-            "disableHostCheck": true,
-            "proxy": {
-                "/api": {
-                    "target": "http://xiaofu.51dreaming.com",
-                    "changeOrigin": true,
-                    "secure": false
-                }
-            }
-        }
+        // "devServer": {
+        //     "port": 8000,
+        //     "disableHostCheck": true,
+        //     "proxy": {
+        //         "/api": {
+        //             "target": "http://xiaofu.51dreaming.com",
+        //             "changeOrigin": true,
+        //             "secure": false
+        //         }
+        //     }
+        // }
     }
 }

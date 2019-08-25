@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"image1{ width: 100%; height: 200%; }\n",],undefined,{path:"./pages/mycenter/fuwufankui/fuwufankui.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/mycenter/fuwufankui/fuwufankui.wxml') } }));

@@ -192,7 +192,7 @@
 		justify-content: center;
 	}
 	.f1>image{
-		width: 67upx;
+		width: 58upx;
 		height: 90upx;
 	}
 	.bkx {

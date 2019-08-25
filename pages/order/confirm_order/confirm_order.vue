@@ -15,7 +15,7 @@
 							</view>
 							<view class="m"> 〉</view>
 						</view>
-						<view class="part2" v-if="addr_data==null">
+						<view class="part2" v-if="addr_data.name==null">
 							<view class="part22">
 								请添加您的收货地址
 							</view>
@@ -460,5 +460,8 @@
 	.icon{
 		width: 50upx;
 		height: 18upx;
+	}
+	.XM{
+		margin-right: 15upx;
 	}
 </style>

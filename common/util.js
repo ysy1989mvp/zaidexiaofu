@@ -30,9 +30,10 @@ const orderdata = null; //订单确认页数据
  */
 function request(url1, method, params, success) {
 	var token = uni.getStorageSync('token');
-	if(token!=null){
-		params["token"] = token;
-	}
+	console.log("token---------"+token);
+	// if(token!=null){
+		// params["token"] = token;
+	// }
 	var contentType = null;
 	// if (url1.indexOf("/api/order/calculationprice") > -1||url1.indexOf("/api/order/calculationprice") > -1) {
 	// 	contentType = "application/json;charset=utf-8";
@@ -48,6 +49,7 @@ function request(url1, method, params, success) {
 		// header: {'content-type': 'application/json'},
 		header: {
 			'content-type': contentType,
+			'token':token
 			// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
 			// 'Access-Control-Allow-Origin':theApi.testurl
 		},
@@ -180,40 +182,35 @@ function request(url1, method, params, success) {
 //     }
 // uploaddata
 function requestImg(method, params, file, success) {
-	let token1 = null;
-	uni.getStorage({
-		key: "token",
-		success(res) {
-			token1 = res.data;
-			if (params["token"] == null) {
-				params["token"] = token1;
+	var token = uni.getStorageSync('token');
+	// if (params["token"] == null) {
+		// params["token"] = token;
+	// }
+	// params["token"] = this.uploaddata.multipart.token;
+	// params["bucket"] = this.uploaddata.bucket;
+	uni.uploadFile({
+		url: theApi.testurl +"/api/common/upload", // 后端api接口
+		filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
+		name: 'file', //后端通过'file'获取上传的文件对象
+		fileType: 'image',
+		formData: params,
+		header: {
+			"Content-Type": "multipart/form-data",
+			"token":token
+		},
+		success: success,
+		fail: (error) => {
+			if (error.errMsg == "request:fail timeout") { //网络请求超时
+				showWindow("网络不稳定，请检查网络设置");
+			} else if (error.errMsg == "request:fail 请求超时。") {
+				showWindow("网络不稳定，请检查网络设置");
+			} else if (error.errMsg == "request:fail ") {
+				showWindow("请求失败");
+			} else {
+				showWindow("加载失败");
 			}
-			// params["token"] = this.uploaddata.multipart.token;
-			// params["bucket"] = this.uploaddata.bucket;
-			uni.uploadFile({
-				url: theApi.testurl +"/api/common/upload", // 后端api接口
-				filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
-				name: 'file', //后端通过'file'获取上传的文件对象
-				fileType: 'image',
-				formData: params,
-				header: {
-					"Content-Type": "multipart/form-data"
-				},
-				success: success,
-				fail: (error) => {
-					if (error.errMsg == "request:fail timeout") { //网络请求超时
-						showWindow("网络不稳定，请检查网络设置");
-					} else if (error.errMsg == "request:fail 请求超时。") {
-						showWindow("网络不稳定，请检查网络设置");
-					} else if (error.errMsg == "request:fail ") {
-						showWindow("请求失败");
-					} else {
-						showWindow("加载失败");
-					}
-				},
-				complete: () => {}
-			});
-		}
+		},
+		complete: () => {}
 	});
 };
 

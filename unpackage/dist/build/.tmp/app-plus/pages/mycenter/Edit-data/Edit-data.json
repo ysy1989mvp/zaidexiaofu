@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑资料",
+  "usingComponents": {
+    "uploadimgs": "/components/upload-image/upload-imgs",
+    "xfl-select": "/components/xfl-select/xfl-select"
+  }
+}

@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"pt{ width: 100%; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; }\n.",[1],"image1{ width: 90%; height: 200%; margin: ",[0,0]," auto; }\n",],undefined,{path:"./pages/mycenter/gouwuxuzhi/gouwuxuzhi.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/mycenter/gouwuxuzhi/gouwuxuzhi.wxml') } }));
