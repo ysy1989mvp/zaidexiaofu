@@ -42,11 +42,16 @@
 			</view>
 
 		</view>
+		<bottombar></bottombar>
 	</view>
 </template>
 
 <script>
+	import bottombar from "@/components/bottombar/bottombar.vue"
 	export default {
+		components: {
+			bottombar
+		},
 		data() {
 			return {
 				page:1,
@@ -69,7 +74,7 @@
 			let params = {};
 			let url = "/api/goods/category";
 			this.util.request(url, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -94,7 +99,7 @@
 			};
 			let url1 = "/api/goods";
 			this.util.request(url1, "POST", params1, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.goodsData = res.data.data;
@@ -124,7 +129,7 @@
 					};
 					let url1 = "/api/goods";
 					this.util.request(url1, "POST", params1, (res) => {
-						console.log(JSON.stringify(res));
+						//console.log(JSON.stringify(res));
 						if (res.statusCode == 200) {
 							if (res.data.code == 1) {
 								this.goodsData = res.data.data;
@@ -147,7 +152,7 @@
 				};
 				let url = "/api/goods";
 				this.util.request(url, "POST", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.goodsData = res.data.data;
@@ -175,7 +180,9 @@
 	* {
 		/* border: 1px solid red; */
 	}
-
+	.navbar{
+		overflow: auto;
+	}
 	.top_tag {
 		width: 100%;
 		position: fixed;

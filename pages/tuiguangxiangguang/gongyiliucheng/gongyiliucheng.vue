@@ -17,11 +17,16 @@
 				 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
 		</view>
+		<bottombar></bottombar>
 	</view>
 </template>
 
 <script>
+import bottombar from "@/components/bottombar/bottombar.vue"
 	export default {
+		components: {
+			bottombar
+		},
 		data() {
 			return {
 				data:null,
@@ -36,10 +41,13 @@
 			let params = {};
 			let url = "/api/index/gylc_content";
 			this.util.request(url, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
+						const regex = new RegExp('style="width:', 'gi');
+						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);
 					}

@@ -18,7 +18,9 @@
 			</view>
 			<view class="schoollist">
 				<view class="school" v-for="(item,index) in schooldata" :key="index">
-					<image class="schooltagimg" :src="item.image" mode="widthFix"></image>
+					<view class="tukuang">
+						<image class="schooltagimg" :src="item.image" mode="widthFix"></image>
+					</view>
 					<view class="schoolname">{{item.value}}</view>
 				</view>
 			</view>
@@ -32,11 +34,16 @@
 				 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
 		</view>
+		<bottombar></bottombar>
 	</view>
 </template>
 
 <script>
+	import bottombar from "@/components/bottombar/bottombar.vue"
 	export default {
+		components: {
+			bottombar
+		},
 		data() {
 			return {
 				data:null,
@@ -53,10 +60,13 @@
 				let params = {};
 				let url = "/api/index/aljs_content";
 				this.util.request(url, "POST", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.data = res.data.data;
+							const regex = new RegExp('style="width:', 'gi');
+							let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+							this.data.content = rich;
 						} else {
 							this.util.showWindow(res.data.msg);
 						}
@@ -67,7 +77,7 @@
 				let params1 = {};
 				let url1 = "/api/school";
 				this.util.request(url1, "POST", params1, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.schooldata = res.data.data;
@@ -130,7 +140,7 @@
 		margin: 0upx auto;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: flex-start;
 		margin-top: 30upx;
 		margin-bottom: 30upx;
 	}
@@ -142,13 +152,21 @@
 		justify-content: center;
 		flex-direction: column;
 		font-size: 20upx;
+		margin: 15px 5px;
 		
+	}
+	.tukuang{
+		width: 70%;
+		height: 110upx;
+		margin: 0upx auto;
 	}
 	.schooltagimg{
 		width: 100%;
-		height: 120upx;
+		height: 100%;
+		
 	}
 	.schoolname{
+		margin-top: 15upx;
 		text-align: center;
 		-webkit-line-clamp: 1;
 		/* // 限制显示的文本的行数为3 */

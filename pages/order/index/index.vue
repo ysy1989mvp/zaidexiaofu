@@ -46,9 +46,9 @@
 						</view>
 					</view>
 					<view class="part3">
-						<!-- <view class="yunfei">
+						<view class="yunfei">
 							顺风到付
-						</view> -->
+						</view>
 						<view class="yunfei">
 							
 						</view>
@@ -59,7 +59,7 @@
 							<view>合计:￥450.00</view>
 						</view> -->
 					</view>
-					<view class="option" v-if="item.paystatus==10">
+					<view class="option" v-if="item.paystatus=='10'">
 						<!-- 待付款 -->
 						<view @click="cancer(item.order_no)">
 							取消订单
@@ -68,17 +68,17 @@
 							订单付款
 						</view>
 					</view>
-					<view class="option"  v-if="item.paystatus==20&&item.freight==10">
+					<view class="option"  v-if="item.paystatus=='20'&&item.freight_status=='10'">
 						<!-- 待发货
 						<view>
 							查看物流
 						</view>
 						<view>
 							提醒发货
-						</view>
-					</view> -->
+						</view>-->
+					</view> 
 					<!-- 待收货 -->
-					<view class="option"  v-if="item.paystatus==20&&item.freight==20&&item.receipt_status==10">
+					<view class="option"  v-if="item.paystatus=='20'&&item.freight_status=='20'&&item.receipt_status=='10'">
 						<!-- <view>
 							延长收货
 						</view>
@@ -90,7 +90,7 @@
 						</view>
 					</view>
 					<!-- 订单完成 -->
-					<view class="option"  v-if="item.order_status==30">
+					<view class="option"  v-if="item.order_status=='30'">
 						<view @click="goodsdetail(item.goods[0].goods_id)">
 							再买一件
 						</view>
@@ -161,7 +161,7 @@
 			}
 			
 			this.util.request(url, "GET", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -180,7 +180,7 @@
 				};
 				let url = "/api/order/cancel";
 				this.util.request(url, "GET", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.util.showWindow(res.data.msg);
@@ -204,7 +204,7 @@
 				};
 				let url = "/api/order/finish";
 				this.util.request(url, "GET", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.util.showWindow(res.data.msg);
@@ -223,12 +223,12 @@
 			},
 			// changeTab(e) {
 			// 	this.tabCurrentIndex = e.target.current;
-			// 	console.log("changetab："+this.tabCurrentIndex);
+			// 	//console.log("changetab："+this.tabCurrentIndex);
 			// },
 			//顶部tab点击
 			tabClick(index) {
 				this.tabCurrentIndex = index;
-				console.log("tabclick："+this.tabCurrentIndex);
+				//console.log("tabclick："+this.tabCurrentIndex);
 				let params = {
 				};
 				let url = "";
@@ -246,7 +246,7 @@
 				}
 				
 				this.util.request(url, "GET", params, (res) => {
-					// console.log(JSON.stringify(res));
+					// //console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.data = res.data.data;

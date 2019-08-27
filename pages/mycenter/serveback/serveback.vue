@@ -41,7 +41,7 @@
 				<textarea placeholder="您的意见……" v-model="content"></textarea>
 			</view>
 			<view class="images">
-				<uploadimgs></uploadimgs>
+				<uploadimgs :imageLength="9"></uploadimgs>
 			</view>
 		</view>
 		<view class="button_ysy" @click="tijiao">提交反馈</view>
@@ -127,7 +127,7 @@
 				};
 				let url1 = "/api/question_feedback/add";
 				this.util.request(url1, "POST", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateBack();

@@ -16,10 +16,13 @@
 			let params = {};
 			let url = "/api/index/ptxy_content";
 			this.util.request(url, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
+						const regex = new RegExp('style="width:', 'gi');
+						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);
 					}

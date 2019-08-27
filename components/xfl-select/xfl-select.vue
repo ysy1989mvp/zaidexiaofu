@@ -411,16 +411,16 @@
 	 * @return {undefined|promise} 当没有callback时，则返回promise，否则返回undefined  
 	 * @example
 	 * 1. 传入选择器，返回promise
-	 * getNodeInfo('#aa').then((data)=>{ console.log(data);});
+	 * getNodeInfo('#aa').then((data)=>{ //console.log(data);});
 	 * 
 	 * 2. 传入选择器和component, 返回promise
-	 * getNodeInfo('#aa', this).then((data)=>{ console.log(data);});
+	 * getNodeInfo('#aa', this).then((data)=>{ //console.log(data);});
 	 * 
 	 * 3. 传入选择器和callback, 返回undefined
-	 * getNodeInfo('#aa', (data)=>{ console.log(data);});
+	 * getNodeInfo('#aa', (data)=>{ //console.log(data);});
 	 * 
 	 * 4. 传入配置对象和callback, 返回undefined
-	 * getNodeInfo({selector: '#aa', component: this}, (data)=>{ console.log(data);});
+	 * getNodeInfo({selector: '#aa', component: this}, (data)=>{ //console.log(data);});
 	 */
 	function getNodeInfo({
 		selector = 'selector', // 选择器
@@ -694,14 +694,14 @@
 	 * @example
 	 * 1. 最简单的使用
 	 * stepRunFunc((next, currCount, timers)=>{
-	 * 		console.log('执行第' + currCount + '次');
+	 * 		//console.log('执行第' + currCount + '次');
 	 *      currCount <= 2 && next(2000);
 	 * })();
 	 * // => 会立即执行第一次，然后2s后再执行第二次
 	 * 
 	 * 2. next()函数的第二个参数，是考虑到，用户可能会在短时间内连续调用多次，此时应该怎么处理这些next调用之间的关系
 	 * stepRunFunc((next, currCount, timers)=>{
-	 * 		console.log('执行第' + currCount + '次');
+	 * 		//console.log('执行第' + currCount + '次');
 	 *      if(currCount <= 2 ){
 	 *          next(3000);
 	 *          setTimeout(()=>{next(1000, 'old')}, 1000); // 这一次next调用将不起作用

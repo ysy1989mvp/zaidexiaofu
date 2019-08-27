@@ -69,6 +69,9 @@ var _default =
       if (res.statusCode == 200) {
         if (res.data.code == 1) {
           _this.data = res.data.data;
+          var regex = new RegExp('<img', 'gi');
+          var rich = _this.data.content.replace(regex, "< img style=\"max-width: 100%;\"");
+          _this.data.content = rich;
         } else {
           _this.util.showWindow(res.data.msg);
         }

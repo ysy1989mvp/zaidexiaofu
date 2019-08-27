@@ -78,11 +78,12 @@ page {
 	        justify-content: center;
 }
 .f1>image{
-	width: 58rpx;
+	width: 54rpx;
 	height: 90rpx;
+	margin: 0rpx auto;
 }
 .bkx {
-	height: 30px;
+	height: 20px;
 	border: 1rpx solid #8F8F94;
 	display: -webkit-box;
 	display: -webkit-flex;

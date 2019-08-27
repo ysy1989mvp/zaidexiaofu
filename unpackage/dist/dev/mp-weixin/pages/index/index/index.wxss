@@ -154,7 +154,7 @@ swiper-item>uni-image {
 }
 .YW {
 	font-size: 25rpx;
-	color: black;
+	color: #0A2153;
 	/* width: 280upx; */
 }
 .JQ {
@@ -292,17 +292,17 @@ swiper-item>uni-image {
 }
 .shurukuang {
 	height: 60%;
-	background-color: #FFFFFF;
+	/* background-color: #FFFFFF; */
 	width: 60%;
 	border-radius: 20rpx;
 	border: 2rpx solid #FFFFFF;
 }
 .searchbtn {
-	margin-left: 30rpx;
-	width: 120rpx;
-	height: 62%;
-	color: #FFFFFF;
-	background-color: #5B091B;
+	margin-left: -80rpx;
+	width: 80rpx;
+	height: 72%;/* 
+	color: #000000;
+	background-color: #5B091B; */
 	border-radius: 20rpx;
 	text-align: center;
 	font-size: 26rpx;

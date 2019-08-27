@@ -89,6 +89,9 @@
 						this.canshulist = res.data.data.detail.spec;
 						this.total_price = res.data.data.detail.price;
 						this.specData = res.data.data.specData;
+						const regex = new RegExp('style="width:', 'gi');
+						let rich = this.goodsdata.content.replace(regex, `style="max-width: 100%;width:`)
+						this.goodsdata.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);
 					}

@@ -132,7 +132,8 @@ var _default =
       "../../../static/ysy/gs.png",
       "../../../static/ysy/gs.png",
       "../../../static/ysy/gs.png",
-      "../../../static/ysy/gs.png"] // 定义值接收轮播图数据
+      "../../../static/ysy/gs.png"]
+      // 定义值接收轮播图数据
     };
   },
   onLoad: function onLoad() {var _this = this;
@@ -143,6 +144,9 @@ var _default =
       if (res.statusCode == 200) {
         if (res.data.code == 1) {
           _this.data = res.data.data;
+          var regex = new RegExp('<img', 'gi');
+          var rich = _this.data.content.replace(regex, "< img style=\"max-width: 100%;\"");
+          _this.data.content = rich;
         } else {
           _this.util.showWindow(res.data.msg);
         }

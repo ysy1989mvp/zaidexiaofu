@@ -109,7 +109,7 @@
 		},
 		methods: {
 			xuexiaochange({newVal, oldVal, index, orignItem}){
-				console.log(newVal, oldVal, index, orignItem);
+				//console.log(newVal, oldVal, index, orignItem);
 				this.schoolcode = orignItem.code;
 				this.schoolid = orignItem.id;
 				let params = {

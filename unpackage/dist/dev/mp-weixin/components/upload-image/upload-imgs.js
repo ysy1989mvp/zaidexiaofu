@@ -155,10 +155,12 @@ var sizeType = [
 ];var _default =
 {
   name: 'upload_imgs',
+  props: {
+    imageLength: 9 //限制图片张数
+  },
   data: function data() {
     return {
       imageList: [], //保存图片路径集合
-      imageLength: 9, //限制图片张数
       sourceTypeIndex: 2, //添加方式限制
       sizeTypeIndex: 2 //图片尺寸限制
     };

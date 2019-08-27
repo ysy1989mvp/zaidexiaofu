@@ -48,10 +48,12 @@
 	]
 	export default {
 		name: 'upload_imgs',
+		props:{
+			imageLength: 9, //限制图片张数
+		},
 		data() {
 			return {
 				imageList: [], //保存图片路径集合
-				imageLength: 9, //限制图片张数
 				sourceTypeIndex: 2, //添加方式限制
 				sizeTypeIndex: 2, //图片尺寸限制
 			}
@@ -75,9 +77,10 @@
 						for(var i=0;i<this.imageList.length;i++){
 							let params = {"file":res.tempFiles[i]};
 							this.util.requestImg("POST",params,this.imageList[i], (res) => {
-								console.log(JSON.stringify(res));
+								//console.log(JSON.stringify(res.data.data));
+								//console.log(url);
 								if (res.statusCode == 200) {
-									this.util.uploadImgas[this.util.uploadImgas.length] = res.data.data;
+									this.util.uploadImgas[this.util.uploadImgas.length] = res.data.data.url;
 								} else {
 									this.util.showWindow("图片上传请求错误");
 								}

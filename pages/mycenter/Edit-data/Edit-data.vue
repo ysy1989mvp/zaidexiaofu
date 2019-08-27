@@ -4,7 +4,7 @@
 			<view class="TX">
 				<image class="TXA" :class="{hidde1:showbool}" v-if="boolean==0||data.avatar!=null" :src="data.avatar"></image>
 				<view class="images" v-if="boolean==1||data.avatar==null">
-					<uploadimgs></uploadimgs>
+					<uploadimgs :imageLength="1"></uploadimgs>
 				</view>
 				<view class="zl" @click="genghuangtouxiang">
 					<view class="name" v-if="data.avatar!=null">更换头像</view>
@@ -105,7 +105,7 @@
 			});
 			let url1 = "/api/user";
 			this.util.request(url1, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -138,7 +138,7 @@
 				index,
 				orignItem
 			}) {
-				console.log("-------------"+JSON.stringify(orignItem));
+				//console.log("-------------"+JSON.stringify(orignItem));
 				this.school_no = orignItem.id;
 			},
 			xingbiechange({
@@ -159,7 +159,7 @@
 				};
 				let url1 = "/api/user/profile";
 				this.util.request(url1, "POST", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateTo({

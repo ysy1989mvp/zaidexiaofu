@@ -1825,7 +1825,7 @@ function requestImg(method, params, file, success) {
     filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
     name: 'file', //后端通过'file'获取上传的文件对象
     fileType: 'image',
-    formData: params,
+    // formData: params,
     header: {
       "Content-Type": "multipart/form-data",
       "token": token },

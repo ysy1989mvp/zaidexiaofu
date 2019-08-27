@@ -57,7 +57,7 @@
 			};
 			let url = "/api/user";
 			this.util.request(url, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -100,7 +100,7 @@
 				};
 				let url = "/api/user/logout";
 				this.util.request(url, "POST", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateTo({

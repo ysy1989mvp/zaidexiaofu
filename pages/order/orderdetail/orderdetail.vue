@@ -52,7 +52,8 @@
 						</view>
 						<view class="g2">
 							<view class="u1">配送方式</view>
-							<view class="u2">{{order_data.express_company}}</view>
+							<!-- <view class="u2">{{order_data.express_company}}</view> -->
+							<view class="u2">顺风到付</view>
 						</view>
 						<view class="g3">
 							<view class="u3">运费</view>
@@ -90,7 +91,7 @@
 				};
 				let url = "/api/order/detail";
 				this.util.request(url, "GET", params, (res) => {
-					console.log(JSON.stringify(res));
+					//console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.addr_data = res.data.data.address;

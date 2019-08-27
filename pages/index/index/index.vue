@@ -2,8 +2,8 @@
 	<view class="container">
 		<view class="content">
 			<view class="search">
-				<input class="shurukuang" type="text" v-model="search_value" placeholder="输入搜索内容" />
-				<view class="searchbtn" @click="search">搜索</view>
+				<input class="shurukuang" type="text" v-model="search_value" placeholder="" />
+				<image class="searchbtn" src="../../../static/yangsongyan/imgs/110.png" @click="search"></image>
 			</view>
 			<view class="banner">
 				<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1500">
@@ -88,14 +88,14 @@
 			};
 			let url = "/api/goods/goodsindex";
 			this.util.request(url, "GET", params, (res) => {
-				// console.log(JSON.stringify(res));
+				// //console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						let data1 = res.data.data;
 						this.bannerlist = data1.banner;
 						this.goodslist = data1.goodslist;
 						this.name = data1.name;
-						console.log("看看数据2:"+JSON.stringify(data1));
+						//console.log("看看数据2:"+JSON.stringify(data1));
 					} else {
 						util1.showWindow(res.data.msg);
 					}
@@ -144,7 +144,7 @@
 				})
 			},
 			search() {
-				console.log("搜索内容:" + this.search_value);
+				//console.log("搜索内容:" + this.search_value);
 				uni.navigateTo({
 					url: "../creation/creation?content=" + this.search_value
 				})
@@ -267,7 +267,7 @@
 
 	.YW {
 		font-size: 25upx;
-		color: black;
+		color: #0A2153;
 		/* width: 280upx; */
 	}
 
@@ -350,18 +350,18 @@
 
 	.shurukuang {
 		height: 60%;
-		background-color: #FFFFFF;
+		/* background-color: #FFFFFF; */
 		width: 60%;
 		border-radius: 20upx;
 		border: 2upx solid #FFFFFF;
 	}
 
 	.searchbtn {
-		margin-left: 30upx;
-		width: 120upx;
-		height: 62%;
-		color: #FFFFFF;
-		background-color: #5B091B;
+		margin-left: -80upx;
+		width: 80upx;
+		height: 72%;/* 
+		color: #000000;
+		background-color: #5B091B; */
 		border-radius: 20upx;
 		text-align: center;
 		font-size: 26upx;

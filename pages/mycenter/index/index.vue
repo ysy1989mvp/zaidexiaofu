@@ -90,7 +90,7 @@
 			};
 			let url = "/api/user";
 			this.util.request(url, "POST", params, (res) => {
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -190,13 +190,15 @@
 		/* width:200upx ; */
 		height: 78upx;
 		justify-content: center;
+		
 	}
 	.f1>image{
-		width: 58upx;
+		width: 54upx;
 		height: 90upx;
+		margin: 0upx auto;
 	}
 	.bkx {
-		height: 30px;
+		height: 20px;
 		border: 1upx solid #8F8F94;
 		display: flex;
 		align-items: stretch;
