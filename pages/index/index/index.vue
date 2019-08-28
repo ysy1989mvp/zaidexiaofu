@@ -14,7 +14,7 @@
 			</view>
 
 			<view class="part2">
-				<image src="../../../static/lxy/30.jpg" mode=""></image>
+				<image src="../../../static/lxy/30.png" mode=""></image>
 				<view class="shuoming">
 					<view class="yingwen">WELCOME TO LOADTAK</view>
 					<view class="huanying">欢迎{{name}}家长来到载德校服商城</view>
@@ -45,6 +45,8 @@
 				<view class="part4b">载德校服套装展示</view>
 			</view>
 			<view class="last part">
+				<view class="qudenglu" :class="{yincan:loginNow}" @click="login">您没有权限查看，请登录!</view>
+				<view class="qudenglu" :class="{yincan:nogoods&&!loginNow}">您没有可查看的商品，请联系客服!</view>
 				<view class="part5" v-for="(item,index) in goodslist" :key="index" :class="index%2==0?left1:right1" @click="shopdetail(item.goods_id)">
 					<view class="part5a mt">
 						<image :src="item.image"></image>
@@ -65,6 +67,8 @@
 	export default {
 		data() {
 			return {
+				nogoods:false,
+				loginNow:true,
 				search_value: '',
 				name: '某某', //家长姓名
 				imageURL: "../../../static/lxy/30.png", //蝴蝶结图片
@@ -75,14 +79,6 @@
 			}
 		},
 		onShow() {
-			// var token1 = null;
-			// uni.getStorage({
-			// 	key: "token",
-			// 	success(res) {
-			// 		token1 = res.data;
-			// 	}
-			// });
-			// var token = uni.getStorageSync('token');
 			let params = {
 				// "token": token
 			};
@@ -97,12 +93,20 @@
 						this.name = data1.name;
 						//console.log("看看数据2:"+JSON.stringify(data1));
 					} else {
-						util1.showWindow(res.data.msg);
+						this.util.showWindow(res.data.msg);
 					}
 				} else {
-					util1.showWindow("请求错误");
+					this.util.showWindow("请求错误");
 				}
 			});
+			console.log("token的值是===========："+uni.getStorageSync("token"));
+			if(uni.getStorageSync("token")==''){
+				this.loginNow = false;
+			}else{
+				if(this.goodslist.length==0){
+					this.nogoods = true;
+				}
+			}
 			
 			(function(m, ei, q, i, a, j, s) {
 				m[i] = m[i] || function() {
@@ -119,6 +123,12 @@
 		},
 		methods: {
 			xiaofudinggou() {
+				if(uni.getStorageSync("token")==''){
+					uni.navigateTo({
+						url:"../../mycenter/login/login"
+					})
+					return;
+				}
 				uni.navigateTo({
 					url: "../creation/creation"
 				})
@@ -144,11 +154,22 @@
 				})
 			},
 			search() {
+				if(uni.getStorageSync("token")==''){
+					uni.navigateTo({
+						url:"../../mycenter/login/login"
+					})
+					return;
+				}
 				//console.log("搜索内容:" + this.search_value);
 				uni.navigateTo({
 					url: "../creation/creation?content=" + this.search_value
 				})
 			},
+			login(){
+				uni.navigateTo({
+					url:"../../mycenter/login/login"
+				});
+			}
 
 
 		}
@@ -184,7 +205,9 @@
 		width: 200%;
 		height: 550upx;
 	}
-
+	.part2{
+		margin-top: -10upx;
+	}
 	.part2 image {
 		margin-top: -10upx;
 		width: 100%;
@@ -359,12 +382,23 @@
 	.searchbtn {
 		margin-left: -80upx;
 		width: 80upx;
-		height: 72%;/* 
+		height: 100%;/* 
 		color: #000000;
 		background-color: #5B091B; */
 		border-radius: 20upx;
 		text-align: center;
 		font-size: 26upx;
 		line-height: 150%;
+	}
+	.qudenglu{
+		width: 100%;
+		text-align: center;
+		text-decoration: underline;
+		color: #FF0000;
+		margin-top: 100upx;
+		font-size: 28upx;
+	}
+	.yincan{
+		display: none;
 	}
 </style>

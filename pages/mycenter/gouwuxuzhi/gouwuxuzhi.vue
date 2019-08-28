@@ -20,8 +20,8 @@
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="width:', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+						const regex = new RegExp('style="', 'gi');
+						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
 						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);

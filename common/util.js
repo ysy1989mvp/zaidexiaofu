@@ -32,9 +32,9 @@ function request(url1, method, params, success) {
 	var token = uni.getStorageSync('token');
 	//console.log("token---------"+token);
 	var contentType = "application/x-www-form-urlencoded";
-	//console.log("提交地址:" + theApi.testurl + url1);
-	//console.log("提交参数:" + JSON.stringify(params));
-	//console.log("提交类型:" + contentType);
+	console.log("提交地址:" + theApi.testurl + url1);
+	console.log("提交参数:" + JSON.stringify(params));
+	console.log("提交类型:" + contentType);
 	uni.request({
 		url: theApi.testurl + url1,
 		method: method,

@@ -17,19 +17,26 @@
 				<view class="q3"> </view>
 			</view>
 			<view class="schoollist">
-				<view class="school" v-for="(item,index) in schooldata" :key="index">
+				<uni-grid :column="4" :show-border="true" :square="true" :hor="35" :ver="-45">
+					<uni-grid-item marker="badge" type="error" text="">
+						<image class="image" :src="item.image" />
+						<text class="text">{{item.value}}</text>
+					</uni-grid-item>
+				</uni-grid>
+				
+				<!-- <view class="school" v-for="(item,index) in schooldata" :key="index">
 					<view class="tukuang">
 						<image class="schooltagimg" :src="item.image" mode="widthFix"></image>
 					</view>
 					<view class="schoolname">{{item.value}}</view>
-				</view>
+				</view> -->
 			</view>
 			<view class="bt">
 				<view class="q1"> </view>
 				<view class="q2">效果展示</view>
 				<view class="q3"> </view>
 			</view>
-			<view class="gs" style="width: 100vw;">
+			<view class="gs" style="width: 90vw;margin: 0upx auto;">
 				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
 				 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
@@ -64,8 +71,8 @@
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.data = res.data.data;
-							const regex = new RegExp('style="width:', 'gi');
-							let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+							const regex = new RegExp('style="', 'gi');
+							let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
 							this.data.content = rich;
 						} else {
 							this.util.showWindow(res.data.msg);
@@ -118,6 +125,7 @@
 		align-items: center;
 		justify-content: center;
 		color: #061637;
+		margin-bottom: 20upx;
 	}
 	.q1,.q3{
 		border-bottom: 1upx solid #B2B2B2 ;
@@ -180,5 +188,9 @@
 		/* // 超出的文字部分用...来显示 */
 		display: -webkit-box;
 		/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
+	}
+	.image {
+		width: 60upx;
+		height: 60upx;
 	}
 </style>

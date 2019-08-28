@@ -19,7 +19,7 @@
 		<!-- <view class="see1" @click="bubuy"> -->
 		<!-- <image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image> -->
 		<!-- </view> -->
-		<view style="width: 100%;">
+		<view class="gs" style="width: 90vw;margin: 0upx auto;">
 			<rich-text :nodes="goodsdata.content"></rich-text>
 		</view>
 		<view class="D">
@@ -89,8 +89,8 @@
 						this.canshulist = res.data.data.detail.spec;
 						this.total_price = res.data.data.detail.price;
 						this.specData = res.data.data.specData;
-						const regex = new RegExp('style="width:', 'gi');
-						let rich = this.goodsdata.content.replace(regex, `style="max-width: 100%;width:`)
+						const regex = new RegExp('style="', 'gi');
+						let rich = this.goodsdata.content.replace(regex, `style="max-width: 100%;width:100%;`)
 						this.goodsdata.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);

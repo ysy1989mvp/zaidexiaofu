@@ -68,6 +68,7 @@
 
 <style>
 	.bottomfixbar{
+		background-color: #FFFFFF;
 		width: 100%;
 		position: fixed;
 		bottom: 0upx;
@@ -86,6 +87,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		
 	}
 
 	.bar_img {

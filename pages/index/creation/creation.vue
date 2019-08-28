@@ -4,12 +4,12 @@
 			<!-- tab顶部切换 -->
 			<view class="top_tag">
 				<!-- 头部 -->
-				<view class="navbar">
-					<view v-for="(item, index) in navList" :key="index" class="nav-item" :class="{ current: tabCurrentIndex === index }"
-					 @click="tabClick(index)">
+				<scroll-view scroll-x="true" class="bg-white" scroll-with-animation :scroll-left="scrollLeft">
+					<view class="nav-item" :class="index==tabCurrentIndex?'text-green':''" v-for="(item,index) in navList" :key="index" @tap="tabClick(index)"
+					 :data-id="index">
 						{{ item.text }}
 					</view>
-				</view>
+				</scroll-view>
 				<view class="zhengzhao" v-if="fou==1" @click="cancer">
 					<view class="neirong">
 						<view class="top_tag0" v-for="(item1,index) in xiaolei" :key="index" :class="{xuanzhong:index==0}" @click="select(item1.id)">
@@ -19,7 +19,7 @@
 				</view>
 			</view>
 			<!-- 显示区域 -->
-			<!-- <view class="list" v-for="(item, index) in navList" :key="index" v-if="tabCurrentIndex === index"> -->
+			<!-- <view class="list" v-for="(item, index) in navList" :key="index" v-if="tabCurrentIndex === index"> --> -->
 			<view class="center_content">
 				<view class="row" v-for="(item,index) in goodsData.pagedata.data" :key="index" @click="goDetail(item.goods_id)">
 					<image class="goods_img" :src="item.image"></image>
@@ -54,16 +54,18 @@
 		},
 		data() {
 			return {
-				page:1,
+				scrollLeft: 0,
+				page: 1,
 				xiaolei: null,
 				fou: '0',
 				currt: "3", //1是待付款，2是待发货，3是待收货，4完成
 				tabCurrentIndex: 0,
 				navList: [{
-					"text": '全部',
-					"id":-1
-				}],
-				goodsData:null
+						"text": '全部',
+						"id": -1
+					}
+				],
+				goodsData: null
 
 			}
 		},
@@ -120,12 +122,12 @@
 				this.tabCurrentIndex = index;
 				if (index != 0) {
 					this.fou = 1;
-					this.xiaolei = this.data.categorydata[index-1].childlist;
+					this.xiaolei = this.data.categorydata[index - 1].childlist;
 				} else {
 					this.fou = 0;
 					//请求全部商品
 					let params1 = {
-						"page":this.page
+						"page": this.page
 					};
 					let url1 = "/api/goods";
 					this.util.request(url1, "POST", params1, (res) => {
@@ -147,8 +149,8 @@
 			},
 			select(id) {
 				let params = {
-					"id":id,
-					"page":this.page
+					"id": id,
+					"page": this.page
 				};
 				let url = "/api/goods";
 				this.util.request(url, "POST", params, (res) => {
@@ -166,7 +168,7 @@
 			},
 			goDetail(id) {
 				uni.navigateTo({
-					url: "../shop_detail/shop_detail?id="+id
+					url: "../shop_detail/shop_detail?id=" + id
 				})
 			}
 		}
@@ -180,9 +182,11 @@
 	* {
 		/* border: 1px solid red; */
 	}
-	.navbar{
+
+	.navbar {
 		overflow: auto;
 	}
+
 	.top_tag {
 		width: 100%;
 		position: fixed;
@@ -296,5 +300,24 @@
 	.xuanzhong {
 		background-color: #061637;
 		color: #FFFFFF;
+	}
+
+	.bg-white {
+		white-space: nowrap;
+		background-color: #ffffff;
+		color: #666666;
+	}
+
+	.nav-item {
+		height: 49px;
+		display: inline-block;
+		line-height: 49px;
+		margin: 0 5px;
+		padding: 0 11px;
+	}
+
+	.text-green {
+		color: #39b54a;
+		border-bottom: 2px solid;
 	}
 </style>

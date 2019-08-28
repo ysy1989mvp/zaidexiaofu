@@ -1,6 +1,9 @@
 <template>
 	<view class="container">
 		<view class="content">
+			<view class="top">
+				<image class="logo" src="../../../static/ysy/logo.png"></image>
+			</view>
 			<view class="row">
 				<view class="name">选择学校:</view>
 				<view class="val1">
@@ -23,12 +26,12 @@
 					</xfl-select>
 				</view>
 			</view>
-			<view class="row">
-				<view class="name">学生姓名:</view>
+			<!-- <view class="row">
+				<view class="name">学生昵称:</view>
 				<view class="val2">
 					<input class="input2" v-model="studentName"/>
 				</view>
-			</view>
+			</view> -->
 			<view class="row">
 				<view class="name">输入手机号码:</view>
 				<view class="val2">
@@ -36,7 +39,7 @@
 				</view>
 			</view>
 			<view class="row">
-				<view class="name">学号:</view>
+				<view class="name">学生姓名:</view>
 				<view class="val2">
 					<input class="input2" placeholder="(必填)" v-model="studentNo"/>
 				</view>
@@ -82,7 +85,7 @@
 				schoolid:'',
 				nianjiid:'',
 				nianjidata:[],
-				studentName:'',
+				// studentName:'',
 				studentNo:'',
 				vcode:'',
 				mobile:''
@@ -171,7 +174,7 @@
 					"schoolId":this.schoolid,
 					"schoolCode":this.schoolcode,
 					"gradeId":this.nianjiid,
-					"name":this.studentName,
+					// "name":this.studentName,
 					"sno":this.studentNo,
 					"captcha":this.vcode,
 					"password":this.pwd
@@ -201,6 +204,20 @@
 </script>
 
 <style>
+	.top{
+		width: 100%;
+		height: 82upx;
+		display: flex;
+		flex-direction: row-reverse;
+		/* justify-content: center; */
+		align-items: center;
+	}
+	.logo{
+		width: 80upx;
+		height: 80upx;
+		margin-top: 20upx;
+		margin-right: 20upx;
+	}
 	.input {
 		border: 0upx solid #FFFFFF;
 	}

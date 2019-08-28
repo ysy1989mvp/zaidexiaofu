@@ -1,7 +1,9 @@
 <template>
 	<view class="container">
 		<view class="content">
-
+			<view class="top">
+				<image class="logo" src="../../../static/ysy/logo.png"></image>
+			</view>
 			<view class="row">
 				<view class="name">手机号:</view>
 				<view class="val2">
@@ -14,7 +16,8 @@
 					<input class="input2" placeholder="请输入密码" type="password" v-model="pwd" />
 				</view>
 			</view>
-<!-- 
+			<view style="width: 100%;height: 30upx;"></view>
+			<!-- 
 			<view class="row">
 				<view class="name">验证码:</view>
 				<view class="val3">
@@ -35,40 +38,40 @@
 				miaoshu: '发送',
 				mobile: '',
 				// vcode: ''
-				pwd:''
+				pwd: ''
 			}
 		},
 		methods: {
-// 			fashe() {
-// 				if (this.mobile == '') {
-// 					this.util.showWindow("电话号码不能为空");
-// 					return;
-// 				}
-// 				let params = {
-// 					"mobile": this.mobile
-// 				};
-// 				let url = "/api/sms/send";
-// 
-// 				this.util.request(url, "POST", params, (res) => {
-// 					if (res.statusCode == 200) {
-// 						if (res.data.code == 1) {
-// 							this.util.showWindow("短信发送成功");
-// 						} else {
-// 							this.util.showWindow(res.data.msg);
-// 						}
-// 					} else {
-// 						this.util.showWindow("请求错误");
-// 					}
-// 				});
-// 				this.miaoshu = 60;
-// 				setInterval(() => {
-// 					if (this.miaoshu > 0) {
-// 						this.miaoshu--;
-// 					} else if (this.miaoshu == 0) {
-// 						this.miaoshu = "重新发送";
-// 					}
-// 				}, 1000);
-// 			},
+			// 			fashe() {
+			// 				if (this.mobile == '') {
+			// 					this.util.showWindow("电话号码不能为空");
+			// 					return;
+			// 				}
+			// 				let params = {
+			// 					"mobile": this.mobile
+			// 				};
+			// 				let url = "/api/sms/send";
+			// 
+			// 				this.util.request(url, "POST", params, (res) => {
+			// 					if (res.statusCode == 200) {
+			// 						if (res.data.code == 1) {
+			// 							this.util.showWindow("短信发送成功");
+			// 						} else {
+			// 							this.util.showWindow(res.data.msg);
+			// 						}
+			// 					} else {
+			// 						this.util.showWindow("请求错误");
+			// 					}
+			// 				});
+			// 				this.miaoshu = 60;
+			// 				setInterval(() => {
+			// 					if (this.miaoshu > 0) {
+			// 						this.miaoshu--;
+			// 					} else if (this.miaoshu == 0) {
+			// 						this.miaoshu = "重新发送";
+			// 					}
+			// 				}, 1000);
+			// 			},
 			regist() {
 				uni.navigateTo({
 					url: "../regist/regist"
@@ -107,6 +110,17 @@
 </script>
 
 <style>
+	.top{
+		width: 100%;
+		height: 30vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.logo{
+		width: 180upx;
+		height: 180upx;
+	}
 	.input {
 		border: 0upx solid #FFFFFF;
 	}

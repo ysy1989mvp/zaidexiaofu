@@ -8,7 +8,7 @@
 					</swiper-item>
 				</swiper>
 			</view>
-			<view class="gs" style="width: 100vw;">
+			<view class="gs" style="width: 90vw;margin: 0upx auto;">
 				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
 				<rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
@@ -42,8 +42,8 @@
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="width:', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:`)
+						const regex = new RegExp('style="', 'gi');
+						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
 						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);

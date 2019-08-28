@@ -1,14 +1,21 @@
 <template>
 	<view class="container">
 		<view class="content">
-			<view class="part1" @click="setinfo">
+			<view class="part1">
 				<view class="TX" :style="{background: 'url('+imageURL+'),no-repeat;background-size:cover'}">
+					<view class="lg_top">
+						<view class="login_class" @click="login">登录/</view>
+						<view class="red" @click="login">注册</view>
+						<image class="shezhitu" src="../../../static/yangsongyan/imgs/shezhi.png" mode="scaleToFill" @click="setinfo"></image>
+					</view>
+					<viw class="touxiang">
 					<image class="TXA" :src="data.avatar"></image>
 					<view class="zl">
 						<view class="name">{{data.name}}</view>
 						<view class="number">{{data.mobile}}</view>
 						<view class="school">{{data.school_name}}</view>
 					</view>
+					</viw>
 				</view>
 			</view>
 			<view class="part2">
@@ -138,6 +145,11 @@
 				uni.navigateTo({
 					url:"../set/set"
 				})
+			},
+			login(){
+				uni.navigateTo({
+					url:"../login/login"
+				})
 			}
 		}
 	}
@@ -151,8 +163,9 @@
 	.TX {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
+		/* align-items: flex-start; */
+		justify-content: flex-start;
 		height: 500upx;
 		background: url("../../../static/ysy/photo.png") no-repeat;
 		background-size: cover;
@@ -160,6 +173,25 @@
 		font-size: 28upx;
 	}
 
+	.lg_top{
+		width: 100%;
+		height: 30upx;
+		display: flex;
+		justify-content: flex-end;
+		font-size: 20upx;
+		line-height: 30upx;
+		margin-top: 30upx;
+		color: #5A5A5A;
+		
+	}
+	.shezhitu{
+		width: 60upx;
+		height: 60upx;
+		margin-top: -15upx;
+	}
+	.touxiang{
+		margin: 0upx auto;
+	}
 	.TXA {
 		height: 170upx;
 		width: 170upx;
@@ -240,4 +272,8 @@
 		align-items: center;
 		justify-content: space-between;
 	}
+	.red{
+		color: #FF0000;
+	}
+	
 </style>
