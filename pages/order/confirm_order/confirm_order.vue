@@ -10,8 +10,8 @@
 						</view>
 						<view class="part2">
 							<view class="part22">
-							<view class="default" v-if="addr_data.default==1">默认</view>
-							<view class="addr">{{addr_data.detailAddr}}</view>
+								<view class="default" v-if="addr_data.default==1">默认</view>
+								<view class="addr">{{addr_data.detailAddr}}</view>
 							</view>
 							<view class="m"> 〉</view>
 						</view>
@@ -53,7 +53,7 @@
 							<view class="gm">购买数量</view>
 							<view class="sl">
 								<view class="s2 jd" @click="jian()">-</view>
-								<view class="s3" >{{number}}</view>
+								<view class="s3">{{number}}</view>
 								<view class="s2 jd" @click="jia">+</view>
 							</view>
 						</view>
@@ -82,32 +82,35 @@
 	export default {
 		data() {
 			return {
-				goodsimg:null,
-				goodsname:'商品名称',
-				baseprice:0,
-				price:0,
-				goods_id:null,
-				selectGuiges:null,
+				option:null,
+				goodsimg: null,
+				goodsname: '商品名称',
+				baseprice: 0,
+				price: 0,
+				goods_id: null,
+				selectGuiges: null,
 				number: 1,
-				addr_id:null,
-				selectGuigesName_value:null,
-				addr_data:{
-					"name":'',
-					"mobile":'',
-					"default":0,
-					"detailAddr":''
+				addr_id: null,
+				selectGuigesName_value: null,
+				addr_data: {
+					"name": '',
+					"mobile": '',
+					"default": 0,
+					"detailAddr": ''
 				}
 			}
 		},
-		onLoad(option){
+		onLoad(option) {
+			this.option = option;
+		},
+		onShow() {
 			// 商品详情页跳转
-			if(option.type==1){
-				var data1 = JSON.parse(option.data);
+			if (this.option.type == 1) {
+				var data1 = JSON.parse(this.option.data);
 				this.util.orderdata = null;
 				this.util.orderdata = data1;
 				//查会对应的地址
-				let params = {
-				};
+				let params = {};
 				let url = "/api/address/getdefault";
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
@@ -115,7 +118,7 @@
 							this.addr_data.name = res.data.data.name;
 							this.addr_data.mobile = res.data.data.phone;
 							this.addr_id = res.data.data.address_id;
-							this.addr_data.detailAddr = res.data.data.address_name+" "+res.data.data.detail;
+							this.addr_data.detailAddr = res.data.data.address_name + " " + res.data.data.detail;
 							this.addr_data.default = res.data.data.isdefault;
 						} else {
 							this.util.showWindow(res.data.msg);
@@ -128,8 +131,8 @@
 				});
 			}
 			//地址列表页跳转
-			if(option.type==2){
-				this.addr_id = option.addr_id;
+			if (this.option.type == 2) {
+				this.addr_id = this.option.addr_id;
 				//查会对应的地址
 				let params = {
 					"id": this.addr_id
@@ -140,7 +143,7 @@
 						if (res.data.code == 1) {
 							this.addr_data.name = res.data.data.name;
 							this.addr_data.mobile = res.data.data.phone;
-							this.addr_data.detailAddr = res.data.data.address_name+" "+res.data.data.detail;
+							this.addr_data.detailAddr = res.data.data.address_name + " " + res.data.data.detail;
 							this.addr_data.default = res.data.data.isdefault;
 						} else {
 							this.util.showWindow(res.data.msg);
@@ -155,7 +158,7 @@
 			//获取商品信息、商品选择规格名称、价格
 			this.goodsname = this.util.orderdata.goods_name;
 			this.baseprice = this.util.orderdata.totalPrice;
-			this.price = this.baseprice*this.number;
+			this.price = this.baseprice * this.number;
 			this.goods_id = this.util.orderdata.goods_id;
 			this.selectGuigesName_value = this.util.orderdata.selectGuigesName_value;
 			this.goodsimg = this.util.orderdata.goodsimg;
@@ -165,22 +168,22 @@
 				//把商品id，地址id，商品数量，以及商品规格id传过去
 				let params = {
 					"goods_id": this.util.orderdata.goods_id,
-					"goods_num":this.number,
-					"address_id":this.addr_id,
-					"guige":this.util.orderdata.selectGuiges
+					"goods_num": this.number,
+					"address_id": this.addr_id,
+					"guige": this.util.orderdata.selectGuiges
 				};
 				let params1 = {
-					"paramsdata":JSON.stringify(params)
+					"paramsdata": JSON.stringify(params)
 				}
-				
+
 				let url = "/api/order/buynow";
-				
+
 				this.util.request(url, "POST", params1, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							let id = res.data.data.orderid;
 							uni.navigateTo({
-								url: "../orderdetail/orderdetail?id="+id
+								url: "../orderdetail/orderdetail?id=" + id
 							})
 						} else {
 							this.util.showWindow(res.data.msg);
@@ -193,17 +196,17 @@
 			addrs() {
 				uni.redirectTo({
 					// url: "../addr_list/addr_list?curr="+(new Date(`${fullday} ${time}`)).getTime()
-					url: "../addr_list/addr_list"
+					url: "../addr_list/addr_list?type="+1
 				})
 			},
 			jia() {
 				this.number++;
-				this.price = this.baseprice*this.number;
+				this.price = this.baseprice * this.number;
 			},
 			jian() {
 				if (this.number > 1) {
 					this.number--;
-					this.price = this.baseprice*this.number;
+					this.price = this.baseprice * this.number;
 				}
 			}
 
@@ -220,19 +223,22 @@
 		height: 100vh;
 	}
 
-	.part1{
+	.part1 {
 		display: flex;
 		justify-content: flex-start;
 	}
+
 	.part2 {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
 	}
-	.part22{
+
+	.part22 {
 		display: flex;
 		justify-content: flex-start;
 	}
+
 	.default {
 		width: 90upx;
 		height: 30upx;
@@ -457,11 +463,13 @@
 	.m {
 		color: #A5A5A5;
 	}
-	.icon{
+
+	.icon {
 		width: 50upx;
 		height: 18upx;
 	}
-	.XM{
+
+	.XM {
 		margin-right: 15upx;
 	}
 </style>

@@ -1,14 +1,8 @@
 
-.bannerImg {
-	width: 100%
-}
-.banner {
-	width: 100%;
-}
 .swiper {
-	height: 350rpx;
+	height: 400rpx;
 }
-.image1{
+.bannerImg {
 	width: 100%;
 }
 

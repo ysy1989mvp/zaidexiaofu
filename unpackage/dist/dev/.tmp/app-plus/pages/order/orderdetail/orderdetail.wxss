@@ -5,7 +5,7 @@ page {
 .container {
 	height: 100vh;
 }
-.part1{
+.part1 {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -26,7 +26,7 @@ page {
 	        justify-content: space-between;
 	width: 100%;
 }
-.part22{
+.part22 {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -384,7 +384,7 @@ page {
 .m {
 	color: #A5A5A5;
 }
-.icon{
+.icon {
 	width: 50rpx;
 	height: 18rpx;
 }

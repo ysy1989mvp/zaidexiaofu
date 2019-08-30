@@ -12,7 +12,7 @@
 				<view class="part4a">SEE MORE</view>
 				<view class="part4b">工艺展示</view>
 			</view>
-			<view class="gs" style="width: 90vw;margin: 0upx auto;">
+			<view class="gs" style="width: 98vw;margin: 0upx auto;">
 				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
 				 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
@@ -37,16 +37,22 @@ import bottombar from "@/components/bottombar/bottombar.vue"
 				"../../../static/ysy/gylc/lbt.png",],// 定义值接收轮播图数据
 			}
 		},
-		onLoad(){
+		onShow(){
 			let params = {};
 			let url = "/api/index/gylc_content";
 			this.util.request(url, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
+						let regex = new RegExp(`style="`, 'gi');
+						let rich = '';
+						if(this.data.content.indexOf(`style="`)>-1){
+							rich = this.data.content.replace(regex, `style="max-width: 100%;`);
+						}else{
+							regex = new RegExp('<img', 'gi');
+							rich = this.data.content.replace(regex, `<img style="max-width: 100%;width:100%;"`)
+						}
 						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);
@@ -66,7 +72,7 @@ import bottombar from "@/components/bottombar/bottombar.vue"
 	.swiper{
 		height: 400upx;
 	}
-	swiper-item>uni-image {
+	.bannerImg{
 		width: 100%;
 	}
 	.part4a{

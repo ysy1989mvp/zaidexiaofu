@@ -3,7 +3,7 @@
 		<view class="content">
 			<view class="item" v-for="(item,index) in addrs" :key="index">
 				<image class="tubiao" src="../../../static/yangsongyan/imgs/address/513@3x.png"></image>
-				<view class="center"  @click="selected(item.address_id)">
+				<view class="center" @click="selected(item.address_id)">
 					<view class="part1">
 						<view class="name">{{item.name}}</view>
 						<view class="mobile">{{item.phone}}</view>
@@ -27,13 +27,15 @@
 	export default {
 		data() {
 			return {
-				addrs:[
-				]
+				type: 2,
+				addrs: []
 			}
 		},
-		onShow(){
-			let params = {
-			};
+		onLoad(option) {
+			this.type = option.type;
+		},
+		onShow() {
+			let params = {};
 			let url = "/api/address/lists";
 			this.util.request(url, "POST", params, (res) => {
 				if (res.statusCode == 200) {
@@ -48,26 +50,29 @@
 			});
 		},
 		methods: {
-			addAddr(index,addr_id){
+			addAddr(index, addr_id) {
 				uni.navigateTo({
-					url:"../addr_list/addressManage?type="+index+"&addr_id="+addr_id
+					url: "../addr_list/addressManage?type=" + index + "&addr_id=" + addr_id
 				});
 			},
-			selected(id){
-				uni.navigateTo({
-					url:"../confirm_order/confirm_order?type=2&addr_id="+id
-				});
+			selected(id) {
+				if (type == 1) {
+					uni.navigateTo({
+						url: "../confirm_order/confirm_order?type=2&addr_id=" + id
+					});
+				}
 			}
-			
+
 		}
 	}
 </script>
 
 <style>
-	page{
+	page {
 		background-color: #EEEEEE;
 	}
-	.item{
+
+	.item {
 		background-color: #FFFFFF;
 		display: flex;
 		justify-content: space-between;
@@ -75,12 +80,14 @@
 		margin: 15upx auto;
 		padding-bottom: 0upx 20upx;
 	}
-	.tubiao{
+
+	.tubiao {
 		width: 104upx;
 		height: 88upx;
 		margin-right: 10upx;
 	}
-	.center{
+
+	.center {
 		font-size: 28upx;
 		display: flex;
 		flex-direction: column;
@@ -88,11 +95,14 @@
 		align-items: flex-start;
 		width: 70%;
 	}
-	.part1,.part2{
+
+	.part1,
+	.part2 {
 		display: flex;
 		justify-content: flex-start;
 	}
-	.default{
+
+	.default {
 		width: 90upx;
 		height: 30upx;
 		font-size: 20upx;
@@ -103,7 +113,8 @@
 		margin-top: 4upx;
 		margin-right: 10upx;
 	}
-	.editer{
+
+	.editer {
 		font-size: 32upx;
 		width: 100upx;
 		height: 60upx;
@@ -114,27 +125,32 @@
 		margin-left: 10upx;
 		margin-right: 10upx;
 	}
-	.name{
+
+	.name {
 		line-height: 50upx;
 		margin-right: 10upx;
 	}
-	.mobile{
+
+	.mobile {
 		font-size: 25upx;
 		line-height: 50upx;
 		color: #AAAAAA;
 	}
-	.addr{
+
+	.addr {
 		font-size: 25upx;
 		line-height: 40upx;
 	}
-	.button_ysy{
+
+	.button_ysy {
 		position: fixed;
 		bottom: -20upx;
 		margin-left: 5%;
 		background-color: #061637;
 		color: #FFFFFF;
 	}
-	.liubai{
+
+	.liubai {
 		height: 120upx;
 	}
 </style>

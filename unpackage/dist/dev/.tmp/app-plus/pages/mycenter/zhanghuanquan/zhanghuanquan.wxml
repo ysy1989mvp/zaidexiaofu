@@ -1,0 +1,1 @@
+<view class="gs" style="width:98vw;margin:0rpx auto;"><rich-text class="fuwenben" style="width:98%;margin:0rpx auto;" type="node" nodes="{{data.content}}"></rich-text></view>

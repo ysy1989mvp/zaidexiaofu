@@ -137,7 +137,7 @@
 			return true;
 		  }
 		}
-		//console.log(new Error('mode无效，请选择有效的mode!'));
+		////console.log(new Error('mode无效，请选择有效的mode!'));
 		return false;
 	}
 	export default {

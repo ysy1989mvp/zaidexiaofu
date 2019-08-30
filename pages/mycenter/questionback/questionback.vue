@@ -12,16 +12,22 @@
 				data:null
 			}
 		},
-		onLoad(){
+		onShow(){
 			let params = {};
 			let url = "/api/index/cjwt_content";
 			this.util.request(url, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
+						let regex = new RegExp(`style="`, 'gi');
+						let rich = '';
+						if(this.data.content.indexOf(`style="`)>-1){
+							rich = this.data.content.replace(regex, `style="max-width: 100%;`);
+						}else{
+							regex = new RegExp('<img', 'gi');
+							rich = this.data.content.replace(regex, `<img style="max-width: 100%;width:100%;"`)
+						}
 						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);

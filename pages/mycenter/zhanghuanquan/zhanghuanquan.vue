@@ -1,5 +1,5 @@
 <template>
-	<view class="gs" style="width: 100vw;">
+	<view class="gs" style="width: 98vw;margin: 0upx auto;">
 		<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
 		 <rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 	</view>
@@ -12,16 +12,22 @@
 				data:null
 			}
 		},
-		onLoad(){
+		onShow(){
 			let params = {};
 			let url = "/api/index/zhaq_content";
 			this.util.request(url, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
+						let regex = new RegExp(`style="`, 'gi');
+						let rich = '';
+						if(this.data.content.indexOf(`style="`)>-1){
+							rich = this.data.content.replace(regex, `style="max-width: 100%;`);
+						}else{
+							regex = new RegExp('<img', 'gi');
+							rich = this.data.content.replace(regex, `<img style="max-width: 100%;width:100%;"`)
+						}
 						this.data.content = rich;
 					} else {
 						this.util.showWindow(res.data.msg);

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "工艺流程",
-  "usingComponents": {}
+  "usingComponents": {
+    "bottombar": "/components/bottombar/bottombar"
+  }
 }

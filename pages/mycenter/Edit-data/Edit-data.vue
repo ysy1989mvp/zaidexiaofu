@@ -87,7 +87,7 @@
 				}]
 			}
 		},
-		onLoad() {
+		onShow() {
 			let params = {};
 			let url = "/api/school";
 
@@ -105,7 +105,7 @@
 			});
 			let url1 = "/api/user";
 			this.util.request(url1, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -138,7 +138,7 @@
 				index,
 				orignItem
 			}) {
-				//console.log("-------------"+JSON.stringify(orignItem));
+				////console.log("-------------"+JSON.stringify(orignItem));
 				this.school_no = orignItem.id;
 			},
 			xingbiechange({
@@ -159,7 +159,7 @@
 				};
 				let url1 = "/api/user/profile";
 				this.util.request(url1, "POST", params, (res) => {
-					//console.log(JSON.stringify(res));
+					////console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateTo({

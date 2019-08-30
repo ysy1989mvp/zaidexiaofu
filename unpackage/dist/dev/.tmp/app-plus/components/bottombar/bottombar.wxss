@@ -1,0 +1,54 @@
+
+.bottomfixbar{
+	background-color: #FFFFFF;
+	width: 100%;
+	position: fixed;
+	bottom: 0rpx;
+}
+.bottom_bar {
+	width: 70%;
+	height: 100rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	font-size: 20rpx;
+	margin: 0rpx auto;
+}
+.neirong_bar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+}
+.bar_img {
+	height: 54rpx;
+	width: 54rpx;
+}
+.bar_hide {
+	display: none;
+}
+.bottom_text2 {
+	color: #fa436a;
+	text-align: center;
+}
+.bottom_text1 {
+	color: #c0c4cc;
+	text-align: center;
+}
+/* #fa436 */
+/* #c0c4cc */
+

@@ -40,7 +40,8 @@
 		},
 		data() {
 			return {
-				addr_id:null,
+				thisoption: null,
+				addr_id: null,
 				addr_p: '',
 				toggleTab: '点击选择地区',
 				type: 1,
@@ -50,39 +51,43 @@
 					// addressName: '在地图选择',
 					address: '',
 					area: '',
-					defaule:false,
+					defaule: false,
 					default: 0
 				}
 			}
 		},
 		onLoad(option) {
-			this.type = option.type;
+			this.thisoption = option;
+		},
+		onShow() {
+
+			this.type = this.thisoption.type;
 			let title = '新增收货地址';
-			if (option.type === 2) {
+			if (this.thisoption.type === 2) {
 				title = '编辑收货地址'
 			}
-			this.manageType = option.type;
+			this.manageType = this.thisoption.type;
 			uni.setNavigationBarTitle({
 				title
 			});
 			if (this.type == 2) {
 				//编辑需要先获取对应id
-				this.addr_id = option.addr_id;
+				this.addr_id = this.thisoption.addr_id;
 				//查会对应的地址
 				let params = {
 					"id": this.addr_id
 				};
 				let url = "/api/address/getaddressinfo";
-				
+
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.addressData.name = res.data.data.name;
 							this.addressData.mobile = res.data.data.phone;
 							this.addressData.area = res.data.data.detail;
-							if(res.data.data.isdefault=="0"){
-							this.addressData.defaule = false;
-							}else{
+							if (res.data.data.isdefault == "0") {
+								this.addressData.defaule = false;
+							} else {
 								this.addressData.defaule = true;
 							}
 							this.toggleTab = res.data.data.address_name;
@@ -121,7 +126,7 @@
 					this.addressData.default = 0;
 				}
 			},
-			modify(){
+			modify() {
 				let data = this.addressData;
 				if (!data.name) {
 					this.util.showWindow('请填写收货人姓名');
@@ -136,15 +141,15 @@
 					return;
 				}
 				let params = {
-					"id":this.addr_id,
+					"id": this.addr_id,
 					"name": this.addressData.name,
 					"phone": this.addressData.mobile,
 					"detail": this.addressData.area,
-					"isDefault": this.addressData.defaule?1:0,
+					"isDefault": this.addressData.defaule ? 1 : 0,
 					"addressName": this.addr_p
 				};
-				let url = "/api/address/add";
-				
+				let url = "/api/address/edit";
+
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
@@ -209,18 +214,18 @@
 				// 	uni.navigateBack()
 				// }, 800)
 			},
-			deleteAddr(){
+			deleteAddr() {
 				let params = {
 					"id": this.addr_id
 				};
 				let url = "/api/address/del";
-				
+
 				this.util.request(url, "POST", params, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.util.showWindow("删除成功");
 							uni.navigateBack();
-							
+
 						} else {
 							this.util.showWindow(res.data.msg);
 							return;
@@ -296,6 +301,6 @@
 	}
 
 	.lvse {
-		background-color: #1BCC8D;
+		background-color: #0a2051;
 	}
 </style>

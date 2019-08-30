@@ -76,12 +76,12 @@ page {
   margin: 60rpx auto;
   font-size: 32rpx;
   color: #fff;
-  background-color: #fa436a;
+  background-color: #6E0012;
   border-radius: 10rpx;
   -webkit-box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
           box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 }
 .lvse {
-  background-color: #1BCC8D;
+  background-color: #0a2051;
 }
 

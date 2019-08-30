@@ -127,7 +127,7 @@
 				};
 				let url1 = "/api/question_feedback/add";
 				this.util.request(url1, "POST", params, (res) => {
-					//console.log(JSON.stringify(res));
+					////console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateBack();

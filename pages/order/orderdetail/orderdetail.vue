@@ -10,8 +10,9 @@
 						</view>
 						<view class="part2">
 							<view class="part22">
-							<!-- <view class="default" v-if="addr_data.default==1">默认</view> -->
-							<view class="addr">{{addr_data.province_name}} {{addr_data.city_name}} {{addr_data.region_name}} {{addr_data.detail}}</view>
+								<!-- <view class="default" v-if="addr_data.default==1">默认</view> -->
+								<view class="addr">{{addr_data.province_name}} {{addr_data.city_name}} {{addr_data.region_name}}
+									{{addr_data.detail}}</view>
 							</view>
 							<view class="m"> </view>
 						</view>
@@ -47,13 +48,13 @@
 						<view class="g1">
 							<view class="gm">购买数量</view>
 							<view class="sl">
-								<view class="s3" >{{order_data.total_num}}</view>
+								<view class="s3">{{order_data.total_num}}</view>
 							</view>
 						</view>
 						<view class="g2">
 							<view class="u1">配送方式</view>
 							<!-- <view class="u2">{{order_data.express_company}}</view> -->
-							<view class="u2">顺风到付</view>
+							<view class="u2">顺风到付{{status_ysy}}</view>
 						</view>
 						<view class="g3">
 							<view class="u3">运费</view>
@@ -67,58 +68,92 @@
 					<view class="HJ">合计：￥{{order_data.pay_price}}</view>
 				</view>
 				<view class="GM" v-if="order_data.pay_status==10" @click="pay">支付</view>
-				<view class="GM" v-if="order_data.pay_status==20" @click="pay">已支付</view>
+				<view class="GM" v-if="order_data.pay_status==20">已支付</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	// import wx from '../../../common/jweixin-1.4.0.js'
 	export default {
 		data() {
 			return {
-				order_id:null,
-				goods_data:null,
-				addr_data:null,
-				order_data:null,
+				option: null,
+				order_id: null,
+				goods_data: null,
+				addr_data: null,
+				order_data: null,
+				status_ysy: ''
 			}
 		},
-		onLoad(option){
+		onLoad(option) {
+			this.option = option;
+		},
+		onShow() {
 			// 商品详情页跳转
-				this.order_id = option.id;
-				let params = {
-					"id":this.order_id
-				};
-				let url = "/api/order/detail";
-				this.util.request(url, "GET", params, (res) => {
-					//console.log(JSON.stringify(res));
-					if (res.statusCode == 200) {
-						if (res.data.code == 1) {
-							this.addr_data = res.data.data.address;
-							this.goods_data = res.data.data.goods;
-							this.order_data = res.data.data.order;
-						} else {
-							this.util.showWindow(res.data.msg);
-							return;
-						}
+			this.order_id = this.option.id;
+			let params = {
+				"id": this.order_id
+			};
+			let url = "/api/order/detail";
+			this.util.request(url, "GET", params, (res) => {
+				////console.log(JSON.stringify(res));
+				if (res.statusCode == 200) {
+					if (res.data.code == 1) {
+						this.addr_data = res.data.data.address;
+						this.goods_data = res.data.data.goods;
+						this.order_data = res.data.data.order;
 					} else {
-						this.util.showWindow("请求错误");
+						this.util.showWindow(res.data.msg);
 						return;
 					}
-				});
-			
+				} else {
+					this.util.showWindow("请求错误");
+					return;
+				}
+			});
+
 		},
 		methods: {
-			pay(){
+			pay() {
 				let params1 = {
-					"order_no":this.order_data.order_no
+					"order_no": this.order_data.order_no
 				}
 				let url = "/api/order/orderpay";
-				this.util.request(url,"POST",params1, (res) => {
+				this.util.request(url, "POST", params1, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							// this.total_price = res.data.data.order_total_price;
-							this.order_data.pay_status = res.data.data.pay_status;
+							// this.order_data.pay_status = res.data.data.pay_status;
+							// 安卓调用微信支付 
+							// WeixinJSBridge.invoke(
+							// 	'getBrandWCPayRequest', {
+							// 		"appId": res.data.data.appId, //公众号名称，由商户传入     
+							// 		"timeStamp": res.data.data.timeStamp, //时间戳，自1970年以来的秒数     
+							// 		"nonceStr": res.data.data.nonceStr, //随机串     
+							// 		"package": res.data.data.package,
+							// 		"signType": "MD5", //微信签名方式：     
+							// 		"paySign": res.data.data.paySign //微信签名 
+							// 	},
+							// 	function(res) {
+							// 		this.status_ysy = res.err_msg
+							// 		if (res.err_msg == "get_brand_wcpay_request:ok") {
+							// 			// 使用以上方式判断前端返回,微信团队郑重提示：
+							// 			//res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+							// 		}
+							// 	});
+							// if (typeof WeixinJSBridge == "undefined") {
+							// 	if (document.addEventListener) {
+							// 		document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+							// 	} else if (document.attachEvent) {
+							// 		document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							// 		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+							// 	}
+							// } else {
+							// 	onBridgeReady();
+							// }
+
 							this.util.showWindow("支付成功");
 							uni.switchTab({
 								url: "../index/index"
@@ -147,19 +182,22 @@
 		height: 100vh;
 	}
 
-	.part1{
+	.part1 {
 		display: flex;
 		justify-content: flex-start;
 	}
+
 	.part2 {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
 	}
-	.part22{
+
+	.part22 {
 		display: flex;
 		justify-content: flex-start;
 	}
+
 	.default {
 		width: 90upx;
 		height: 30upx;
@@ -384,7 +422,8 @@
 	.m {
 		color: #A5A5A5;
 	}
-	.icon{
+
+	.icon {
 		width: 50upx;
 		height: 18upx;
 	}

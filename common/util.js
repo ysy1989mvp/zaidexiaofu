@@ -17,7 +17,7 @@ const tabCurrentIndex = 0;
 //     }
 
 const uploaddata = {
-	uploadurl:"/api/common/upload"
+	uploadurl: "/api/common/upload"
 }; // 文件上传需要的配置数据
 const uploadImgas = []; //上传云图片到后台的图片数据
 const orderdata = null; //订单确认页数据
@@ -30,18 +30,18 @@ const orderdata = null; //订单确认页数据
  */
 function request(url1, method, params, success) {
 	var token = uni.getStorageSync('token');
-	//console.log("token---------"+token);
+	////console.log("token---------"+token);
 	var contentType = "application/x-www-form-urlencoded";
-	console.log("提交地址:" + theApi.testurl + url1);
-	console.log("提交参数:" + JSON.stringify(params));
-	console.log("提交类型:" + contentType);
+	//console.log("提交地址:" + theApi.testurl + url1);
+	//console.log("提交参数:" + JSON.stringify(params));
+	//console.log("提交类型:" + contentType);
 	uni.request({
 		url: theApi.testurl + url1,
 		method: method,
 		// header: {'content-type': 'application/json'},
 		header: {
 			'content-type': contentType,
-			'token':token
+			'token': token
 			// 'Access-Control-Allow-Headers':'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
 			// 'Access-Control-Allow-Origin':theApi.testurl
 		},
@@ -63,15 +63,15 @@ function request(url1, method, params, success) {
 };
 
 function requestImg(method, params, file, success) {
-	//console.log("本地文件路径:"+file);
-	//console.log("本地文件路径:"+JSON.stringify(params));
+	////console.log("本地文件路径:"+file);
+	////console.log("本地文件路径:"+JSON.stringify(params));
 	var token = uni.getStorageSync('token');
 	uni.uploadFile({
-		url: theApi.testurl +"/api/common/upload", // 后端api接口
+		url: theApi.testurl + "/api/common/upload", // 后端api接口
 		filePath: file, // uni.chooseImage函数调用后获取的本地文件路劲
 		name: 'file', //后端通过'file'获取上传的文件对象
-		formData:{
-			"token":token
+		formData: {
+			"token": token
 		},
 		success: success,
 		fail: (error) => {
@@ -94,8 +94,8 @@ function requestType(url, method, params, contentType, success) {
 	if (token != null) {
 		params["token"] = this.token;
 	}
-	//console.log("提交地址:" + theApi.testurl + url);
-	//console.log("提交参数:" + params);
+	////console.log("提交地址:" + theApi.testurl + url);
+	////console.log("提交参数:" + params);
 	uni.request({
 		url: theApi.testurl + url,
 		method: method,
@@ -168,6 +168,39 @@ function previewImage(imageList, index) {
 	});
 }
 
+function tokenCheck(callback) {
+	var result = false;
+	var token1 = uni.getStorageSync('token');
+	var token2 = null;
+	if (token1 == null && token1 == '') {
+		return result;
+	} else {
+		let params = {};
+		let url = "/api/token/check";
+		this.request(url, "GET", params, (res) => {
+			if (res.statusCode == 200) {
+				if (res.data.code == 1) {
+					token2 = res.data.data.token;
+					if (token2 == token1) {
+						result = true;
+					}
+					//console.log("校验回来的token：" + token2);
+				} else {
+					this.showWindow(res.data.msg);
+				}
+			} else if (res.data.code == 401) {
+					result = false;
+					//console.log("401的token：" + token);
+			} else {
+				this.util.showWindow("请求错误");
+			}
+			typeof(callback)==='function'&&callback(result);
+		});
+	}
+
+}
+
+
 export default {
 	request,
 	isSuccess,
@@ -178,5 +211,6 @@ export default {
 	requestType,
 	uploaddata,
 	uploadImgas,
-	tabCurrentIndex
+	tabCurrentIndex,
+	tokenCheck,
 }

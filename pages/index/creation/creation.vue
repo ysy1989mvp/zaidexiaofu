@@ -54,6 +54,7 @@
 		},
 		data() {
 			return {
+				seachContent:null,
 				scrollLeft: 0,
 				page: 1,
 				xiaolei: null,
@@ -71,12 +72,15 @@
 		},
 		onLoad(option) {
 			// 页面显示是默认选中第一个
-			var content = option.content;
+			this.seachContent = option.content;
+		},
+		onShow(){
 			this.tabCurrentIndex = 0;
-			let params = {};
+			let params = {
+			};
 			let url = "/api/goods/category";
 			this.util.request(url, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -97,11 +101,11 @@
 			//查询全部商品
 			let params1 = {
 				"page":this.page,
-				"name":content
+				"name":this.content
 			};
 			let url1 = "/api/goods";
 			this.util.request(url1, "POST", params1, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.goodsData = res.data.data;
@@ -131,7 +135,7 @@
 					};
 					let url1 = "/api/goods";
 					this.util.request(url1, "POST", params1, (res) => {
-						//console.log(JSON.stringify(res));
+						////console.log(JSON.stringify(res));
 						if (res.statusCode == 200) {
 							if (res.data.code == 1) {
 								this.goodsData = res.data.data;
@@ -154,7 +158,7 @@
 				};
 				let url = "/api/goods";
 				this.util.request(url, "POST", params, (res) => {
-					//console.log(JSON.stringify(res));
+					////console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.goodsData = res.data.data;

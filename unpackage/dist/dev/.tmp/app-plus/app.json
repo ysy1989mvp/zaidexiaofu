@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/mycenter/login/login",
     "pages/index/index/index",
+    "pages/mycenter/login/login",
     "pages/mycenter/regist/regist",
     "pages/mycenter/index/index",
     "pages/index/shop_detail/shop_detail",
@@ -19,11 +19,17 @@
     "pages/tuiguangxiangguang/anlizhanshi/anlizhanshi",
     "pages/tuiguangxiangguang/gongyiliucheng/gongyiliucheng",
     "pages/order/orderdetail/orderdetail",
-    "pages/mycenter/Edit-data/Edit-data"
+    "pages/mycenter/Edit-data/Edit-data",
+    "pages/mycenter/fuwufankui/fuwufankui",
+    "pages/mycenter/lianxiwomen/lianxiwomen",
+    "pages/mycenter/zhanghuanquan/zhanghuanquan",
+    "pages/mycenter/guanyuzaide/guanyuzaide",
+    "pages/kefu/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarBackgroundColor": "#000000"
+    "navigationBarBackgroundColor": "#000000",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#C0C4CC",
@@ -33,20 +39,20 @@
     "list": [
       {
         "pagePath": "pages/index/index/index",
-        "iconPath": "static/lxy/105.png",
+        "iconPath": "static/lxy/1051.png",
         "selectedIconPath": "static/lxy/105.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/order/index/index",
-        "iconPath": "static/lxy/105.png",
-        "selectedIconPath": "static/lxy/105.png",
+        "iconPath": "static/lxy/1061.png",
+        "selectedIconPath": "static/lxy/106.png",
         "text": "订单"
       },
       {
         "pagePath": "pages/mycenter/index/index",
-        "iconPath": "static/lxy/105.png",
-        "selectedIconPath": "static/lxy/105.png",
+        "iconPath": "static/lxy/1081.png",
+        "selectedIconPath": "static/lxy/108.png",
         "text": "我的"
       }
     ]

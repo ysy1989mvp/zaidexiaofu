@@ -168,6 +168,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* tab顶部切换 */
 .navbar {
 	display: -webkit-box;
@@ -226,6 +238,9 @@
 	width: 44px;
 	height: 0;
 	border-bottom: 2px solid #C5C5C5;
+}
+.navbar {
+	overflow: auto;
 }
 .top_tag {
 	width: 100%;
@@ -319,7 +334,7 @@
 	z-index: 100;
 	width: 100%;
 	height: 100vh;
-	background-color: rgba(65, 65, 65, 0.5);
+	background-color: rgba(65, 65, 65, 0.4);
 	top: 100rpx;
 }
 .neirong {
@@ -352,5 +367,21 @@
 .xuanzhong {
 	background-color: #061637;
 	color: #FFFFFF;
+}
+.bg-white {
+	white-space: nowrap;
+	background-color: #ffffff;
+	color: #666666;
+}
+.nav-item {
+	height: 49px;
+	display: inline-block;
+	line-height: 49px;
+	margin: 0 5px;
+	padding: 0 11px;
+}
+.text-green {
+	color: #39b54a;
+	border-bottom: 2px solid;
 }
 

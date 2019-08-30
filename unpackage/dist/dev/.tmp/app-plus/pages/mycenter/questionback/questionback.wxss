@@ -10,8 +10,9 @@
 	    -ms-flex-pack: center;
 	        justify-content: center;
 }
-image1{
-	width: 100%;
+.image1{
+	width: 90%;
 	height: 200%;
+	margin: 0rpx auto;
 }
 

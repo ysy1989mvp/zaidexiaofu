@@ -93,7 +93,7 @@
 				
 			}
 		},
-		onLoad() {
+		onShow() {
 			let params = {};
 			let url = "/api/school";
 
@@ -112,7 +112,7 @@
 		},
 		methods: {
 			xuexiaochange({newVal, oldVal, index, orignItem}){
-				//console.log(newVal, oldVal, index, orignItem);
+				////console.log(newVal, oldVal, index, orignItem);
 				this.schoolcode = orignItem.code;
 				this.schoolid = orignItem.id;
 				let params = {
@@ -174,8 +174,8 @@
 					"schoolId":this.schoolid,
 					"schoolCode":this.schoolcode,
 					"gradeId":this.nianjiid,
-					// "name":this.studentName,
-					"sno":this.studentNo,
+					// "sno":this.studentName,
+					"name":this.studentNo,
 					"captcha":this.vcode,
 					"password":this.pwd
 				};

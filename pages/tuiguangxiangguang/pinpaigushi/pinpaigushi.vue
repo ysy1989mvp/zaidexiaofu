@@ -8,7 +8,7 @@
 					</swiper-item>
 				</swiper>
 			</view>
-			<view class="gs" style="width: 90vw;margin: 0upx auto;">
+			<view class="gs" style="width: 98vw;margin: 0upx auto;">
 				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->
 				<rich-text class="fuwenben" style="width: 98%;margin: 0upx auto;" type="node" :nodes="data.content"></rich-text>
 			</view>
@@ -34,7 +34,7 @@
 				], // 定义值接收轮播图数据
 			}
 		},
-		onLoad() {
+		onShow() {
 			let params = {};
 			let url = "/api/index/ppgs_content";
 			this.util.request(url, "POST", params, (res) => {
@@ -42,9 +42,17 @@
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
-						const regex = new RegExp('style="', 'gi');
-						let rich = this.data.content.replace(regex, `style="max-width: 100%;width:100%;`)
+						let regex = new RegExp(`style="`, 'g');
+						let rich = '';
+						//console.log("之前"+this.data.content);
+						if(this.data.content.indexOf(`style="`)>-1){
+							rich = this.data.content.replace(regex, `style="max-width: 100%;`);
+						}else{
+							regex = new RegExp('<img', 'gi');
+							rich = this.data.content.replace(regex, `<img style="max-width: 100%; width:100%;"`)
+						}
 						this.data.content = rich;
+						//console.log("之后："+this.data.content);
 					} else {
 						this.util.showWindow(res.data.msg);
 					}
@@ -65,7 +73,7 @@
 		height: 400upx;
 	}
 
-	swiper-item>uni-image {
+	.bannerImg {
 		width: 100%;
 	}
 </style>

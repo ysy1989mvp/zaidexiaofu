@@ -1,2 +1,2 @@
-setCssToHead([".",[1],"bannerImg { width: 100% }\n.",[1],"banner { width: 100%; }\n.",[1],"swiper { height: ",[0,350],"; }\n.",[1],"image1{ width: 100%; }\n",],undefined,{path:"./pages/tuiguangxiangguang/pinpaigushi/pinpaigushi.wxss"})();
+setCssToHead([".",[1],"swiper { height: ",[0,400],"; }\n.",[1],"bannerImg { width: 100%; }\n",],undefined,{path:"./pages/tuiguangxiangguang/pinpaigushi/pinpaigushi.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/tuiguangxiangguang/pinpaigushi/pinpaigushi.wxml') } }));

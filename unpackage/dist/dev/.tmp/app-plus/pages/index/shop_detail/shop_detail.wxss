@@ -6,7 +6,7 @@
 .swiper {
 	height: 500rpx;
 }
-swiper-item>uni-image {
+.bannerImg {
 	width: 100%;
 }
 
@@ -18,17 +18,26 @@ swiper-item>uni-image {
 .xf {
 	background-color: #061637;
 	color: #FFFFFF;
-	width: 200rpx;
+	/* width: 200upx; */
 	font-size: 25rpx;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	padding: 0rpx 10rpx;
+	margin-top: 30rpx;
+	/* display: block; */
+	/* display: flex;
+	justify-content: center; */
 	border-radius: 100rpx;
+	/* -webkit-line-clamp: 1; */
+	/* // 限制显示的文本的行数为3 */
+	/* -webkit-box-orient: vertical; */
+	/* // 水平排列<p>，使其不纵向显示 */
+	/* word-break: break-all; */
+	/* // 使<p>中的文字换行 */
+	/* overflow: hidden; */
+	/* // 超出的文字部分隐藏 */
+	/* text-overflow: ellipsis; */
+	/* // 超出的文字部分用...来显示 */
+	/* display: -webkit-box; */
+	/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
 }
 .p {
 	color: #6E0012;
@@ -37,6 +46,7 @@ swiper-item>uni-image {
 .w {
 	color: #061637;
 	font-size: 28rpx;
+	margin-top: 10rpx;
 }
 .tu {
 	width: 71rpx;
@@ -58,10 +68,7 @@ swiper-item>uni-image {
 	color: #6E0012;
 }
 .yy {
-	font-size: 10rpx;
-}
-._img {
-	width: 100%;
+	font-size: 16rpx;
 }
 .D {
 	width: 100%;
@@ -123,6 +130,7 @@ swiper-item>uni-image {
 	width: 100%;
 	height: 240rpx;
 	margin-top: 20rpx;
+	margin-bottom: 40rpx;
 }
 .t2 {
 	display: -webkit-box;
@@ -256,7 +264,14 @@ swiper-item>uni-image {
 .t3b {
 	line-height: 60rpx;
 }
-.bianse{
+.bianse {
 	background-color: #1BCC8D;
+}
+.part2{
+	width: 90%;
+	margin: 0rpx auto;
+}
+.yincang{
+	display: none;
 }
 

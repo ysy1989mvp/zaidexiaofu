@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "校服定制",
-  "usingComponents": {}
+  "usingComponents": {
+    "bottombar": "/components/bottombar/bottombar"
+  }
 }

@@ -84,7 +84,7 @@
 				};
 				let url = "/api/user/mobilelogin";
 				this.util.request(url, "POST", params, (res) => {
-					//console.log(JSON.stringify(res));
+					////console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.setStorageSync('token', res.data.data.userinfo.token);

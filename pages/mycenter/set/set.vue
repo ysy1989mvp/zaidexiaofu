@@ -52,12 +52,12 @@
 				data:null
 			}
 		},
-		onLoad(){
+		onShow(){
 			let params = {
 			};
 			let url = "/api/user";
 			this.util.request(url, "POST", params, (res) => {
-				//console.log(JSON.stringify(res));
+				////console.log(JSON.stringify(res));
 				if (res.statusCode == 200) {
 					if (res.data.code == 1) {
 						this.data = res.data.data;
@@ -87,7 +87,7 @@
 			},
 			addresses(){
 				uni.navigateTo({
-					url:"../../order/addr_list/addr_list"
+					url:"../../order/addr_list/addr_list?type="+2
 				});
 			},
 			edit(){
@@ -100,7 +100,7 @@
 				};
 				let url = "/api/user/logout";
 				this.util.request(url, "POST", params, (res) => {
-					//console.log(JSON.stringify(res));
+					////console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateTo({

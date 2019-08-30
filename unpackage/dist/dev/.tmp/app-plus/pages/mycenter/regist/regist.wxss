@@ -1,4 +1,28 @@
 
+.top{
+	width: 100%;
+	height: 82rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	-webkit-flex-direction: row-reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+	/* justify-content: center; */
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.logo{
+	width: 80rpx;
+	height: 80rpx;
+	margin-top: 20rpx;
+	margin-right: 20rpx;
+}
 .input {
 	border: 0rpx solid #FFFFFF;
 }
@@ -47,5 +71,9 @@
 .button_ysy {
 	margin-top: 130rpx;
 	background-color: #6F0011;
+}
+.input2{
+	font-size: 28rpx;
+	color: #A5A5A5;
 }
 

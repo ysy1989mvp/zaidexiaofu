@@ -3,18 +3,19 @@
 		<view class="content">
 			<swiper class="swiper" indicator-dots="true" autoplay="false" interval="50000000" duration="1500">
 				<swiper-item v-for="(item , index) in bannerlist" :key="index">
-					<image :src="item" mode="scaleToFill"></image>
+					<image class="bannerImg" :src="item" mode="scaleToFill"></image>
 				</swiper-item>
 			</swiper>
 		</view>
 		<view class="part2">
-			<view class="xf">{{goodsdata.goods_name}}</view>
+			<view><text class="xf">{{goodsdata.goods_name}}</text></view>
+			<view class="w">{{goodsdata.first_title}}</view>
 			<view class="p">￥{{goodsdata.price}}</view>
 			<view class="jdtw">
 				<image class="tu" src="../../../static/ysy/jdt.png" mode=""></image>
 				<view class="yy">已定制85%</view>
 			</view>
-			<view class="w">{{goodsdata.first_title}}</view>
+			
 		</view>
 		<!-- <view class="see1" @click="bubuy"> -->
 		<!-- <image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image> -->
@@ -26,7 +27,7 @@
 			<view class="HJ">合计：￥{{total_price}}</view>
 			<view class="GM" @click="buy">立即购买</view>
 
-			<view class="zhezhao" v-if="show_number==1" @click="bubuy($event)">
+			<view class="zhezhao" :class="{yincang:show_number==0}" @click="bubuy($event)">
 				<view class="part3">
 					<view class="l3a">
 						<view class="w1">
@@ -43,7 +44,8 @@
 								<view class="t3b"></view>
 							</view>
 							<view class="SZ">
-								<text class="tex" v-for="(item1,index1) in item.spec_items" :class="{bianse:biaoji==index1}" :key="index1" @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1)">{{item1.spec_value}}</text>
+								<text class="tex" v-for="(item1,index1) in item.spec_items" :class="{bianse:biaoji==index1}" :key="index1"
+								 @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1)">{{item1.spec_value}}</text>
 							</view>
 						</view>
 					</view>
@@ -61,8 +63,8 @@
 	export default {
 		data() {
 			return {
-				biaoji:-1,
-				goodsId:null,
+				biaoji: -1,
+				goodsId: null,
 				sld: false,
 				show_number: 0,
 				bannerlist: [],
@@ -71,13 +73,15 @@
 				total_price: 0,
 				specData: [],
 				selectGuiges: [],
-				selectGuigesName_value:[]
+				selectGuigesName_value: []
 			}
 		},
 		onLoad(option) {
 			this.goodsId = option.id;
+		},
+		onShow() {
 			let params = {
-				"goodId": option.id
+				"goodId": this.goodsId
 			};
 			let url = "/api/goods/detail";
 
@@ -89,9 +93,17 @@
 						this.canshulist = res.data.data.detail.spec;
 						this.total_price = res.data.data.detail.price;
 						this.specData = res.data.data.specData;
-						const regex = new RegExp('style="', 'gi');
-						let rich = this.goodsdata.content.replace(regex, `style="max-width: 100%;width:100%;`)
+						//console.log("替换之前:"+this.goodsdata.content);
+						let regex = new RegExp(`style="`, 'g');
+						let rich = '';
+						if (this.goodsdata.content.indexOf(`style="`) > -1) {
+							rich = this.goodsdata.content.replace(regex, `style="max-width: 100%;`);
+						} else {
+							regex = new RegExp(`<img`, 'g');
+							rich = this.goodsdata.content.replace(regex, `<img style="max-width: 100%;"`)
+						}
 						this.goodsdata.content = rich;
+						//console.log("替换之后:"+this.goodsdata.content);
 					} else {
 						this.util.showWindow(res.data.msg);
 					}
@@ -101,7 +113,7 @@
 			});
 		},
 		methods: {
-			selectGuige(group_id, item_id,group_name,item_value,index) {
+			selectGuige(group_id, item_id, group_name, item_value, index) {
 				this.biaoji = index;
 				let boolean = false;
 				for (var i = 0; i < this.selectGuiges.length; i++) {
@@ -117,23 +129,23 @@
 						'item_id': item_id
 					};
 					var guigevalue = {
-						"group_name":group_name,
-						"item_value":item_value
+						"group_name": group_name,
+						"item_value": item_value
 					};
 					this.selectGuiges.push(guige);
 					this.selectGuigesName_value.push(guigevalue);
 				}
 				// this.goodsId
 				let params = {
-					"goods_id":parseInt(this.goodsId),
-					"guige":this.selectGuiges,
-					"goods_num":1
+					"goods_id": parseInt(this.goodsId),
+					"guige": this.selectGuiges,
+					"goods_num": 1
 				};
 				let params1 = {
-					"paramsdata":JSON.stringify(params)
+					"paramsdata": JSON.stringify(params)
 				}
 				let url = "/api/order/calculationprice";
-				this.util.request(url,"POST",params1, (res) => {
+				this.util.request(url, "POST", params1, (res) => {
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.total_price = res.data.data.order_total_price;
@@ -151,25 +163,22 @@
 				this.show_number = 1;
 			},
 			bubuy(event) {
-				var el1 = event.currentTarget;
-				var el2 = event.target;
-				if (el1 == el2) {
+				console.log("隐藏kaishi");
 					//do something
-					this.show_number = 0;
-				}
+				this.show_number = 0;
 			},
 			confirmBuy() {
 				var data1 = {
-					"goods_id":this.goodsdata.goods_id,
-					"selectGuiges":this.selectGuiges,
-					"goods_name":this.goodsdata.goods_name,
-					"selectGuigesName_value":this.selectGuigesName_value,
-					"totalPrice":this.total_price,
-					"goodsimg":this.goodsdata.image
+					"goods_id": this.goodsdata.goods_id,
+					"selectGuiges": this.selectGuiges,
+					"goods_name": this.goodsdata.goods_name,
+					"selectGuigesName_value": this.selectGuigesName_value,
+					"totalPrice": this.total_price,
+					"goodsimg": this.goodsdata.image
 				};
-							
+
 				uni.navigateTo({
-					url: "../../order/confirm_order/confirm_order?type=1&data="+JSON.stringify(data1)
+					url: "../../order/confirm_order/confirm_order?type=1&data=" + JSON.stringify(data1)
 				})
 			},
 
@@ -187,7 +196,7 @@
 		height: 500upx;
 	}
 
-	swiper-item>uni-image {
+	.bannerImg {
 		width: 100%;
 	}
 
@@ -199,11 +208,26 @@
 	.xf {
 		background-color: #061637;
 		color: #FFFFFF;
-		width: 200upx;
+		/* width: 200upx; */
 		font-size: 25upx;
-		display: flex;
-		justify-content: center;
+		padding: 0upx 10upx;
+		margin-top: 30upx;
+		/* display: block; */
+		/* display: flex;
+		justify-content: center; */
 		border-radius: 100upx;
+		/* -webkit-line-clamp: 1; */
+		/* // 限制显示的文本的行数为3 */
+		/* -webkit-box-orient: vertical; */
+		/* // 水平排列<p>，使其不纵向显示 */
+		/* word-break: break-all; */
+		/* // 使<p>中的文字换行 */
+		/* overflow: hidden; */
+		/* // 超出的文字部分隐藏 */
+		/* text-overflow: ellipsis; */
+		/* // 超出的文字部分用...来显示 */
+		/* display: -webkit-box; */
+		/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
 	}
 
 	.p {
@@ -214,6 +238,7 @@
 	.w {
 		color: #061637;
 		font-size: 28upx;
+		margin-top: 10upx;
 	}
 
 	.tu {
@@ -231,11 +256,7 @@
 	}
 
 	.yy {
-		font-size: 10upx;
-	}
-
-	img {
-		width: 100%;
+		font-size: 16upx;
 	}
 
 	.D {
@@ -280,6 +301,7 @@
 		width: 100%;
 		height: 240upx;
 		margin-top: 20upx;
+		margin-bottom: 40upx;
 	}
 
 	.t2 {
@@ -381,7 +403,15 @@
 	.t3b {
 		line-height: 60upx;
 	}
-	.bianse{
+
+	.bianse {
 		background-color: #1BCC8D;
+	}
+	.part2{
+		width: 90%;
+		margin: 0upx auto;
+	}
+	.yincang{
+		display: none;
 	}
 </style>
