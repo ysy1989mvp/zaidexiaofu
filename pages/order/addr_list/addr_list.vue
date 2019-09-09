@@ -56,7 +56,7 @@
 				});
 			},
 			selected(id) {
-				if (type == 1) {
+				if (this.type == 1) {
 					uni.navigateTo({
 						url: "../confirm_order/confirm_order?type=2&addr_id=" + id
 					});

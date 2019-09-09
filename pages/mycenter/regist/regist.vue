@@ -4,20 +4,26 @@
 			<view class="top">
 				<image class="logo" src="../../../static/ysy/logo.png"></image>
 			</view>
-			<view class="row">
+			<!-- <view class="row">
 				<view class="name">选择学校:</view>
 				<view class="val1">
 					<xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true" :style_Container="'height: 34px; font-size: 16px;'"
 					 :placeholder="'点击选择或输入有效学校'" :initValue="'点击选择或输入有效学校'" :selectHideType="'hideAll'" @change="xuexiaochange">
 					</xfl-select>
 				</view>
-			</view>
+			</view> -->
 			<view class="row">
+				<view class="name">学校:</view>
+				<view class="val2">
+					<input class="input2" type="text" v-model="school_name" placeholder="请输入孩子所在学校"/>
+				</view>
+			</view>
+			<!-- <view class="row">
 				<view class="name">学校编号:</view>
 				<view class="val2">
 					<input class="input2" type="number" v-model="schoolcode" disabled="disabled"/>
 				</view>
-			</view>
+			</view> -->
 			<view class="row">
 				<view class="name">学生年级:</view>
 				<view class="val2">
@@ -94,29 +100,8 @@
 			}
 		},
 		onShow() {
-			let params = {};
-			let url = "/api/school";
-
-			this.util.request(url, "POST", params, (res) => {
-				if (res.statusCode == 200) {
-					if (res.data.code == 1) {
-						this.xuexiaodata = res.data.data;
-						
-					} else {
-						this.util.showWindow(res.data.msg);
-					}
-				} else {
-					this.util.showWindow("请求错误");
-				}
-			});
-		},
-		methods: {
-			xuexiaochange({newVal, oldVal, index, orignItem}){
-				////console.log(newVal, oldVal, index, orignItem);
-				this.schoolcode = orignItem.code;
-				this.schoolid = orignItem.id;
-				let params = {
-					"id":this.schoolid
+			let params = {
+					// "id":this.schoolid
 				};
 				let url = "/api/school_grade";
 				
@@ -131,7 +116,44 @@
 						this.util.showWindow("请求错误");
 					}
 				});
-			},
+// 			let params = {};
+// 			let url = "/api/school";
+// 
+// 			this.util.request(url, "POST", params, (res) => {
+// 				if (res.statusCode == 200) {
+// 					if (res.data.code == 1) {
+// 						this.xuexiaodata = res.data.data;
+// 						
+// 					} else {
+// 						this.util.showWindow(res.data.msg);
+// 					}
+// 				} else {
+// 					this.util.showWindow("请求错误");
+// 				}
+// 			});
+		},
+		methods: {
+			// xuexiaochange({newVal, oldVal, index, orignItem}){
+			// 	////console.log(newVal, oldVal, index, orignItem);
+			// 	this.schoolcode = orignItem.code;
+			// 	this.schoolid = orignItem.id;
+			// 	let params = {
+			// 		"id":this.schoolid
+			// 	};
+			// 	let url = "/api/school_grade";
+			// 	
+			// 	this.util.request(url, "GET", params, (res) => {
+			// 		if (res.statusCode == 200) {
+			// 			if (res.data.code == 1) {
+			// 				this.nianjidata = res.data.data;
+			// 			} else {
+			// 				this.util.showWindow(res.data.msg);
+			// 			}
+			// 		} else {
+			// 			this.util.showWindow("请求错误");
+			// 		}
+			// 	});
+			// },
 			nianjichange({newVal, oldVal, index, orignItem}){
 				this.nianjiid = orignItem.id;
 			},
@@ -171,8 +193,9 @@
 				}
 				let params = {
 					"mobile": this.mobile,
-					"schoolId":this.schoolid,
-					"schoolCode":this.schoolcode,
+					// "schoolId":this.schoolid,
+					// "schoolCode":this.schoolcode,
+					"school_name":this.school_name,
 					"gradeId":this.nianjiid,
 					// "sno":this.studentName,
 					"name":this.studentNo,

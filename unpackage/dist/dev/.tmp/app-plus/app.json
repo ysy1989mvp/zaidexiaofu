@@ -24,7 +24,8 @@
     "pages/mycenter/lianxiwomen/lianxiwomen",
     "pages/mycenter/zhanghuanquan/zhanghuanquan",
     "pages/mycenter/guanyuzaide/guanyuzaide",
-    "pages/kefu/index/index"
+    "pages/kefu/index/index",
+    "pages/order/paypage/paypage"
   ],
   "window": {
     "navigationBarTextStyle": "white",

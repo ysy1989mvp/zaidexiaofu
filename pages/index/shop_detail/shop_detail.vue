@@ -45,7 +45,7 @@
 							</view>
 							<view class="SZ">
 								<text class="tex" v-for="(item1,index1) in item.spec_items" :class="{bianse:biaoji==index1}" :key="index1"
-								 @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1)">{{item1.spec_value}}</text>
+								 @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1,$event)">{{item1.spec_value}}</text>
 							</view>
 						</view>
 					</view>
@@ -113,7 +113,8 @@
 			});
 		},
 		methods: {
-			selectGuige(group_id, item_id, group_name, item_value, index) {
+			selectGuige(group_id, item_id, group_name, item_value, index,event) {
+				// event.preventDefault();
 				this.biaoji = index;
 				let boolean = false;
 				for (var i = 0; i < this.selectGuiges.length; i++) {
@@ -163,9 +164,12 @@
 				this.show_number = 1;
 			},
 			bubuy(event) {
-				console.log("隐藏kaishi");
+				// var el1 = event.currentTarget;
+				// var el2 = event.target;
+				// if (el1 == el2) {
 					//do something
-				this.show_number = 0;
+					this.show_number = 0;
+				// }
 			},
 			confirmBuy() {
 				var data1 = {

@@ -131,6 +131,10 @@
             "path" : "pages/kefu/index/index",
             "style" : {}
         }
+        ,{
+            "path" : "pages/order/paypage/paypage",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

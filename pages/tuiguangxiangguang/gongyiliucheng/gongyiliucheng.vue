@@ -10,7 +10,7 @@
 			</view>
 			<view class="part4">
 				<view class="part4a">SEE MORE</view>
-				<view class="part4b">工艺展示</view>
+				<view class="part4b">校服定制</view>
 			</view>
 			<view class="gs" style="width: 98vw;margin: 0upx auto;">
 				<!-- <image class="image1" src="../../../static/ysy/ppgs.png" mode="widthFix"></image> -->

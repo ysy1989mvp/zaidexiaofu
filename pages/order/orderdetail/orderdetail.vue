@@ -75,7 +75,6 @@
 </template>
 
 <script>
-	// import wx from '../../../common/jweixin-1.4.0.js'
 	export default {
 		data() {
 			return {
@@ -117,47 +116,21 @@
 		},
 		methods: {
 			pay() {
-				let params1 = {
-					"order_no": this.order_data.order_no
-				}
-				let url = "/api/order/orderpay";
-				this.util.request(url, "POST", params1, (res) => {
+				var REDIRECT_URI = "http://xiaofu.51dreaming.com/index.html#/pages/order/paypage/paypage";
+								https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8794973a1dd135e5&redirect_uri=http://xiaofu.51dreaming.com/index.html#/pages/order/paypage/paypage&response_type=code&scope=snsapi_base    &state=STATE#wechat_redirect
+				// var wxurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID             &redirect_uri="+REDIRECT_URI+"                                                    &response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+				// window.location.href=wxurl;
+				uni.setStorageSync('order_id',this.order_data.id);
+				let params = {
+					// "redirect_uri":REDIRECT_URI
+				};
+				let url = "/api/order/sendcode";
+				this.util.request(url, "POST", params, (res) => {
+					console.log(JSON.stringify(res));
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
-							// this.total_price = res.data.data.order_total_price;
-							// this.order_data.pay_status = res.data.data.pay_status;
-							// 安卓调用微信支付 
-							// WeixinJSBridge.invoke(
-							// 	'getBrandWCPayRequest', {
-							// 		"appId": res.data.data.appId, //公众号名称，由商户传入     
-							// 		"timeStamp": res.data.data.timeStamp, //时间戳，自1970年以来的秒数     
-							// 		"nonceStr": res.data.data.nonceStr, //随机串     
-							// 		"package": res.data.data.package,
-							// 		"signType": "MD5", //微信签名方式：     
-							// 		"paySign": res.data.data.paySign //微信签名 
-							// 	},
-							// 	function(res) {
-							// 		this.status_ysy = res.err_msg
-							// 		if (res.err_msg == "get_brand_wcpay_request:ok") {
-							// 			// 使用以上方式判断前端返回,微信团队郑重提示：
-							// 			//res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-							// 		}
-							// 	});
-							// if (typeof WeixinJSBridge == "undefined") {
-							// 	if (document.addEventListener) {
-							// 		document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-							// 	} else if (document.attachEvent) {
-							// 		document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-							// 		document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-							// 	}
-							// } else {
-							// 	onBridgeReady();
-							// }
-
-							this.util.showWindow("支付成功");
-							uni.switchTab({
-								url: "../index/index"
-							})
+							var wxurl = res.data.data;
+							window.location.href=wxurl;
 						} else {
 							this.util.showWindow(res.data.msg);
 							return;

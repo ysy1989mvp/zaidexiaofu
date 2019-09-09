@@ -8,14 +8,14 @@
 							<view class="XM">{{addr_data.name}}</view>
 							<view class="nub">{{addr_data.mobile}}</view>
 						</view>
-						<view class="part2">
+						<view class="part2" v-if="addr_data.name!=''">
 							<view class="part22">
 								<view class="default" v-if="addr_data.default==1">默认</view>
 								<view class="addr">{{addr_data.detailAddr}}</view>
 							</view>
 							<view class="m"> 〉</view>
 						</view>
-						<view class="part2" v-if="addr_data.name==null">
+						<view class="part2" v-if="addr_data.name==''">
 							<view class="part22">
 								请添加您的收货地址
 							</view>
@@ -121,7 +121,7 @@
 							this.addr_data.detailAddr = res.data.data.address_name + " " + res.data.data.detail;
 							this.addr_data.default = res.data.data.isdefault;
 						} else {
-							this.util.showWindow(res.data.msg);
+							// this.util.showWindow(res.data.msg);
 							return;
 						}
 					} else {

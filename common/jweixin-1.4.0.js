@@ -1,26 +1,27 @@
 ! function(e, n) {
-	"function" == typeof define && (define.amd || define.cmd) ? define(function() {
+	"object" == typeof exports && "object" == typeof module ? module.exports = n(e) : "function" == typeof define && (
+		define.amd || define.cmd) ? define(function() {
 		return n(e)
 	}) : n(e, !0)
-}(this, function(e, n) {
+}(window, function(o, e) {
+	function c(n, e, i) {
+		o.WeixinJSBridge ? WeixinJSBridge.invoke(n, r(e), function(e) {
+			a(n, e, i)
+		}) : d(n, i)
+	}
+
 	function i(n, i, t) {
-		e.WeixinJSBridge ? WeixinJSBridge.invoke(n, o(i), function(e) {
-			c(n, e, t)
-		}) : u(n, t)
-	}
-
-	function t(n, i, t) {
-		e.WeixinJSBridge ? WeixinJSBridge.on(n, function(e) {
-			t && t.trigger && t.trigger(e), c(n, e, i)
-		}) : t ? u(n, t) : u(n, i)
-	}
-
-	function o(e) {
-		return e = e || {}, e.appId = C.appId, e.verifyAppId = C.appId, e.verifySignType = "sha1", e.verifyTimestamp = C.timestamp +
-			"", e.verifyNonceStr = C.nonceStr, e.verifySignature = C.signature, e
+		o.WeixinJSBridge ? WeixinJSBridge.on(n, function(e) {
+			t && t.trigger && t.trigger(e), a(n, e, i)
+		}) : d(n, t || i)
 	}
 
 	function r(e) {
+		return (e = e || {}).appId = M.appId, e.verifyAppId = M.appId, e.verifySignType = "sha1", e.verifyTimestamp = M.timestamp +
+			"", e.verifyNonceStr = M.nonceStr, e.verifySignature = M.signature, e
+	}
+
+	function n(e) {
 		return {
 			timeStamp: e.timestamp + "",
 			nonceStr: e.nonceStr,
@@ -30,18 +31,24 @@
 		}
 	}
 
-	function a(e) {
-		return e.postalCode = e.addressPostalCode, delete e.addressPostalCode, e.provinceName = e.proviceFirstStageName,
-			delete e.proviceFirstStageName, e.cityName = e.addressCitySecondStageName, delete e.addressCitySecondStageName, e.countryName =
-			e.addressCountiesThirdStageName, delete e.addressCountiesThirdStageName, e.detailInfo = e.addressDetailInfo, delete e
-			.addressDetailInfo, e
-	}
-
-	function c(e, n, i) {
+	function a(e, n, i) {
 		"openEnterpriseChat" == e && (n.errCode = n.err_code), delete n.err_code, delete n.err_desc, delete n.err_detail;
 		var t = n.errMsg;
-		t || (t = n.err_msg, delete n.err_msg, t = s(e, t), n.errMsg = t), (i = i || {})._complete && (i._complete(n),
-			delete i._complete), t = n.errMsg || "", C.debug && !i.isInnerInvoke && alert(JSON.stringify(n));
+		t || (t = n.err_msg, delete n.err_msg, t = function(e, n) {
+				var i = e,
+					t = f[i];
+				t && (i = t);
+				var o = "ok";
+				if (n) {
+					var r = n.indexOf(":");
+					"confirm" == (o = n.substring(r + 1)) && (o = "ok"), "failed" == o && (o = "fail"), -1 != o.indexOf("failed_") &&
+						(o = o.substring(7)), -1 != o.indexOf("fail_") && (o = o.substring(5)), "access denied" != (o = (o = o.replace(
+							/_/g, " ")).toLowerCase()) && "no permission to execute" != o || (o = "permission denied"), "config" == i &&
+						"function not exist" == o && (o = "ok"), "" == o && (o = "fail")
+				}
+				return n = i + ":" + o
+			}(e, t), n.errMsg = t), (i = i || {})._complete && (i._complete(n), delete i._complete), t = n.errMsg || "", M.debug &&
+			!i.isInnerInvoke && alert(JSON.stringify(n));
 		var o = t.indexOf(":");
 		switch (t.substring(o + 1)) {
 			case "ok":
@@ -56,81 +63,33 @@
 		i.complete && i.complete(n)
 	}
 
-	function s(e, n) {
-		var i = e,
-			t = v[i];
-		t && (i = t);
-		var o = "ok";
-		if (n) {
-			var r = n.indexOf(":");
-			"confirm" == (o = n.substring(r + 1)) && (o = "ok"), "failed" == o && (o = "fail"), -1 != o.indexOf("failed_") && (
-					o = o.substring(7)), -1 != o.indexOf("fail_") && (o = o.substring(5)), "access denied" != (o = (o = o.replace(
-					/_/g, " ")).toLowerCase()) && "no permission to execute" != o || (o = "permission denied"), "config" == i &&
-				"function not exist" == o && (o = "ok"), "" == o && (o = "fail")
-		}
-		return n = i + ":" + o
-	}
-
-	function d(e) {
+	function s(e) {
 		if (e) {
 			for (var n = 0, i = e.length; n < i; ++n) {
 				var t = e[n],
-					o = h[t];
+					o = p[t];
 				o && (e[n] = o)
 			}
 			return e
 		}
 	}
 
-	function u(e, n) {
-		if (!(!C.debug || n && n.isInnerInvoke)) {
-			var i = v[e];
-			i && (e = i), n && n._complete && delete n._complete, //console.log('"' + e + '",', n || "")
+	function d(e, n) {
+		if (!(!M.debug || n && n.isInnerInvoke)) {
+			var i = f[e];
+			i && (e = i), n && n._complete && delete n._complete, console.log('"' + e + '",', n || "")
 		}
 	}
 
-	function l(e) {
-		if (!(k || w || C.debug || x < "6.0.2" || V.systemType < 0)) {
-			var n = new Image;
-			V.appId = C.appId, V.initTime = A.initEndTime - A.initStartTime, V.preVerifyTime = A.preVerifyEndTime - A.preVerifyStartTime,
-				N.getNetworkType({
-					isInnerInvoke: !0,
-					success: function(e) {
-						V.networkType = e.networkType;
-						var i = "https://open.weixin.qq.com/sdk/report?v=" + V.version + "&o=" + V.isPreVerifyOk + "&s=" + V.systemType +
-							"&c=" + V.clientVersion + "&a=" + V.appId + "&n=" + V.networkType + "&i=" + V.initTime + "&p=" + V.preVerifyTime +
-							"&u=" + V.url;
-						n.src = i
-					}
-				})
-		}
-	}
-
-	function p() {
+	function l() {
 		return (new Date).getTime()
 	}
 
-	function f(n) {
-		T && (e.WeixinJSBridge ? n() : S.addEventListener && S.addEventListener("WeixinJSBridgeReady", n, !1))
+	function u(e) {
+		I && (o.WeixinJSBridge ? e() : t.addEventListener && t.addEventListener("WeixinJSBridgeReady", e, !1))
 	}
-
-	function m() {
-		N.invoke || (N.invoke = function(n, i, t) {
-			e.WeixinJSBridge && WeixinJSBridge.invoke(n, o(i), t)
-		}, N.on = function(n, i) {
-			e.WeixinJSBridge && WeixinJSBridge.on(n, i)
-		})
-	}
-
-	function g(e) {
-		if ("string" == typeof e && e.length > 0) {
-			var n = e.split("?")[0],
-				i = e.split("?")[1];
-			return n += ".html", void 0 !== i ? n + "?" + i : n
-		}
-	}
-	if (!e.jWeixin) {
-		var h = {
+	if (!o.jWeixin) {
+		var p = {
 				config: "preVerifyJSAPI",
 				onMenuShareTimeline: "menu:share:timeline",
 				onMenuShareAppMessage: "menu:share:appmessage",
@@ -150,115 +109,130 @@
 				consumeAndShareCard: "consumedShareCard",
 				openAddress: "editAddress"
 			},
-			v = function() {
+			f = function() {
 				var e = {};
-				for (var n in h) e[h[n]] = n;
+				for (var n in p) e[p[n]] = n;
 				return e
 			}(),
-			S = e.document,
-			I = S.title,
-			y = navigator.userAgent.toLowerCase(),
-			_ = navigator.platform.toLowerCase(),
-			k = !(!_.match("mac") && !_.match("win")),
-			w = -1 != y.indexOf("wxdebugger"),
-			T = -1 != y.indexOf("micromessenger"),
-			M = -1 != y.indexOf("android"),
-			P = -1 != y.indexOf("iphone") || -1 != y.indexOf("ipad"),
-			x = function() {
-				var e = y.match(/micromessenger\/(\d+\.\d+\.\d+)/) || y.match(/micromessenger\/(\d+\.\d+)/);
-				return e ? e[1] : ""
-			}(),
-			A = {
-				initStartTime: p(),
+			t = o.document,
+			m = t.title,
+			g = navigator.userAgent.toLowerCase(),
+			h = navigator.platform.toLowerCase(),
+			v = !(!h.match("mac") && !h.match("win")),
+			S = -1 != g.indexOf("wxdebugger"),
+			I = -1 != g.indexOf("micromessenger"),
+			y = -1 != g.indexOf("android"),
+			_ = -1 != g.indexOf("iphone") || -1 != g.indexOf("ipad"),
+			w = (O = g.match(/micromessenger\/(\d+\.\d+\.\d+)/) || g.match(/micromessenger\/(\d+\.\d+)/)) ? O[1] : "",
+			k = {
+				initStartTime: l(),
 				initEndTime: 0,
 				preVerifyStartTime: 0,
 				preVerifyEndTime: 0
 			},
-			V = {
+			T = {
 				version: 1,
 				appId: "",
 				initTime: 0,
 				preVerifyTime: 0,
 				networkType: "",
 				isPreVerifyOk: 1,
-				systemType: P ? 1 : M ? 2 : -1,
-				clientVersion: x,
+				systemType: _ ? 1 : y ? 2 : -1,
+				clientVersion: w,
 				url: encodeURIComponent(location.href)
 			},
-			C = {},
-			L = {
+			M = {},
+			P = {
 				_completes: []
 			},
-			B = {
+			x = {
 				state: 0,
 				data: {}
 			};
-		f(function() {
-			A.initEndTime = p()
+		u(function() {
+			k.initEndTime = l()
 		});
-		var O = !1,
-			E = [],
-			N = {
+		var A = !1,
+			V = [],
+			C = {
 				config: function(e) {
-					C = e, u("config", e);
-					var n = !1 !== C.check;
-					f(function() {
-						if (n) i(h.config, {
-							verifyJsApiList: d(C.jsApiList)
+					d("config", M = e);
+					var t = !1 !== M.check;
+					u(function() {
+						if (t) c(p.config, {
+							verifyJsApiList: s(M.jsApiList)
 						}, function() {
-							L._complete = function(e) {
-								A.preVerifyEndTime = p(), B.state = 1, B.data = e
-							}, L.success = function(e) {
-								V.isPreVerifyOk = 0
-							}, L.fail = function(e) {
-								L._fail ? L._fail(e) : B.state = -1
+							P._complete = function(e) {
+								k.preVerifyEndTime = l(), x.state = 1, x.data = e
+							}, P.success = function(e) {
+								T.isPreVerifyOk = 0
+							}, P.fail = function(e) {
+								P._fail ? P._fail(e) : x.state = -1
 							};
-							var e = L._completes;
-							return e.push(function() {
-								l()
-							}), L.complete = function(n) {
-								for (var i = 0, t = e.length; i < t; ++i) e[i]();
-								L._completes = []
-							}, L
-						}()), A.preVerifyStartTime = p();
+							var t = P._completes;
+							return t.push(function() {
+								! function(e) {
+									if (!(v || S || M.debug || w < "6.0.2" || T.systemType < 0)) {
+										var i = new Image;
+										T.appId = M.appId, T.initTime = k.initEndTime - k.initStartTime, T.preVerifyTime = k.preVerifyEndTime -
+											k.preVerifyStartTime, C.getNetworkType({
+												isInnerInvoke: !0,
+												success: function(e) {
+													T.networkType = e.networkType;
+													var n = "https://open.weixin.qq.com/sdk/report?v=" + T.version + "&o=" + T.isPreVerifyOk + "&s=" +
+														T.systemType + "&c=" + T.clientVersion + "&a=" + T.appId + "&n=" + T.networkType + "&i=" + T.initTime +
+														"&p=" + T.preVerifyTime + "&u=" + T.url;
+													i.src = n
+												}
+											})
+									}
+								}()
+							}), P.complete = function(e) {
+								for (var n = 0, i = t.length; n < i; ++n) t[n]();
+								P._completes = []
+							}, P
+						}()), k.preVerifyStartTime = l();
 						else {
-							B.state = 1;
-							for (var e = L._completes, t = 0, o = e.length; t < o; ++t) e[t]();
-							L._completes = []
+							x.state = 1;
+							for (var e = P._completes, n = 0, i = e.length; n < i; ++n) e[n]();
+							P._completes = []
 						}
-					}), m()
+					}), C.invoke || (C.invoke = function(e, n, i) {
+						o.WeixinJSBridge && WeixinJSBridge.invoke(e, r(n), i)
+					}, C.on = function(e, n) {
+						o.WeixinJSBridge && WeixinJSBridge.on(e, n)
+					})
 				},
 				ready: function(e) {
-					0 != B.state ? e() : (L._completes.push(e), !T && C.debug && e())
+					0 != x.state ? e() : (P._completes.push(e), !I && M.debug && e())
 				},
 				error: function(e) {
-					x < "6.0.2" || (-1 == B.state ? e(B.data) : L._fail = e)
+					w < "6.0.2" || (-1 == x.state ? e(x.data) : P._fail = e)
 				},
 				checkJsApi: function(e) {
-					var n = function(e) {
-						var n = e.checkResult;
-						for (var i in n) {
-							var t = v[i];
-							t && (n[t] = n[i], delete n[i])
-						}
-						return e
-					};
-					i("checkJsApi", {
-						jsApiList: d(e.jsApiList)
+					c("checkJsApi", {
+						jsApiList: s(e.jsApiList)
 					}, (e._complete = function(e) {
-						if (M) {
-							var i = e.checkResult;
-							i && (e.checkResult = JSON.parse(i))
+						if (y) {
+							var n = e.checkResult;
+							n && (e.checkResult = JSON.parse(n))
 						}
-						e = n(e)
+						e = function(e) {
+							var n = e.checkResult;
+							for (var i in n) {
+								var t = f[i];
+								t && (n[t] = n[i], delete n[i])
+							}
+							return e
+						}(e)
 					}, e))
 				},
 				onMenuShareTimeline: function(e) {
-					t(h.onMenuShareTimeline, {
+					i(p.onMenuShareTimeline, {
 						complete: function() {
-							i("shareTimeline", {
-								title: e.title || I,
-								desc: e.title || I,
+							c("shareTimeline", {
+								title: e.title || m,
+								desc: e.title || m,
 								img_url: e.imgUrl || "",
 								link: e.link || location.href,
 								type: e.type || "link",
@@ -267,32 +241,32 @@
 						}
 					}, e)
 				},
-				onMenuShareAppMessage: function(e) {
-					t(h.onMenuShareAppMessage, {
-						complete: function(n) {
-							"favorite" === n.scene ? i("sendAppMessage", {
-								title: e.title || I,
-								desc: e.desc || "",
-								link: e.link || location.href,
-								img_url: e.imgUrl || "",
-								type: e.type || "link",
-								data_url: e.dataUrl || ""
-							}) : i("sendAppMessage", {
-								title: e.title || I,
-								desc: e.desc || "",
-								link: e.link || location.href,
-								img_url: e.imgUrl || "",
-								type: e.type || "link",
-								data_url: e.dataUrl || ""
-							}, e)
+				onMenuShareAppMessage: function(n) {
+					i(p.onMenuShareAppMessage, {
+						complete: function(e) {
+							"favorite" === e.scene ? c("sendAppMessage", {
+								title: n.title || m,
+								desc: n.desc || "",
+								link: n.link || location.href,
+								img_url: n.imgUrl || "",
+								type: n.type || "link",
+								data_url: n.dataUrl || ""
+							}) : c("sendAppMessage", {
+								title: n.title || m,
+								desc: n.desc || "",
+								link: n.link || location.href,
+								img_url: n.imgUrl || "",
+								type: n.type || "link",
+								data_url: n.dataUrl || ""
+							}, n)
 						}
-					}, e)
+					}, n)
 				},
 				onMenuShareQQ: function(e) {
-					t(h.onMenuShareQQ, {
+					i(p.onMenuShareQQ, {
 						complete: function() {
-							i("shareQQ", {
-								title: e.title || I,
+							c("shareQQ", {
+								title: e.title || m,
 								desc: e.desc || "",
 								img_url: e.imgUrl || "",
 								link: e.link || location.href
@@ -301,10 +275,10 @@
 					}, e)
 				},
 				onMenuShareWeibo: function(e) {
-					t(h.onMenuShareWeibo, {
+					i(p.onMenuShareWeibo, {
 						complete: function() {
-							i("shareWeiboApp", {
-								title: e.title || I,
+							c("shareWeiboApp", {
+								title: e.title || m,
 								desc: e.desc || "",
 								img_url: e.imgUrl || "",
 								link: e.link || location.href
@@ -313,10 +287,10 @@
 					}, e)
 				},
 				onMenuShareQZone: function(e) {
-					t(h.onMenuShareQZone, {
+					i(p.onMenuShareQZone, {
 						complete: function() {
-							i("shareQZone", {
-								title: e.title || I,
+							c("shareQZone", {
+								title: e.title || m,
 								desc: e.desc || "",
 								img_url: e.imgUrl || "",
 								link: e.link || location.href
@@ -325,14 +299,14 @@
 					}, e)
 				},
 				updateTimelineShareData: function(e) {
-					i("updateTimelineShareData", {
+					c("updateTimelineShareData", {
 						title: e.title,
 						link: e.link,
 						imgUrl: e.imgUrl
 					}, e)
 				},
 				updateAppMessageShareData: function(e) {
-					i("updateAppMessageShareData", {
+					c("updateAppMessageShareData", {
 						title: e.title,
 						desc: e.desc,
 						link: e.link,
@@ -340,58 +314,58 @@
 					}, e)
 				},
 				startRecord: function(e) {
-					i("startRecord", {}, e)
+					c("startRecord", {}, e)
 				},
 				stopRecord: function(e) {
-					i("stopRecord", {}, e)
+					c("stopRecord", {}, e)
 				},
 				onVoiceRecordEnd: function(e) {
-					t("onVoiceRecordEnd", e)
+					i("onVoiceRecordEnd", e)
 				},
 				playVoice: function(e) {
-					i("playVoice", {
+					c("playVoice", {
 						localId: e.localId
 					}, e)
 				},
 				pauseVoice: function(e) {
-					i("pauseVoice", {
+					c("pauseVoice", {
 						localId: e.localId
 					}, e)
 				},
 				stopVoice: function(e) {
-					i("stopVoice", {
+					c("stopVoice", {
 						localId: e.localId
 					}, e)
 				},
 				onVoicePlayEnd: function(e) {
-					t("onVoicePlayEnd", e)
+					i("onVoicePlayEnd", e)
 				},
 				uploadVoice: function(e) {
-					i("uploadVoice", {
+					c("uploadVoice", {
 						localId: e.localId,
 						isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1
 					}, e)
 				},
 				downloadVoice: function(e) {
-					i("downloadVoice", {
+					c("downloadVoice", {
 						serverId: e.serverId,
 						isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1
 					}, e)
 				},
 				translateVoice: function(e) {
-					i("translateVoice", {
+					c("translateVoice", {
 						localId: e.localId,
 						isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1
 					}, e)
 				},
 				chooseImage: function(e) {
-					i("chooseImage", {
+					c("chooseImage", {
 						scene: "1|2",
 						count: e.count || 9,
 						sizeType: e.sizeType || ["original", "compressed"],
 						sourceType: e.sourceType || ["album", "camera"]
 					}, (e._complete = function(e) {
-						if (M) {
+						if (y) {
 							var n = e.localIds;
 							try {
 								n && (e.localIds = JSON.parse(n))
@@ -401,60 +375,59 @@
 				},
 				getLocation: function(e) {},
 				previewImage: function(e) {
-					i(h.previewImage, {
+					c(p.previewImage, {
 						current: e.current,
 						urls: e.urls
 					}, e)
 				},
 				uploadImage: function(e) {
-					i("uploadImage", {
+					c("uploadImage", {
 						localId: e.localId,
 						isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1
 					}, e)
 				},
 				downloadImage: function(e) {
-					i("downloadImage", {
+					c("downloadImage", {
 						serverId: e.serverId,
 						isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1
 					}, e)
 				},
 				getLocalImgData: function(e) {
-					!1 === O ? (O = !0, i("getLocalImgData", {
+					!1 === A ? (A = !0, c("getLocalImgData", {
 						localId: e.localId
 					}, (e._complete = function(e) {
-						if (O = !1, E.length > 0) {
-							var n = E.shift();
+						if (A = !1, 0 < V.length) {
+							var n = V.shift();
 							wx.getLocalImgData(n)
 						}
-					}, e))) : E.push(e)
+					}, e))) : V.push(e)
 				},
 				getNetworkType: function(e) {
-					var n = function(e) {
-						var n = e.errMsg;
-						e.errMsg = "getNetworkType:ok";
-						var i = e.subtype;
-						if (delete e.subtype, i) e.networkType = i;
-						else {
-							var t = n.indexOf(":"),
-								o = n.substring(t + 1);
-							switch (o) {
-								case "wifi":
-								case "edge":
-								case "wwan":
-									e.networkType = o;
-									break;
-								default:
-									e.errMsg = "getNetworkType:fail"
+					c("getNetworkType", {}, (e._complete = function(e) {
+						e = function(e) {
+							var n = e.errMsg;
+							e.errMsg = "getNetworkType:ok";
+							var i = e.subtype;
+							if (delete e.subtype, i) e.networkType = i;
+							else {
+								var t = n.indexOf(":"),
+									o = n.substring(t + 1);
+								switch (o) {
+									case "wifi":
+									case "edge":
+									case "wwan":
+										e.networkType = o;
+										break;
+									default:
+										e.errMsg = "getNetworkType:fail"
+								}
 							}
-						}
-						return e
-					};
-					i("getNetworkType", {}, (e._complete = function(e) {
-						e = n(e)
+							return e
+						}(e)
 					}, e))
 				},
 				openLocation: function(e) {
-					i("openLocation", {
+					c("openLocation", {
 						latitude: e.latitude,
 						longitude: e.longitude,
 						name: e.name || "",
@@ -464,43 +437,43 @@
 					}, e)
 				},
 				getLocation: function(e) {
-					e = e || {}, i(h.getLocation, {
-						type: e.type || "wgs84"
+					c(p.getLocation, {
+						type: (e = e || {}).type || "wgs84"
 					}, (e._complete = function(e) {
 						delete e.type
 					}, e))
 				},
 				hideOptionMenu: function(e) {
-					i("hideOptionMenu", {}, e)
+					c("hideOptionMenu", {}, e)
 				},
 				showOptionMenu: function(e) {
-					i("showOptionMenu", {}, e)
+					c("showOptionMenu", {}, e)
 				},
 				closeWindow: function(e) {
-					i("closeWindow", {}, e = e || {})
+					c("closeWindow", {}, e = e || {})
 				},
 				hideMenuItems: function(e) {
-					i("hideMenuItems", {
+					c("hideMenuItems", {
 						menuList: e.menuList
 					}, e)
 				},
 				showMenuItems: function(e) {
-					i("showMenuItems", {
+					c("showMenuItems", {
 						menuList: e.menuList
 					}, e)
 				},
 				hideAllNonBaseMenuItem: function(e) {
-					i("hideAllNonBaseMenuItem", {}, e)
+					c("hideAllNonBaseMenuItem", {}, e)
 				},
 				showAllNonBaseMenuItem: function(e) {
-					i("showAllNonBaseMenuItem", {}, e)
+					c("showAllNonBaseMenuItem", {}, e)
 				},
 				scanQRCode: function(e) {
-					i("scanQRCode", {
+					c("scanQRCode", {
 						needResult: (e = e || {}).needResult || 0,
 						scanType: e.scanType || ["qrCode", "barCode"]
 					}, (e._complete = function(e) {
-						if (P) {
+						if (_) {
 							var n = e.resultStr;
 							if (n) {
 								var i = JSON.parse(n);
@@ -510,28 +483,32 @@
 					}, e))
 				},
 				openAddress: function(e) {
-					i(h.openAddress, {}, (e._complete = function(e) {
-						e = a(e)
+					c(p.openAddress, {}, (e._complete = function(e) {
+						var n;
+						(n = e).postalCode = n.addressPostalCode, delete n.addressPostalCode, n.provinceName = n.proviceFirstStageName,
+							delete n.proviceFirstStageName, n.cityName = n.addressCitySecondStageName, delete n.addressCitySecondStageName,
+							n.countryName = n.addressCountiesThirdStageName, delete n.addressCountiesThirdStageName, n.detailInfo = n.addressDetailInfo,
+							delete n.addressDetailInfo, e = n
 					}, e))
 				},
 				openProductSpecificView: function(e) {
-					i(h.openProductSpecificView, {
+					c(p.openProductSpecificView, {
 						pid: e.productId,
 						view_type: e.viewType || 0,
 						ext_info: e.extInfo
 					}, e)
 				},
 				addCard: function(e) {
-					for (var n = e.cardList, t = [], o = 0, r = n.length; o < r; ++o) {
-						var a = n[o],
-							c = {
-								card_id: a.cardId,
-								card_ext: a.cardExt
+					for (var n = e.cardList, i = [], t = 0, o = n.length; t < o; ++t) {
+						var r = n[t],
+							a = {
+								card_id: r.cardId,
+								card_ext: r.cardExt
 							};
-						t.push(c)
+						i.push(a)
 					}
-					i(h.addCard, {
-						card_list: t
+					c(p.addCard, {
+						card_list: i
 					}, (e._complete = function(e) {
 						var n = e.card_list;
 						if (n) {
@@ -545,8 +522,8 @@
 					}, e))
 				},
 				chooseCard: function(e) {
-					i("chooseCard", {
-						app_id: C.appId,
+					c("chooseCard", {
+						app_id: M.appId,
 						location_id: e.shopId || "",
 						sign_type: e.signType || "SHA1",
 						card_id: e.cardId || "",
@@ -559,58 +536,64 @@
 					}, e))
 				},
 				openCard: function(e) {
-					for (var n = e.cardList, t = [], o = 0, r = n.length; o < r; ++o) {
-						var a = n[o],
-							c = {
-								card_id: a.cardId,
-								code: a.code
+					for (var n = e.cardList, i = [], t = 0, o = n.length; t < o; ++t) {
+						var r = n[t],
+							a = {
+								card_id: r.cardId,
+								code: r.code
 							};
-						t.push(c)
+						i.push(a)
 					}
-					i(h.openCard, {
-						card_list: t
+					c(p.openCard, {
+						card_list: i
 					}, e)
 				},
 				consumeAndShareCard: function(e) {
-					i(h.consumeAndShareCard, {
+					c(p.consumeAndShareCard, {
 						consumedCardId: e.cardId,
 						consumedCode: e.code
 					}, e)
 				},
 				chooseWXPay: function(e) {
-					i(h.chooseWXPay, r(e), e)
+					c(p.chooseWXPay, n(e), e)
 				},
 				openEnterpriseRedPacket: function(e) {
-					i(h.openEnterpriseRedPacket, r(e), e)
+					c(p.openEnterpriseRedPacket, n(e), e)
 				},
 				startSearchBeacons: function(e) {
-					i(h.startSearchBeacons, {
+					c(p.startSearchBeacons, {
 						ticket: e.ticket
 					}, e)
 				},
 				stopSearchBeacons: function(e) {
-					i(h.stopSearchBeacons, {}, e)
+					c(p.stopSearchBeacons, {}, e)
 				},
 				onSearchBeacons: function(e) {
-					t(h.onSearchBeacons, e)
+					i(p.onSearchBeacons, e)
 				},
 				openEnterpriseChat: function(e) {
-					i("openEnterpriseChat", {
+					c("openEnterpriseChat", {
 						useridlist: e.userIds,
 						chatname: e.groupName
 					}, e)
 				},
 				launchMiniProgram: function(e) {
-					i("launchMiniProgram", {
+					c("launchMiniProgram", {
 						targetAppId: e.targetAppId,
-						path: g(e.path),
+						path: function(e) {
+							if ("string" == typeof e && 0 < e.length) {
+								var n = e.split("?")[0],
+									i = e.split("?")[1];
+								return n += ".html", void 0 !== i ? n + "?" + i : n
+							}
+						}(e.path),
 						envVersion: e.envVersion
 					}, e)
 				},
 				miniProgram: {
 					navigateBack: function(e) {
-						e = e || {}, f(function() {
-							i("invokeMiniProgramAPI", {
+						e = e || {}, u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "navigateBack",
 								arg: {
 									delta: e.delta || 1
@@ -619,8 +602,8 @@
 						})
 					},
 					navigateTo: function(e) {
-						f(function() {
-							i("invokeMiniProgramAPI", {
+						u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "navigateTo",
 								arg: {
 									url: e.url
@@ -629,8 +612,8 @@
 						})
 					},
 					redirectTo: function(e) {
-						f(function() {
-							i("invokeMiniProgramAPI", {
+						u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "redirectTo",
 								arg: {
 									url: e.url
@@ -639,8 +622,8 @@
 						})
 					},
 					switchTab: function(e) {
-						f(function() {
-							i("invokeMiniProgramAPI", {
+						u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "switchTab",
 								arg: {
 									url: e.url
@@ -649,8 +632,8 @@
 						})
 					},
 					reLaunch: function(e) {
-						f(function() {
-							i("invokeMiniProgramAPI", {
+						u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "reLaunch",
 								arg: {
 									url: e.url
@@ -659,34 +642,34 @@
 						})
 					},
 					postMessage: function(e) {
-						f(function() {
-							i("invokeMiniProgramAPI", {
+						u(function() {
+							c("invokeMiniProgramAPI", {
 								name: "postMessage",
 								arg: e.data || {}
 							}, e)
 						})
 					},
-					getEnv: function(n) {
-						f(function() {
-							n({
-								miniprogram: "miniprogram" === e.__wxjs_environment
+					getEnv: function(e) {
+						u(function() {
+							e({
+								miniprogram: "miniprogram" === o.__wxjs_environment
 							})
 						})
 					}
 				}
 			},
-			b = 1,
-			R = {};
-		return S.addEventListener("error", function(e) {
-			if (!M) {
+			L = 1,
+			B = {};
+		return t.addEventListener("error", function(e) {
+			if (!y) {
 				var n = e.target,
 					i = n.tagName,
 					t = n.src;
 				if (("IMG" == i || "VIDEO" == i || "AUDIO" == i || "SOURCE" == i) && -1 != t.indexOf("wxlocalresource://")) {
 					e.preventDefault(), e.stopPropagation();
 					var o = n["wx-id"];
-					if (o || (o = b++, n["wx-id"] = o), R[o]) return;
-					R[o] = !0, wx.ready(function() {
+					if (o || (o = L++, n["wx-id"] = o), B[o]) return;
+					B[o] = !0, wx.ready(function() {
 						wx.getLocalImgData({
 							localId: t,
 							success: function(e) {
@@ -696,16 +679,16 @@
 					})
 				}
 			}
-		}, !0), S.addEventListener("load", function(e) {
-			if (!M) {
+		}, !0), t.addEventListener("load", function(e) {
+			if (!y) {
 				var n = e.target,
 					i = n.tagName;
-				n.src;
-				if ("IMG" == i || "VIDEO" == i || "AUDIO" == i || "SOURCE" == i) {
+				if (n.src, "IMG" == i || "VIDEO" == i || "AUDIO" == i || "SOURCE" == i) {
 					var t = n["wx-id"];
-					t && (R[t] = !1)
+					t && (B[t] = !1)
 				}
 			}
-		}, !0), n && (e.wx = e.jWeixin = N), N
+		}, !0), e && (o.wx = o.jWeixin = C), C
 	}
+	var O
 });
