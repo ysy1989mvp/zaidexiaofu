@@ -77,24 +77,23 @@
 									this.util.request(url1, "GET", params3, (res) => {
 										if (res.statusCode == 200) {
 											if (res.data.code == 1) {
-												uni.switchTab({
-													url: "../index/index"
-												});
+												uni.navigateTo({
+													url: "../orderdetail/orderdetail?id=" + this.order_id
+												})
 											} else {
 												this.util.showWindow(res.data.msg);
 												return;
 											}
 										} else {
-											this.util.showWindow("请求错误");
+											this.util.showWindow("请求支付结果通知出现错误");
 											return;
 										}
-
 									});
 									}, (res) => {
 										this.util.showWindow("支付失败");
-										uni.switchTab({
-											url: "../index/index"
-										});
+										uni.navigateTo({
+											url: "../orderdetail/orderdetail?id=" + this.order_id
+										})
 									});
 
 								} else {

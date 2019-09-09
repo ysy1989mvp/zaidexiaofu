@@ -171,6 +171,14 @@
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							this.util.showWindow("短信发送成功");
+							this.miaoshu = 60;
+							setInterval(() => {
+								if (this.miaoshu > 0) {
+									this.miaoshu--;
+								}else{
+									this.miaoshu = '重新发送';
+								}
+							}, 1000);
 						} else {
 							this.util.showWindow(res.data.msg);
 						}
@@ -178,12 +186,7 @@
 						this.util.showWindow("请求错误");
 					}
 				});
-				this.miaoshu = 60;
-				setInterval(() => {
-					if (this.miaoshu > 0) {
-						this.miaoshu--;
-					}
-				}, 1000);
+				
 			},
 			//注册
 			regist() {

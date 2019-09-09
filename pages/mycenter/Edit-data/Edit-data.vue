@@ -16,11 +16,14 @@
 				<view class="fw">
 					<view class="ee">
 						<view class="c1">学校</view>
-						<view class="c3">
-							<xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true"
+						<!-- <view class="c3"> -->
+						<!-- <xfl-select :list="xuexiaodata" :clearable="false" :showItemNum="50" :listShow="false" :isCanInput="true"
 							 :style_Container="'height: 34px; font-size: 16px;'" :placeholder="'点击选择或输入有效学校'" :initValue="data.school_name"
 							 :selectHideType="'hideAll'" @change="xuexiaochange">
-							</xfl-select>
+							</xfl-select> -->
+						<!-- </view> -->
+						<view class="c3" style="width: 70%;">
+							<input type="text" value="" v-model="data.school_name" disabled="disabled"/>
 						</view>
 						<!-- <view class="c2">〉</view> -->
 						<view class="c2"></view>
@@ -71,13 +74,13 @@
 		},
 		data() {
 			return {
-				showbool:false,
+				showbool: false,
 				boolean: 0,
 				data: null,
 				xuexiaodata: null,
 				school_no: null,
-				xingbie_id: null,//0为男，1为女
-				xingbie:'',
+				xingbie_id: null, //0为男，1为女
+				xingbie: '',
 				xingbiedata: [{
 					id: 0,
 					value: '男'
@@ -112,9 +115,9 @@
 						this.school_no = this.data.school_id;
 						this.util.uploadImgas[0] = this.data.avatar;
 						this.xingbie_id = this.data.gender;
-						if(this.xingbie_id==0){
+						if (this.xingbie_id == 0) {
 							this.xingbie = '男';
-						}else{
+						} else {
 							this.xingbie = '女';
 						}
 					} else {
@@ -152,10 +155,10 @@
 			},
 			modify() {
 				let params = {
-					"avatar": this.util.uploadImgas[0],//头像
-					"username": this.data.mobile,//电话
-					"gender": this.xingbie_id,//性别
-					"school_no":this.school_no//学校id
+					"avatar": this.util.uploadImgas[0], //头像
+					"username": this.data.mobile, //电话
+					"gender": this.xingbie_id, //性别
+					"school_no": this.school_no //学校id
 				};
 				let url1 = "/api/user/profile";
 				this.util.request(url1, "POST", params, (res) => {
@@ -163,7 +166,7 @@
 					if (res.statusCode == 200) {
 						if (res.data.code == 1) {
 							uni.navigateTo({
-								url:"./Edit-data"
+								url: "./Edit-data"
 							})
 						} else {
 							this.util.showWindow(res.data.msg);
@@ -275,7 +278,8 @@
 	.images {
 		width: 120upx;
 	}
-	.hidde1{
+
+	.hidde1 {
 		display: none;
 	}
 </style>
