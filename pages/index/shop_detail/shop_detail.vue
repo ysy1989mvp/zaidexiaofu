@@ -15,7 +15,7 @@
 				<image class="tu" src="../../../static/ysy/jdt.png" mode=""></image>
 				<view class="yy">已定制85%</view>
 			</view>
-			
+
 		</view>
 		<!-- <view class="see1" @click="bubuy"> -->
 		<!-- <image style="width: 100%;" :src="goodsdata.detailImage" mode="widthFix"></image> -->
@@ -27,7 +27,7 @@
 			<view class="HJ">合计：￥{{total_price}}</view>
 			<view class="GM" @click="buy">立即购买</view>
 
-			<view class="zhezhao" :class="{yincang:show_number==0}" @click="bubuy($event)">
+			<view class="zhezhao" v-show="show_number" @click="bubuy($event)">
 				<view class="part3">
 					<view class="l3a">
 						<view class="w1">
@@ -44,8 +44,12 @@
 								<view class="t3b"></view>
 							</view>
 							<view class="SZ">
-								<text class="tex" v-for="(item1,index1) in item.spec_items" :class="{bianse:biaoji==index1}" :key="index1"
-								 @click="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1,$event)">{{item1.spec_value}}</text>
+								<!-- :style="{background:(biaoji[index]==index1?'#1BCC8D':'#E5E5E5')}" -->
+								<text class="tex" :class="{bianse:item1.selected}" v-for="(item1,index1) in item.spec_items" :key="index1"
+								 @click.stop="selectGuige(item.group_id,item1.item_id,item.group_name,item1.spec_value,index1,$event,index,item.spec_items)"
+								 :data-id="index">
+									{{item1.spec_value}}
+								</text>
 							</view>
 						</view>
 					</view>
@@ -63,10 +67,10 @@
 	export default {
 		data() {
 			return {
-				biaoji: -1,
+				biaoji: [],
 				goodsId: null,
 				sld: false,
-				show_number: 0,
+				show_number: false,
 				bannerlist: [],
 				goodsdata: '',
 				canshulist: [],
@@ -80,6 +84,8 @@
 			this.goodsId = option.id;
 		},
 		onShow() {
+			// this.selectGuiges = [];
+			// this.selectGuigesName_value = [];
 			let params = {
 				"goodId": this.goodsId
 			};
@@ -93,6 +99,9 @@
 						this.canshulist = res.data.data.detail.spec;
 						this.total_price = res.data.data.detail.price;
 						this.specData = res.data.data.specData;
+						for (var i = 0; i < this.specData.length; i++) {
+							this.biaoji.push(-1);
+						}
 						//console.log("替换之前:"+this.goodsdata.content);
 						let regex = new RegExp(`style="`, 'g');
 						let rich = '';
@@ -113,9 +122,18 @@
 			});
 		},
 		methods: {
-			selectGuige(group_id, item_id, group_name, item_value, index,event) {
-				// event.preventDefault();
-				this.biaoji = index;
+			selectGuige(group_id, item_id, group_name, item_value, index1, event, index, specs) {
+				// this.$set(item, 'selected', true);
+				for (let spec of specs) {
+					if (spec.item_id === item_id) {
+						this.$set(spec, 'selected', true);
+					}else{
+						this.$set(spec, 'selected', false);
+					}
+				}
+
+
+
 				let boolean = false;
 				for (var i = 0; i < this.selectGuiges.length; i++) {
 					if (this.selectGuiges[i].group_id == group_id) {
@@ -161,14 +179,15 @@
 				});
 			},
 			buy() {
-				this.show_number = 1;
+				this.show_number = true;
 			},
 			bubuy(event) {
 				// var el1 = event.currentTarget;
 				// var el2 = event.target;
-				// if (el1 == el2) {
+				// // this.util.showWindow("d1:"+JSON.stringify(el1.offsetTop)+" d2:"+JSON.stringify(el2));
+				// if (el1.offsetTop == el2.offsetTop) {
 					//do something
-					this.show_number = 0;
+					this.show_number = false;
 				// }
 			},
 			confirmBuy() {
@@ -411,11 +430,13 @@
 	.bianse {
 		background-color: #1BCC8D;
 	}
-	.part2{
+
+	.part2 {
 		width: 90%;
 		margin: 0upx auto;
 	}
-	.yincang{
+
+	.yincang {
 		display: none;
 	}
 </style>

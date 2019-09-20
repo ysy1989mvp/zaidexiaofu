@@ -90,6 +90,7 @@
 			this.option = option;
 		},
 		onShow() {
+			// this.util.showWindow(JSON.stringify(this.option));
 			// 商品详情页跳转
 			this.order_id = this.option.id;
 			let params = {
@@ -121,6 +122,7 @@
 				// var wxurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID             &redirect_uri="+REDIRECT_URI+"                                                    &response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 				// window.location.href=wxurl;
 				uni.setStorageSync('order_id',this.order_data.id);
+				uni.setStorageSync('order_no',this.order_data.order_no);
 				let params = {
 					// "redirect_uri":REDIRECT_URI
 				};

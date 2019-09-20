@@ -113,28 +113,29 @@
 		}
 	    ,{
             "path" : "pages/mycenter/fuwufankui/fuwufankui",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "服务反馈"}
         }
         ,{
             "path" : "pages/mycenter/lianxiwomen/lianxiwomen",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "联系我们"}
         }
         ,{
             "path" : "pages/mycenter/zhanghuanquan/zhanghuanquan",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "账号安全"}
         }
         ,{
             "path" : "pages/mycenter/guanyuzaide/guanyuzaide",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "关于载德"}
         }
         ,{
             "path" : "pages/kefu/index/index",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "客服首页"}
         }
         ,{
             "path" : "pages/order/paypage/paypage",
-            "style" : {}
+            "style" : {"navigationBarTitleText": "支付"}
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

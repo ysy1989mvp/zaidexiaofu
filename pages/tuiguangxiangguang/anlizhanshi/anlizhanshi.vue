@@ -114,6 +114,9 @@
 </script>
 
 <style>
+	.content{
+		background-color: #FFFFFF;
+	}
 	.swiper {
 		height: 400upx;
 	}

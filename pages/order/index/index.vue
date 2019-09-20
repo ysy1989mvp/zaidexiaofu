@@ -68,13 +68,13 @@
 								</view>
 							</view>
 							<view class="option" v-if="item.pay_status==20&&item.freight_status==10">
-								<!-- 待发货
-							<view>
-								查看物流
+								待发货
+							<view @click="detail(item.order_no)">
+								订单详情
 							</view>
 							<view>
 								提醒发货
-							</view>-->
+							</view>
 							</view>
 							<!-- 待收货 -->
 							<view class="option" v-if="item.pay_status==20&&item.freight_status==20&&item.receipt_status==10">
@@ -295,14 +295,10 @@
 					});
 				});
 			},
-			detail(id, event) {
-				var el1 = event.currentTarget;
-				var el2 = event.target;
-				if (el1 == el2) {
+			detail(id) {
 					uni.navigateTo({
 						url: "../orderdetail/orderdetail?id=" + id
 					})
-				}
 			}
 		}
 	}
@@ -388,6 +384,8 @@
 		/* // 超出的文字部分用...来显示 */
 		display: -webkit-box;
 		/* // 将<p>变成高度定死，宽度自适应的行内块元素 */
+		margin-left: 10upx;
+		color: #909399;
 	}
 
 	.neirong {

@@ -162,6 +162,9 @@
 					this.util.showWindow("电话号码不能为空");
 					return;
 				}
+				if(!(this.miaoshu=='重新发送'||this.miaoshu=='发送')){
+					return;
+				}
 				let params = {
 					"mobile": this.mobile
 				};
