@@ -85,6 +85,7 @@
 				} else {
 					this.loginNow = true;
 				}
+			});
 				let params = {
 					// "token": token
 				};
@@ -97,7 +98,7 @@
 							this.bannerlist = data1.banner;
 							this.goodslist = data1.goodslist;
 							this.name = data1.name;
-							if (this.goodslist.length > 0) {
+							if (this.goodslist.length > 0&&this.loginNow==true) {
 								this.nogoods = false;
 							}
 							////console.log("看看数据2:"+JSON.stringify(data1));
@@ -108,7 +109,7 @@
 						this.util.showWindow("请求错误");
 					}
 				});
-			});
+			
 
 
 

@@ -192,7 +192,7 @@ function tokenCheck(callback) {
 					result = false;
 					//console.log("401的token：" + token);
 			} else {
-				this.util.showWindow("请求错误");
+				// this.showWindow("请求错误");
 			}
 			typeof(callback)==='function'&&callback(result);
 		});
