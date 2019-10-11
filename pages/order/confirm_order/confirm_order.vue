@@ -57,6 +57,8 @@
 								<view class="s2 jd" @click="jia">+</view>
 							</view>
 						</view>
+						
+						
 						<!-- <view class="g2">
 							<view class="u1">配送方式</view>
 							<view class="u2">普通配送</view>
@@ -65,6 +67,15 @@
 							<view class="u3">订单备注</view>
 							<view class="u4">选填，和商家协商一致</view>
 						</view> -->
+					</view>
+					
+				</view>
+				<view class="parta4">
+					<view class="g1">
+						<view class="gm">备注:</view>
+					</view>
+					<view class="g1">
+						<textarea v-model="beizhu" placeholder=""></textarea>
 					</view>
 				</view>
 			</view>
@@ -82,6 +93,7 @@
 	export default {
 		data() {
 			return {
+				beizhu:"",
 				option:null,
 				goodsimg: null,
 				goodsname: '商品名称',
@@ -170,7 +182,8 @@
 					"goods_id": this.util.orderdata.goods_id,
 					"goods_num": this.number,
 					"address_id": this.addr_id,
-					"guige": this.util.orderdata.selectGuiges
+					"guige": this.util.orderdata.selectGuiges,
+					"memo":this.beizhu
 				};
 				let params1 = {
 					"paramsdata": JSON.stringify(params)
@@ -238,6 +251,13 @@
 		display: flex;
 		justify-content: flex-start;
 	}
+	
+	textarea {
+		background-color: #FFFFFF;
+		width: 90%;
+		margin: 6upx auto;
+		border: 2upx solid #EEEEEE;
+	}
 
 	.default {
 		width: 90upx;
@@ -255,7 +275,9 @@
 		font-size: 25upx;
 		line-height: 40upx;
 	}
-
+	.parta4{
+		width: 100%;
+	}
 	.center {
 		width: 100%;
 		font-size: 28upx;
@@ -329,6 +351,9 @@
 		display: flex;
 		justify-content: space-between;
 		font-size: 20upx;
+	}
+	.g1{
+		width: 100%;
 	}
 
 	.c {
